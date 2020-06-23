@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import { MenuButton, ListItem, Avatar, FontIcon } from 'react-md';
 import { withRouter } from 'react-router-dom'
 
-import UserService from  '../services/UserService';
+import UserService from '../../services/UserService';
 
 
-class KebabMenu extends React.Component {
+class KebabMenuMD extends React.Component {
 
     constructor(props) {
         super(props);
@@ -48,10 +48,10 @@ class KebabMenu extends React.Component {
     }
 }
 
-KebabMenu.propTypes = {
+KebabMenuMD.propTypes = {
     id: PropTypes.string.isRequired,
     className: PropTypes.string,
     menuItems: PropTypes.array
 };
 
-export default withRouter(KebabMenu);
+export default withRouter(KebabMenuMD);

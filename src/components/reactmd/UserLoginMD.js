@@ -1,11 +1,11 @@
 "use strict";
 
 import React from 'react';
-import { Card, Button, TextField } from '@material-ui/core';
+import { Card, Button, TextField } from 'react-md';
 import { withRouter, Link } from 'react-router-dom';
 
-import { AlertMessage } from './AlertMessage';
-import Page from './Page';
+import { AlertMessage } from '../AlertMessage';
+import Page from '../Page';
 
 
 const style = { maxWidth: 500 };
@@ -49,8 +49,8 @@ class UserLoginMD extends React.Component {
     render() {
         return (
             <Page>
-                <Card style={style} >
-                    <form onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
+                <Card style={style} className="md-block-centered">
+                    <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
                         <TextField
                             label="Login"
                             id="LoginField"
@@ -72,10 +72,10 @@ class UserLoginMD extends React.Component {
 
                         <Button id="submit" type="submit"
                                 disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
-                                raised primary>Login</Button>
-                        <Button id="reset" type="reset" raised secondary>Dismiss</Button>
-                        <Link to={'/register'}>Not registered yet?</Link>
-                        <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                                raised primary className="md-cell md-cell--2">Login</Button>
+                        <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
+                        <Link to={'/register'} className="md-cell">Not registered yet?</Link>
+                        <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                     </form>
                 </Card>
             </Page>
