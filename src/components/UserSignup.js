@@ -4,8 +4,8 @@ import React from 'react';
 import { Card, Button, TextField } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 
-//import { AlertMessage } from './AlertMessage';
-//import Page from './Page';
+import { AlertMessage } from './AlertMessage';
+import Page from './Page';
 
 
 const style = { maxWidth: 500 };
@@ -48,37 +48,36 @@ class UserSignup extends React.Component {
 
     render() {
         return (
-            <span>user signup 1</span>
-            // <Page>
-            //     <Card style={style}>
-            //         <form onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
-            //             <TextField
-            //                 label="Username"
-            //                 id="UsernameField"
-            //                 type="text"
-            //                 className="md-row"
-            //                 required={true}
-            //                 value={this.state.username}
-            //                 onChange={this.handleChangeUsername}
-            //                 errorText="Username is required"/>
-            //             <TextField
-            //                 label="Password"
-            //                 id="PasswordField"
-            //                 type="password"
-            //                 className="md-row"
-            //                 required={true}
-            //                 value={this.state.password}
-            //                 onChange={this.handleChangePassword}
-            //                 errorText="Password is required"/>
-            //
-            //             <Button id="submit" type="submit"
-            //                     disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
-            //                     raised primary>Register</Button>
-            //             <Button id="reset" type="reset" raised secondary>Dismiss</Button>
-            //             <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
-            //         </form>
-            //     </Card>
-            // </Page>
+            <Page>
+                <Card style={style}>
+                    <form onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
+                        <TextField
+                            label="Username"
+                            id="UsernameField"
+                            type="text"
+                            className="md-row"
+                            required={true}
+                            value={this.state.username}
+                            onChange={this.handleChangeUsername}
+                            errorText="Username is required"/>
+                        <TextField
+                            label="Password"
+                            id="PasswordField"
+                            type="password"
+                            className="md-row"
+                            required={true}
+                            value={this.state.password}
+                            onChange={this.handleChangePassword}
+                            errorText="Password is required"/>
+
+                        <Button id="submit" type="submit"
+                                disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
+                                raised primary>Register</Button>
+                        <Button id="reset" type="reset" raised secondary>Dismiss</Button>
+                        <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                    </form>
+                </Card>
+            </Page>
         );
     }
 };

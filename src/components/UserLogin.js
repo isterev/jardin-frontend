@@ -11,7 +11,7 @@ import Page from './Page';
 const style = { maxWidth: 500 };
 
 
-class UserLoginMD extends React.Component {
+class UserLogin extends React.Component {
 
     constructor(props) {
         super(props);

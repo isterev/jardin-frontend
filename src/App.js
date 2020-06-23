@@ -6,7 +6,7 @@ import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 //import {MarketOfferListView} from './views/MarketOfferListView';
 //import {MarketOfferDetailView} from './views/MarketOfferDetailView';
 //import {MarketOfferFormView} from './views/MarketOfferFormView';
-//import {UserLoginView} from "./views/UserLoginView";
+import {UserLoginView} from "./views/UserLoginView";
 import {UserSignupView} from "./views/UserSignupView";
 
 import UserService from "./services/UserService";
@@ -53,7 +53,7 @@ export default class App extends React.Component {
                 //         }
                 //     }, path: '/addMarketOffer',
                 // },
-                // {component: UserLoginView, path: '/login'},
+                 {component: UserLoginView, path: '/login'},
                  {component: UserSignupView, path: '/register'}
             ]
         };

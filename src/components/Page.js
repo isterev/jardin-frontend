@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import Header from './Header';
+//import Header from './Header';
 import { Footer } from './Footer';
 
 
@@ -25,7 +25,7 @@ export default class Page extends React.Component {
     render() {
         return (
             <section>
-                <Header title={this.state.title} />
+                {/*<Header title={this.state.title} />*/}
                 {this.props.children}
                 <Footer />
             </section>
