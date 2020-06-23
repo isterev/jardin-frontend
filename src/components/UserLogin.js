@@ -1,14 +1,22 @@
 "use strict";
 
 import React from 'react';
-import { Card, Button, TextField } from '@material-ui/core';
-import { withRouter, Link } from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 
-import { AlertMessage } from './AlertMessage';
+import {Formik, Form, Field} from 'formik';
+import * as yup from 'yup';
+
+import {Card, Button} from '@material-ui/core';
+import {InputLabel, FormHelperText} from '@material-ui/core';
+
+import {TextField} from 'formik-material-ui';
+
+
+import {AlertMessage} from './AlertMessage';
 import Page from './Page';
 
 
-const style = { maxWidth: 500 };
+const style = {maxWidth: 500};
 
 
 class UserLogin extends React.Component {
@@ -17,68 +25,100 @@ class UserLogin extends React.Component {
         super(props);
 
         this.state = {
-            username : '',
-            password : ''
+            username: '',
+            password: ''
         };
-
-        this.handleChangeUsername = this.handleChangeUsername.bind(this);
-        this.handleChangePassword = this.handleChangePassword.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeUsername(value) {
-        this.setState(Object.assign({}, this.state, {username: value}));
-    }
-
-    handleChangePassword(value) {
-        this.setState(Object.assign({}, this.state, {password: value}));
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
+    handleSubmit(values) {
 
         let user = {
-            username: this.state.username,
-            password: this.state.password
+            username: values.username,
+            password: values.password
         };
 
         this.props.onSubmit(user);
     }
 
+    // validation with yup
+    getSchema() {
+        return yup.object().shape({
+            username: yup.string()
+                .required('Username is required'),
+            password: yup.string()
+                .required('Password is required'),
+        })
+    };
+
     render() {
         return (
-            <Page>
-                <Card style={style} >
-                    <form onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
-                        <TextField
-                            label="Login"
-                            id="LoginField"
-                            type="text"
-                            required={true}
-                            value={this.state.username}
-                            onChange={this.handleChangeUsername}
-                            errorText="Login is required"/>
-                        <TextField
-                            label="Password"
-                            id="PasswordField"
-                            type="password"
-                            required={true}
-                            value={this.state.password}
-                            onChange={this.handleChangePassword}
-                            errorText="Password is required"/>
 
-                        <Button id="submit" type="submit"
-                                disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
-                                raised primary>Login</Button>
-                        <Button id="reset" type="reset" raised secondary>Dismiss</Button>
-                        <Link to={'/register'}>Not registered yet?</Link>
-                        <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
-                    </form>
-                </Card>
-            </Page>
-        );
+            <div class="scroll">
+                <Page>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Card style={style}>
+                        <Formik
+                            initialValues={{
+                                username: this.state.username,
+                                password: this.state.password
+                            }}
+                            validationSchema={this.getSchema}
+                            onSubmit={this.handleSubmit}
+                            onReset={() => this.props.history.goBack()}
+                            render={() => (
+                                <Form mode='structured'>
+                                    <br/>
+
+                                    <Field
+                                        component={TextField}
+                                        name="username"
+                                        label="Username"
+                                    />
+                                    <br/>
+                                    <Field
+                                        component={TextField}
+                                        type="password"
+                                        label="Password"
+                                        name="password"
+                                    />
+
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={(() => this.form.submit())}
+                                    >
+                                        Login
+                                    </Button>
+
+                                    <Button
+                                        type="reset"
+                                        variant="contained"
+                                        color="secondary"
+                                        onClick={this.props.history.goBack()}
+                                    >
+                                        Dismiss
+                                    </Button>
+
+                                    <Link to={'/register'}>Not registered yet?</Link>
+                                    <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+
+                                </Form>
+
+                            )}
+                        />
+                    </Card>
+                </Page>
+
+            </div>
+        )
     }
-};
+
+
+}
 
 export default withRouter(UserLogin);

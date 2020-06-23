@@ -53,6 +53,7 @@ export default class App extends React.Component {
                 //         }
                 //     }, path: '/addMarketOffer',
                 // },
+                 {component: UserLoginView, path: '/', exact: true},
                  {component: UserLoginView, path: '/login'},
                  {component: UserSignupView, path: '/register'}
             ]
