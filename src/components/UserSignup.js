@@ -55,7 +55,6 @@ class UserSignup extends React.Component {
                             label="Username"
                             id="UsernameField"
                             type="text"
-                            className="md-row"
                             required={true}
                             value={this.state.username}
                             onChange={this.handleChangeUsername}
@@ -64,7 +63,6 @@ class UserSignup extends React.Component {
                             label="Password"
                             id="PasswordField"
                             type="password"
-                            className="md-row"
                             required={true}
                             value={this.state.password}
                             onChange={this.handleChangePassword}
