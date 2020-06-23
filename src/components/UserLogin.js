@@ -55,7 +55,6 @@ class UserLogin extends React.Component {
                             label="Login"
                             id="LoginField"
                             type="text"
-                            className="md-row"
                             required={true}
                             value={this.state.username}
                             onChange={this.handleChangeUsername}
@@ -64,7 +63,6 @@ class UserLogin extends React.Component {
                             label="Password"
                             id="PasswordField"
                             type="password"
-                            className="md-row"
                             required={true}
                             value={this.state.password}
                             onChange={this.handleChangePassword}
@@ -83,4 +81,4 @@ class UserLogin extends React.Component {
     }
 };
 
-export default withRouter(UserLoginMD);
+export default withRouter(UserLogin);
