@@ -161,7 +161,8 @@ class Header extends React.Component {
 
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
-            anchorEl: null
+            anchorEl: null,
+            open: false
         }
 
         //this.isMenuOpen = false; //Boolean(this.state.anchorEl);
@@ -182,11 +183,11 @@ class Header extends React.Component {
 
 
     isMenuOpen(){
-        return this.state.anchorEl != null;
+        return this.state.open;
     }
 
     handleProfileMenuOpen(event) {
-
+        //alert("profile menu");
         this.setState(state => ({
             anchorEl: event.currentTarget
         }));
@@ -199,43 +200,42 @@ class Header extends React.Component {
         }));
     };
 
-    handleMyBlogs() {
-        alert("My Blogs");
+    handleMyBlogs(event) {
+        //alert("My Blogs" + " " + event.target);
         this.setState(state => ({
             anchorEl: null
         }));
     }
 
     handleMyOffers() {
-        alert("My Offers");
+        //alert("My Offers");
         this.setState(state => ({
             anchorEl: null
         }));
     }
 
     handleMyConsultations() {
-        alert("My Consultations");
+        //alert("My Consultations");
         this.setState(state => ({
             anchorEl: null
         }));
     }
 
     handleSubscription() {
-        alert("My Subscription");
+        //alert("My Subscription");
         this.setState(state => ({
             anchorEl: null
         }));
     }
 
     handleProfile() {
-        alert("My Profile");
+        //alert("My Profile");
         this.setState(state => ({
             anchorEl: null
         }));
     }
 
     handleLogout() {
-        alert("Logout");
 
         UserService.logout();
         this.setState(state => ({
@@ -275,7 +275,7 @@ class Header extends React.Component {
                             />
                         </div>
                         <div className={classes.grow}/>
-                        <div className={classes.sectionDesktop}>
+                        <div>
 
                             <IconButton
                                 edge="end"
@@ -287,13 +287,15 @@ class Header extends React.Component {
                             >
                                 <AccountCircle/>
                             </IconButton>
+
                             <Menu
                                 anchorEl={this.state.anchorEl}
                                 anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+                                getContentAnchorEl={null}
                                 id={this.menuId}
                                 keepMounted
                                 transformOrigin={{vertical: 'top', horizontal: 'right'}}
-                                open={this.isMenuOpen}
+                                open={Boolean(this.state.anchorEl)}
                                 onClose={this.handleMenuClose}
                             >
                                 <p><b> Topics </b></p>
