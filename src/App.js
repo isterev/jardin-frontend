@@ -12,15 +12,19 @@ import {UserSignupView} from "./views/UserSignupView";
 import UserService from "./services/UserService";
 
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#e89eef'
+            main: '#2D6042'
         },
         secondary: {
-            main: '#336b87'
+            main: '#A6BC29'
         },
+        background: {
+            default: "#CFE070"
+        }
     },
 });
 
@@ -67,6 +71,7 @@ export default class App extends React.Component {
     render() {
         return (
             <MuiThemeProvider theme={theme}>
+                <CssBaseline />
                 <div>
                     <Router>
                         <Switch>
