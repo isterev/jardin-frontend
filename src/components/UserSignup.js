@@ -68,7 +68,6 @@ class UserSignup extends React.Component {
                             }}
                             validationSchema={this.getSchema}
                             onSubmit={this.handleSubmit}
-                            onReset={() => this.props.history.goBack()}
                             render={() => (
                                 <Form mode='structured'>
                                     <br/>
@@ -101,7 +100,6 @@ class UserSignup extends React.Component {
                                         type="reset"
                                         variant="contained"
                                         color="secondary"
-                                        onClick={this.props.history.goBack()}
                                     >
                                         Dismiss
                                     </Button>
@@ -121,6 +119,6 @@ class UserSignup extends React.Component {
     }
 
 
-}
+};
 
 export default withRouter(UserSignup);
