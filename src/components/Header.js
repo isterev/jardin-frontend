@@ -1,5 +1,6 @@
 import React from 'react';
-import {fade, makeStyles} from '@material-ui/core/styles';
+import {withRouter} from "react-router-dom";
+/*import {fade, makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,10 +11,9 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import {withRouter} from "react-router-dom";
-import UserService from "../services/UserService";
+import UserService from "../services/UserService";*/
 
-const useStyles = makeStyles((theme) => ({
+/*const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
@@ -148,18 +148,18 @@ const renderMobileMenu = (
         <p>Profile</p>
       </MenuItem>
     </Menu>
-);
+);*/
 
 class Header extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
+    /*this.state = {
       user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
-    }
+    }*/
   }
 
-  logout() {
+  /*logout() {
     UserService.logout();
     this.state = {
       user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
@@ -170,11 +170,11 @@ class Header extends React.Component {
     else {
       window.location.reload();
     }
-  }
+  }*/
 
   render() {
-    return (
-        <div className={classes.grow}>
+    return ( <span>dsadsadsa</span>
+        /*<div className={classes.grow}>
           <AppBar position="static">
             <Toolbar>
               <Typography className={classes.title} variant="h6" noWrap>
@@ -222,7 +222,7 @@ class Header extends React.Component {
           </AppBar>
           {renderMobileMenu}
           {renderMenu}
-        </div>
+        </div>*/
     );
   }
 };
