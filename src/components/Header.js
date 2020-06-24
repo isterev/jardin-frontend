@@ -161,47 +161,88 @@ class Header extends React.Component {
 
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
-            anchorEl: null,
-            mobileMoreAnchorEl: null, // mobile?
+            anchorEl: null
         }
 
+        //this.isMenuOpen = false; //Boolean(this.state.anchorEl);
+
         this.menuId = 'primary-search-account-menu';
-        this.mobileMenuId = 'primary-search-account-menu-mobile';
+
+        this.isMenuOpen = this.isMenuOpen.bind(this);
+        this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
+        this.handleMenuClose = this.handleMenuClose.bind(this);
+
+        this.handleMyBlogs = this.handleMyBlogs.bind(this);
+        this.handleMyOffers = this.handleMyOffers.bind(this);
+        this.handleMyConsultations = this.handleMyConsultations.bind(this);
+        this.handleSubscription = this.handleSubscription.bind(this);
+        this.handleProfile = this.handleProfile.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
-    isMenuOpen() {
+
+    isMenuOpen(){
         return this.state.anchorEl != null;
     }
 
-    isMobileMenuOpen() {
-        return this.state.mobileMoreAnchorEl != null;
-    }
-
-
     handleProfileMenuOpen(event) {
-        this.state.anchorEl = event.currentTarget;
-    };
 
+        this.setState(state => ({
+            anchorEl: event.currentTarget
+        }));
 
-    handleMobileMenuClose() {
-        this.state.mobileMoreAnchorEl = null;
     };
 
     handleMenuClose() {
-        this.state.anchorEl = null;
-        this.handleMobileMenuClose();
+        this.setState(state => ({
+            anchorEl: null
+        }));
     };
 
-    handleMobileMenuOpen(event) {
-        this.state.mobileMoreAnchorEl = event.currentTarget;
-    };
+    handleMyBlogs() {
+        alert("My Blogs");
+        this.setState(state => ({
+            anchorEl: null
+        }));
+    }
 
+    handleMyOffers() {
+        alert("My Offers");
+        this.setState(state => ({
+            anchorEl: null
+        }));
+    }
 
-    logout() {
+    handleMyConsultations() {
+        alert("My Consultations");
+        this.setState(state => ({
+            anchorEl: null
+        }));
+    }
+
+    handleSubscription() {
+        alert("My Subscription");
+        this.setState(state => ({
+            anchorEl: null
+        }));
+    }
+
+    handleProfile() {
+        alert("My Profile");
+        this.setState(state => ({
+            anchorEl: null
+        }));
+    }
+
+    handleLogout() {
+        alert("Logout");
+
         UserService.logout();
-        this.state = {
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
-        };
+        this.setState(state => ({
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
+            anchorEl: null
+        }));
+
         if (this.props.location.pathname != '/') {
             this.props.history.push('/');
         } else {
@@ -246,41 +287,31 @@ class Header extends React.Component {
                             >
                                 <AccountCircle/>
                             </IconButton>
-                        </div>
-                        <div className={classes.sectionMobile}>
-                            <IconButton
-                                aria-label="show more"
-                                aria-controls={this.mobileMenuId}
-                                aria-haspopup="true"
-                                onClick={this.handleMobileMenuOpen}
-                                color="inherit"
+                            <Menu
+                                anchorEl={this.state.anchorEl}
+                                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+                                id={this.menuId}
+                                keepMounted
+                                transformOrigin={{vertical: 'top', horizontal: 'right'}}
+                                open={this.isMenuOpen}
+                                onClose={this.handleMenuClose}
                             >
-                                <MoreIcon/>
-                            </IconButton>
+                                <p><b> Topics </b></p>
+                                <hr></hr>
+                                <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>
+                                <MenuItem onClick={this.handleMyOffers}>My Offers</MenuItem>
+                                <MenuItem onClick={this.handleMyConsultations}>My Consultations</MenuItem>
+                                <p><b> User </b></p>
+                                <hr></hr>
+                                <MenuItem onClick={this.handleSubscription}>Subscription</MenuItem>
+                                <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
+                                <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+                            </Menu>
                         </div>
                     </Toolbar>
                 </AppBar>
-                <Menu
-                    anchorEl={this.state.anchorEl}
-                    anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-                    id={this.menuId}
-                    keepMounted
-                    transformOrigin={{vertical: 'top', horizontal: 'right'}}
-                    open={this.isMenuOpen}
-                    onClose={this.handleMenuClose}
-                >
-                    <p><b> Topics </b></p>
-                    <hr></hr>
-                    <MenuItem onClick={this.handleMenuClose}>My Blogs</MenuItem>
-                    <MenuItem onClick={this.handleMenuClose}>My Offers</MenuItem>
-                    <MenuItem onClick={this.handleMenuClose}>My Consultations</MenuItem>
-                    <p><b> User </b></p>
-                    <hr></hr>
-                    <MenuItem onClick={this.handleMenuClose}>Subscription</MenuItem>
-                    <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleMenuClose}>Logout</MenuItem>
-                </Menu>
-                
+
+
             </div>
         );
     }

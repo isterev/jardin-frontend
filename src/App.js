@@ -67,7 +67,6 @@ export default class App extends React.Component {
     render() {
         return (
             <MuiThemeProvider theme={theme}>
-                <span>Hello World!!!</span>
                 <div>
                     <Router>
                         <Switch>
