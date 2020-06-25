@@ -2,13 +2,16 @@
 
 import React from 'react';
 
-import {MarketOfferGridTile} from './MarketOfferGridTile';
-import Page from '../Page'
-import {makeStyles} from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
+import {withStyles} from "@material-ui/styles";
+import {withRouter} from "react-router-dom";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
+import GridListTile from "@material-ui/core/GridListTile";
 
+import Page from '../Page'
+import UserService from "../../services/UserService";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -23,25 +26,56 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
-}));
+});
 
-export default function MarketOfferGridList(callerParams) {
-    const classes = useStyles();
+class MarketOfferGridList extends React.Component {
 
-    return (
-        <Page>
-            <div className={classes.root}>
-                <GridList cellHeight={180} className={classes.gridList}>
-                    {/*<GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>*/}
-                    {/*    <ListSubheader component="div">Market Offers</ListSubheader>*/}
-                    {/*</GridListTile>*/}
+    constructor(props) {
+        super(props);
 
-                    {callerParams.data.map((marketOffer, i) => <MarketOfferGridTile key={i}
-                                                                                    marketOffer={marketOffer}/>)}
+        this.state = {
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
+        }
 
-                </GridList>
+        this.handleEdit = this.handleEdit.bind(this);
+    }
 
-            </div>
-        </Page>
-    );
-}
+    handleEdit() {
+
+        alert("ooo")
+        this.props.history.push('/register/'); // TODO
+
+    }
+
+    render() {
+
+        const {classes} = this.props;
+        return (
+            <Page>
+                <div className={classes.root}>
+                    <GridList cellHeight={180} className={classes.gridList}>
+                        {/*<GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>*/}
+                        {/*    <ListSubheader component="div">Market Offers</ListSubheader>*/}
+                        {/*</GridListTile>*/}
+
+                        {this.props.data.map((marketOffer, i) => <GridListTile key={i}>
+                            <img src={'https://material-ui.com/static/images/grid-list/breakfast.jpg'}
+                                 alt={marketOffer.title}/>
+                            <GridListTileBar
+                                title={marketOffer.title}
+                                subtitle={<span>by: {marketOffer.creator}</span>}
+                                onClick={this.handleEdit}
+                                //onClick={this.props.history.push(`/edit/${this.props.marketOffer._id}`)}
+                            />
+                        </GridListTile>)}
+
+
+                    </GridList>
+
+                </div>
+            </Page>
+        );
+    }
+};
+
+export default withStyles(styles)(withRouter(MarketOfferGridList));
