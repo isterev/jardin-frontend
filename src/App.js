@@ -6,6 +6,9 @@ import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 //import {MarketOfferListView} from './views/MarketOfferListView';
 //import {MarketOfferDetailView} from './views/MarketOfferDetailView';
 //import {MarketOfferFormView} from './views/MarketOfferFormView';
+
+import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
+import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView";
 import {UserLoginView} from "./views/UserLoginView";
 import {UserSignupView} from "./views/UserSignupView";
 
@@ -13,6 +16,7 @@ import UserService from "./services/UserService";
 
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
+
 
 const theme = createMuiTheme({
     palette: {
@@ -37,7 +41,8 @@ export default class App extends React.Component {
         this.state = {
             title: 'Jardin',
             routes: [
-                //{component: MarketOfferListView, path: '/', exact: true},
+                {component: MarketOfferGridListView, path: '/', exact: true},
+                {component: MyMarketOfferGridListView, path: '/myOffers'},
                 //{component: MarketOfferDetailView, path: '/show/:id'},
                 // {
                 //     render: (props) => {
@@ -57,7 +62,7 @@ export default class App extends React.Component {
                 //         }
                 //     }, path: '/addMarketOffer',
                 // },
-                 {component: UserLoginView, path: '/', exact: true},
+                 // {component: UserLoginView, path: '/', exact: true},
                  {component: UserLoginView, path: '/login'},
                  {component: UserSignupView, path: '/register'}
             ]

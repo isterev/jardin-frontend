@@ -35,6 +35,21 @@ export default class MarketOfferService {
         });
     }
 
+    static getMyMarketOffers() {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${MarketOfferService.baseURL()}/myMarketOffers`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving market offer');
+                }
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     static deleteMarketOffer(id) {
         return new Promise((resolve, reject) => {
             HttpService.remove(`${MarketOfferService.baseURL()}/${id}`, function(data) {
@@ -61,7 +76,6 @@ export default class MarketOfferService {
     }
 
     static createMarketOffer(marketOffer) {
-        //marketOffer.id = Math.floor((Math.random() * 100000000) + 1).toString(); //TODO generate UUID???
 
         if(!UserService.isAuthenticated())
             return;

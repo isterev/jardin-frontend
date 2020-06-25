@@ -13,7 +13,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import UserService from "../services/UserService";
 
 const styles = (theme) => ({
@@ -161,15 +160,11 @@ class Header extends React.Component {
 
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
-            anchorEl: null,
-            open: false
+            anchorEl: null
         }
-
-        //this.isMenuOpen = false; //Boolean(this.state.anchorEl);
 
         this.menuId = 'primary-search-account-menu';
 
-        this.isMenuOpen = this.isMenuOpen.bind(this);
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
         this.handleMenuClose = this.handleMenuClose.bind(this);
 
@@ -179,11 +174,6 @@ class Header extends React.Component {
         this.handleSubscription = this.handleSubscription.bind(this);
         this.handleProfile = this.handleProfile.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
-    }
-
-
-    isMenuOpen(){
-        return this.state.open;
     }
 
     handleProfileMenuOpen(event) {
@@ -212,6 +202,8 @@ class Header extends React.Component {
         this.setState(state => ({
             anchorEl: null
         }));
+
+        this.props.history.push('/myOffers');
     }
 
     handleMyConsultations() {
