@@ -37,10 +37,10 @@ class MarketOfferGridList extends React.Component {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
         }
 
-        this.handleEdit = this.handleEdit.bind(this);
+        this.handleDisplay = this.handleDisplay.bind(this);
     }
 
-    handleEdit() {
+    handleDisplay() {
 
         alert("ooo")
         this.props.history.push('/register/'); // TODO
@@ -64,7 +64,7 @@ class MarketOfferGridList extends React.Component {
                             <GridListTileBar
                                 title={marketOffer.title}
                                 subtitle={<span>by: {marketOffer.creator}</span>}
-                                onClick={this.handleEdit}
+                                onClick={this.handleDisplay}
                                 //onClick={this.props.history.push(`/edit/${this.props.marketOffer._id}`)}
                             />
                         </GridListTile>)}

@@ -42,6 +42,7 @@ export default class App extends React.Component {
             title: 'Jardin',
             routes: [
                 {component: MarketOfferGridListView, path: '/', exact: true},
+                {component: MarketOfferGridListView, path: '/offers'},
                 {component: MyMarketOfferGridListView, path: '/myOffers'},
                 //{component: MarketOfferDetailView, path: '/show/:id'},
                 // {

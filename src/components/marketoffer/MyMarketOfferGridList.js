@@ -2,13 +2,18 @@
 
 import React from 'react';
 
-import {MyMarketOfferGridTile} from './MyMarketOfferGridTile';
-import Page from '../Page'
-import {makeStyles} from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
+import {withStyles} from "@material-ui/styles";
+import {withRouter} from "react-router-dom";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
+import Page from '../Page'
+import UserService from "../../services/UserService";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -23,24 +28,74 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
-}));
+});
 
-export default function MyMarketOfferGridList(data, onDelete) {
-    const classes = useStyles();
+class MyMarketOfferGridList extends React.Component {
 
-    return (
-        <Page>
-            <div className={classes.root}>
-                <GridList cellHeight={180} className={classes.gridList}>
-                    {/*<GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>*/}
-                    {/*    <ListSubheader component="div">Market Offers</ListSubheader>*/}
-                    {/*</GridListTile>*/}
+    constructor(props) {
+        super(props);
 
-                    {data.map((marketOffer, i) => <MyMarketOfferGridTile key={i} marketOffer={marketOffer} onDelete={(id) => onDelete(id)} />)}
+        this.state = {
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
+        }
 
-                </GridList>
+        this.handleEdit = this.handleEdit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+    }
 
-            </div>
-        </Page>
-    );
-}
+    handleEdit(id) {
+        alert("edit")
+        this.props.history.push('/edit/'+id); // TODO
+    }
+
+    handleDelete(id) {
+        alert("delete")
+        this.props.onDelete(id)
+        //this.props.history.push('/delete/'+id); // TODO
+    }
+
+    render() {
+
+        const {classes} = this.props;
+        return (
+            <Page>
+                <div className={classes.root}>
+                    <GridList cellHeight={180} className={classes.gridList}>
+                        {/*<GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>*/}
+                        {/*    <ListSubheader component="div">Market Offers</ListSubheader>*/}
+                        {/*</GridListTile>*/}
+
+                        {this.props.data.map((marketOffer, i) => <GridListTile key={i}>
+                            <img src={'https://material-ui.com/static/images/grid-list/breakfast.jpg'}
+                                 alt={marketOffer.title}/>
+                            <GridListTileBar
+                                title={marketOffer.title}
+                                subtitle={<span>by: {marketOffer.creator}</span>}
+                                onClick={this.handleEdit.bind(this, marketOffer._id)}
+                                //onClick={this.props.history.push(`/edit/${this.props.marketOffer._id}`)}
+
+                                actionIcon={
+                                    <IconButton
+                                        // edge="end"
+                                        aria-label={`delete ${marketOffer.title}`}
+                                        onClick={this.handleDelete.bind(this, marketOffer._id)}
+                                        color="inherit"
+                                        className={classes.icon}
+                                    >
+                                        <DeleteIcon />  {/* DeleteForever */}
+                                    </IconButton>
+
+                                }
+                            />
+                        </GridListTile>)}
+
+
+                    </GridList>
+
+                </div>
+            </Page>
+        );
+    }
+};
+
+export default withStyles(styles)(withRouter(MyMarketOfferGridList));

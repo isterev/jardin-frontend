@@ -37,12 +37,12 @@ export default class MarketOfferService {
 
     static getMyMarketOffers() {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${MarketOfferService.baseURL()}/myMarketOffers`, function(data) {
+            HttpService.get(`${MarketOfferService.baseURL()}/myOffers/`, function(data) {
                 if(data != undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
                 else {
-                    reject('Error while retrieving market offer');
+                    reject('Error while retrieving market offers');
                 }
             }, function(textStatus) {
                 reject(textStatus);
