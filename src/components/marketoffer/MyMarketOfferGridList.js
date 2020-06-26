@@ -8,10 +8,12 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import {withStyles} from "@material-ui/styles";
 import {withRouter} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
+import AddIcon from '@material-ui/icons/Add';
 
 import Page from '../Page'
 import UserService from "../../services/UserService";
+import Fab from "@material-ui/core/Fab";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const styles = (theme) => ({
     root: {
@@ -45,7 +47,7 @@ class MyMarketOfferGridList extends React.Component {
 
     handleEdit(id) {
         alert("edit")
-        this.props.history.push('/edit/'+id); // TODO
+        this.props.history.push('/edit/' + id); // TODO
     }
 
     handleDelete(id) {
@@ -61,9 +63,13 @@ class MyMarketOfferGridList extends React.Component {
             <Page>
                 <div className={classes.root}>
                     <GridList cellHeight={180} className={classes.gridList}>
-                        {/*<GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>*/}
-                        {/*    <ListSubheader component="div">Market Offers</ListSubheader>*/}
-                        {/*</GridListTile>*/}
+                        <GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>
+                            <Tooltip title="Add" aria-label="add" style={{direction: 'rtl'}}>
+                                <Fab color="secondary" href={"/addOffer"}>
+                                    <AddIcon/>
+                                </Fab>
+                            </Tooltip>
+                        </GridListTile>
 
                         {this.props.data.map((marketOffer, i) => <GridListTile key={i}>
                             <img src={'https://material-ui.com/static/images/grid-list/breakfast.jpg'}
@@ -82,7 +88,7 @@ class MyMarketOfferGridList extends React.Component {
                                         color="inherit"
                                         className={classes.icon}
                                     >
-                                        <DeleteIcon />  {/* DeleteForever */}
+                                        <DeleteIcon/> {/* DeleteForever */}
                                     </IconButton>
 
                                 }
