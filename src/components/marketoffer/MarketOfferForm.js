@@ -52,6 +52,7 @@ class MarketOfferForm extends React.Component {
     }
 
     onSubmit(values) {
+        
         confirmAlert({
             title: 'Confirm',
             message: "Do you really want to " + (this.isUpdate ? "update" : "create") + " this market offer?",
@@ -148,6 +149,7 @@ class MarketOfferForm extends React.Component {
                                             inputProps={{
                                                 id: 'category',
                                             }}
+                                            style={{width: "66%"}}
                                         >
                                             <MenuItem value={'SEEDS_SMALL_PLANTS'}>seeds and small plants</MenuItem>
                                             <MenuItem value={'FERTILISERS'}>fertilisers</MenuItem>
@@ -166,7 +168,7 @@ class MarketOfferForm extends React.Component {
                                             name="title"
                                             label="Title"
                                             helperText="Specify a title"
-                                            InputProps={{notched: true}}
+                                            style={{width: "66%"}}
                                         />
 
                                         <br/>
@@ -182,6 +184,7 @@ class MarketOfferForm extends React.Component {
                                             multiline={true}
                                             rows='5'
                                             rowsMax='20'
+                                            style={{width: "66%"}}
                                             // style={{width: "90%", height: "150px"}}
                                         />
 
@@ -197,6 +200,7 @@ class MarketOfferForm extends React.Component {
                                             inputProps={{
                                                 id: 'denomination',
                                             }}
+                                            style={{width: "66%"}}
                                         >
                                             <MenuItem value={'UNIT'}>unit</MenuItem>
                                             <MenuItem value={'PER_KG'}>per kg</MenuItem>
@@ -214,13 +218,16 @@ class MarketOfferForm extends React.Component {
                                             name="pricePerUnit"
                                             label="Price per unit"
                                             helperText="Define the price per unit"
-                                            InputProps={{notched: true}}
+                                            style={{width: "66%"}}
                                         />
 
                                         <br/>
 
                                     </Box>
                                     <Box margin={1}>
+
+                                        <br/>
+                                        <br/>
 
                                         <Button
                                             type="submit"
