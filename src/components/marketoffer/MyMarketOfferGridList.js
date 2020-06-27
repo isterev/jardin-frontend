@@ -6,7 +6,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import {withStyles} from "@material-ui/styles";
-import {withRouter} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from '@material-ui/icons/Add';
 
@@ -64,11 +64,13 @@ class MyMarketOfferGridList extends React.Component {
                 <div className={classes.root}>
                     <GridList cellHeight={180} className={classes.gridList}>
                         <GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>
-                            <Tooltip title="Add" aria-label="add" style={{direction: 'rtl'}}>
-                                <Fab color="secondary" href={"/addOffer"}>
-                                    <AddIcon/>
-                                </Fab>
-                            </Tooltip>
+                            <Link to="/addOffer">
+                                <Tooltip title="Add" aria-label="add" style={{direction: 'rtl'}} >
+                                    <Fab color="secondary">
+                                        <AddIcon/>
+                                    </Fab>
+                                </Tooltip>
+                            </Link>
                         </GridListTile>
 
                         {this.props.data.map((marketOffer, i) => <GridListTile key={i}>
