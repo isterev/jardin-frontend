@@ -9,6 +9,8 @@ import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
 import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView";
+import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView";
+
 import {UserLoginView} from "./views/UserLoginView";
 import {UserSignupView} from "./views/UserSignupView";
 
@@ -44,25 +46,25 @@ export default class App extends React.Component {
                 {component: MarketOfferGridListView, path: '/', exact: true},
                 {component: MarketOfferGridListView, path: '/offers'},
                 {component: MyMarketOfferGridListView, path: '/myOffers'},
-                //{component: MarketOfferDetailView, path: '/show/:id'},
-                // {
-                //     render: (props) => {
-                //         if (UserService.isAuthenticated()) {
-                //             return (<MarketOfferFormView {...props} />)
-                //         } else {
-                //             return (<Redirect to={'/login'}/>)
-                //         }
-                //     }, path: '/edit/:id'
-                // },
-                // {
-                //     render: (props) => {
-                //         if (UserService.isAuthenticated()) {
-                //             return (<MarketOfferFormView {...props} />)
-                //         } else {
-                //             return (<Redirect to={'/login'}/>)
-                //         }
-                //     }, path: '/addOffer',
-                // },
+                // {component: MarketOfferDetailView, path: '/show/:id'},
+                /*{
+                    render: (props) => {
+                        if (UserService.isAuthenticated()) {
+                            return (<MarketOfferFormView {...props} />)
+                        } else {
+                            return (<Redirect to={'/login'}/>)
+                        }
+                    }, path: '/edit/:id'
+                },
+                {
+                    render: (props) => {
+                        if (UserService.isAuthenticated()) {
+                            return (<MarketOfferFormView {...props} />)
+                        } else {
+                            return (<Redirect to={'/login'}/>)
+                        }
+                    }, path: '/addOffer',
+                },*/
                  // {component: UserLoginView, path: '/', exact: true},
                  {component: UserLoginView, path: '/login'},
                  {component: UserSignupView, path: '/register'}
