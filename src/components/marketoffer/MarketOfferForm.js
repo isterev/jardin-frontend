@@ -6,9 +6,9 @@ import {withRouter} from 'react-router-dom';
 import {Field, Form, Formik} from 'formik';
 import * as yup from 'yup';
 
-import {Button, Card, InputLabel, MenuItem, Select} from '@material-ui/core';
+import {Button, Card, InputLabel, MenuItem} from '@material-ui/core';
 
-import {TextField} from 'formik-material-ui';
+import {TextField, Select} from 'formik-material-ui';
 
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
