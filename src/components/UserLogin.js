@@ -11,7 +11,7 @@ import {Card, Button} from '@material-ui/core';
 import {TextField} from 'formik-material-ui';
 
 
-import {AlertMessage} from './AlertMessage';
+import {AlertMessage} from './util/AlertMessage';
 import Page from './Page';
 
 

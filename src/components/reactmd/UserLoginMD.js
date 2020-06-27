@@ -4,7 +4,7 @@ import React from 'react';
 import { Card, Button, TextField } from 'react-md';
 import { withRouter, Link } from 'react-router-dom';
 
-import { AlertMessage } from '../AlertMessage';
+import { AlertMessage } from '../util/AlertMessage';
 import Page from '../Page';
 
 
