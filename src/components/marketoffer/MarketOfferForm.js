@@ -14,6 +14,7 @@ import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import Page from '../Page';
+import Box from "@material-ui/core/Box";
 
 const styles = (theme) => ({
     root: {maxWidth: 500}
@@ -25,7 +26,7 @@ class MarketOfferForm extends React.Component {
         super(props);
         this.isUpdate = false;
 
-        if(this.props.marketOffer != undefined) {
+        if (this.props.marketOffer != undefined) {
             this.state = {
                 category: props.marketOffer.category,
                 title: props.marketOffer.title,
@@ -53,7 +54,7 @@ class MarketOfferForm extends React.Component {
     onSubmit(values) {
         confirmAlert({
             title: 'Confirm',
-            message: "Do you really want to " + (this.isUpdate? "update" : "create") + " this market offer?",
+            message: "Do you really want to " + (this.isUpdate ? "update" : "create") + " this market offer?",
             buttons: [
                 {
                     label: 'Yes',
@@ -70,7 +71,7 @@ class MarketOfferForm extends React.Component {
     confirmOk(values) {
 
         let marketOffer = this.props.marketOffer;
-        if(marketOffer == undefined) {
+        if (marketOffer == undefined) {
             marketOffer = {};
         }
 
@@ -100,7 +101,7 @@ class MarketOfferForm extends React.Component {
             denomination: yup.string()
                 .required('Denomination is required')
                 .oneOf(
-                    ['UNIT','PER_KG', 'PER_GRAM', 'PER_DAY'],
+                    ['UNIT', 'PER_KG', 'PER_GRAM', 'PER_DAY'],
                     'Invalid Denomination type'
                 ),
             pricePerUnit: yup.number()
@@ -122,7 +123,7 @@ class MarketOfferForm extends React.Component {
                     <br/>
                     <br/>
                     <br/>
-                    <Card style = {{maxWidth: 500}}>
+                    <Card style={{maxWidth: 500}}>
                         <Formik
                             initialValues={{
                                 category: this.state.category,
@@ -135,91 +136,111 @@ class MarketOfferForm extends React.Component {
                             onSubmit={this.onSubmit}
                             render={() => (
                                 <Form mode='structured'>
-                                    <br/>
 
-                                    <InputLabel htmlFor="category">Category</InputLabel>
-                                    <Field
-                                        component={Select}
-                                        name="category"
-                                        inputProps={{
-                                            id: 'category',
-                                        }}
-                                    >
-                                        <MenuItem value={'SEEDS_SMALL_PLANTS'}>seeds and small plants</MenuItem>
-                                        <MenuItem value={'FERTILISERS'}>fertilisers</MenuItem>
-                                        <MenuItem value={'MECHANICAL_EQUIPMENT'}>mechanical equipment</MenuItem>
-                                        <MenuItem value={'ELECTRONIC_EQUIPMENT'}>electronic equipment</MenuItem>
-                                        <MenuItem value={'OTHERS'}>others</MenuItem>
-                                    </Field>
+                                    <Box margin={1}>
 
-                                    <br />
+                                        <br/>
 
-                                    <Field
-                                        component={TextField}
-                                        name="title"
-                                        label="Title"
-                                        helperText = "Specify a title"
-                                        InputProps={{ notched: true }}
-                                    />
+                                        <InputLabel htmlFor="category">Category</InputLabel>
+                                        <Field
+                                            component={Select}
+                                            name="category"
+                                            inputProps={{
+                                                id: 'category',
+                                            }}
+                                        >
+                                            <MenuItem value={'SEEDS_SMALL_PLANTS'}>seeds and small plants</MenuItem>
+                                            <MenuItem value={'FERTILISERS'}>fertilisers</MenuItem>
+                                            <MenuItem value={'MECHANICAL_EQUIPMENT'}>mechanical equipment</MenuItem>
+                                            <MenuItem value={'ELECTRONIC_EQUIPMENT'}>electronic equipment</MenuItem>
+                                            <MenuItem value={'OTHERS'}>others</MenuItem>
+                                        </Field>
 
-                                    <br />
+                                        <br/>
 
-                                    <Field
-                                        component={TextField}
-                                        name='description'
-                                        label='Description'
-                                        helperText = 'Write a detailed description'
-                                        multiline = {true}
-                                        rows = '5'
-                                        rowsMax = '20'
-                                        // style={{width: "90%", height: "150px"}}
-                                    />
+                                    </Box>
+                                    <Box margin={1}>
 
-                                    <br />
+                                        <Field
+                                            component={TextField}
+                                            name="title"
+                                            label="Title"
+                                            helperText="Specify a title"
+                                            InputProps={{notched: true}}
+                                        />
 
-                                    <InputLabel htmlFor="category">Denomination</InputLabel>
-                                    <Field
-                                        component={Select}
-                                        name="denomination"
-                                        inputProps={{
-                                            id: 'denomination',
-                                        }}
-                                    >
-                                        <MenuItem value={'UNIT'}>unit</MenuItem>
-                                        <MenuItem value={'PER_KG'}>per kg</MenuItem>
-                                        <MenuItem value={'PER_GRAM'}>per gram</MenuItem>
-                                        <MenuItem value={'PER_DAY'}>per day</MenuItem>
-                                    </Field>
+                                        <br/>
 
-                                    <br />
+                                    </Box>
+                                    <Box margin={1}>
 
-                                    <Field
-                                        component={TextField}
-                                        name="pricePerUnit"
-                                        label="Price per unit"
-                                        helperText = "Define the price per unit"
-                                        InputProps={{ notched: true }}
-                                    />
+                                        <Field
+                                            component={TextField}
+                                            name='description'
+                                            label='Description'
+                                            helperText='Write a detailed description'
+                                            multiline={true}
+                                            rows='5'
+                                            rowsMax='20'
+                                            // style={{width: "90%", height: "150px"}}
+                                        />
 
-                                    <br />
+                                        <br/>
 
-                                    <Button
-                                        type="submit"
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={(() => this.form.submit())}
-                                    >
-                                        Submit
-                                    </Button>
+                                    </Box>
+                                    <Box margin={1}>
 
-                                    <Button
-                                        // type="reset"
-                                        variant="contained"
-                                        color="secondary"
-                                        onClick={(() => history.go(-1))}
-                                    >
-                                        Cancel
-                                    </Button>
+                                        <InputLabel htmlFor="category">Denomination</InputLabel>
+                                        <Field
+                                            component={Select}
+                                            name="denomination"
+                                            inputProps={{
+                                                id: 'denomination',
+                                            }}
+                                        >
+                                            <MenuItem value={'UNIT'}>unit</MenuItem>
+                                            <MenuItem value={'PER_KG'}>per kg</MenuItem>
+                                            <MenuItem value={'PER_GRAM'}>per gram</MenuItem>
+                                            <MenuItem value={'PER_DAY'}>per day</MenuItem>
+                                        </Field>
+
+                                        <br/>
+
+                                    </Box>
+                                    <Box margin={1}>
+
+                                        <Field
+                                            component={TextField}
+                                            name="pricePerUnit"
+                                            label="Price per unit"
+                                            helperText="Define the price per unit"
+                                            InputProps={{notched: true}}
+                                        />
+
+                                        <br/>
+
+                                    </Box>
+                                    <Box margin={1}>
+
+                                        <Button
+                                            type="submit"
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={(() => this.form.submit())}
+                                        >
+                                            Submit
+                                        </Button>
+
+                                        <Button
+                                            // type="reset"
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={(() => history.go(-1))}
+                                        >
+                                            Cancel
+                                        </Button>
+
+                                    </Box>
 
                                 </Form>
 
