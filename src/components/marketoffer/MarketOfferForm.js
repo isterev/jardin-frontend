@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom';
 import {Field, Form, Formik} from 'formik';
 import * as yup from 'yup';
 
-import {Button, Card, InputLabel, MenuItem} from '@material-ui/core';
+import {Button, Card, InputLabel, MenuItem, Select} from '@material-ui/core';
 
 import {TextField} from 'formik-material-ui';
 
@@ -14,10 +14,10 @@ import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import Page from '../Page';
-import Select from "@material-ui/core/Select";
 
-const style = {maxWidth: 500};
-
+const styles = (theme) => ({
+    root: {maxWidth: 500}
+});
 
 class MarketOfferForm extends React.Component {
 
@@ -112,14 +112,17 @@ class MarketOfferForm extends React.Component {
     };
 
     render() {
+
+        const {classes} = this.props;
+
         return (
 
-            /*<div class="scroll">
+            <div class="scroll">
                 <Page>
                     <br/>
                     <br/>
                     <br/>
-                    <Card style={style}>
+                    <Card style = {{maxWidth: 500}}>
                         <Formik
                             initialValues={{
                                 category: this.state.category,
@@ -129,7 +132,7 @@ class MarketOfferForm extends React.Component {
                                 pricePerUnit: this.state.pricePerUnit
                             }}
                             validationSchema={this.getSchema}
-                            onSubmit={this.handleSubmit}
+                            onSubmit={this.onSubmit}
                             render={() => (
                                 <Form mode='structured'>
                                     <br/>
@@ -149,13 +152,17 @@ class MarketOfferForm extends React.Component {
                                         <MenuItem value={'OTHERS'}>others</MenuItem>
                                     </Field>
 
+                                    <br />
+
                                     <Field
                                         component={TextField}
                                         name="title"
                                         label="Title"
                                         helperText = "Specify a title"
                                         InputProps={{ notched: true }}
-                                    />;
+                                    />
+
+                                    <br />
 
                                     <Field
                                         component={TextField}
@@ -166,7 +173,9 @@ class MarketOfferForm extends React.Component {
                                         rows = '5'
                                         rowsMax = '20'
                                         // style={{width: "90%", height: "150px"}}
-                                    />;
+                                    />
+
+                                    <br />
 
                                     <InputLabel htmlFor="category">Denomination</InputLabel>
                                     <Field
@@ -182,13 +191,17 @@ class MarketOfferForm extends React.Component {
                                         <MenuItem value={'PER_DAY'}>per day</MenuItem>
                                     </Field>
 
+                                    <br />
+
                                     <Field
                                         component={TextField}
                                         name="pricePerUnit"
                                         label="Price per unit"
                                         helperText = "Define the price per unit"
                                         InputProps={{ notched: true }}
-                                    />;
+                                    />
+
+                                    <br />
 
                                     <Button
                                         type="submit"
@@ -203,7 +216,7 @@ class MarketOfferForm extends React.Component {
                                         // type="reset"
                                         variant="contained"
                                         color="secondary"
-                                        onClick={(() => history.go(-1))}>
+                                        onClick={(() => history.go(-1))}
                                     >
                                         Cancel
                                     </Button>
@@ -215,7 +228,7 @@ class MarketOfferForm extends React.Component {
                     </Card>
                 </Page>
 
-            </div>*/
+            </div>
         )
     }
 }

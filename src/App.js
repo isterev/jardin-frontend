@@ -47,7 +47,7 @@ export default class App extends React.Component {
                 {component: MarketOfferGridListView, path: '/offers'},
                 {component: MyMarketOfferGridListView, path: '/myOffers'},
                 // {component: MarketOfferDetailView, path: '/show/:id'},
-                /*{
+                {
                     render: (props) => {
                         if (UserService.isAuthenticated()) {
                             return (<MarketOfferFormView {...props} />)
@@ -64,7 +64,7 @@ export default class App extends React.Component {
                             return (<Redirect to={'/login'}/>)
                         }
                     }, path: '/addOffer',
-                },*/
+                },
                  // {component: UserLoginView, path: '/', exact: true},
                  {component: UserLoginView, path: '/login'},
                  {component: UserSignupView, path: '/register'}

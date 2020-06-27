@@ -14,6 +14,7 @@ export class MarketOfferFormView extends React.Component {
     }
 
     componentWillMount(){
+
         if(this.props.history.location.pathname == '/addOffer') {
             this.setState({
                 loading: false,
@@ -69,6 +70,7 @@ export class MarketOfferFormView extends React.Component {
     }
 
     render() {
+
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
