@@ -9,6 +9,7 @@ import {withStyles} from "@material-ui/styles";
 import {withRouter, Link} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import Page from '../Page'
 import UserService from "../../services/UserService";
