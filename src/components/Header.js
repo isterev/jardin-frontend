@@ -240,7 +240,6 @@ class Header extends React.Component {
                                         <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                                     </div>
 
-
                                     : <MenuItem onClick={this.handleLogin}>Login</MenuItem>
                                 }
                             </Menu>
