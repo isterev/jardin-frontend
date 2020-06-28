@@ -3,6 +3,10 @@
 import React, {Fragment} from 'react';
 import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 
+// TODO
+import {BlogsListView} from "./views/blogs/BlogsListView";
+import {MyConsultationsListView} from "./views/consultations/MyConsultationsListView";
+
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
 import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView";
 import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView";
@@ -15,6 +19,9 @@ import UserService from "./services/UserService";
 
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
+
+
+
 
 
 const theme = createMuiTheme({
@@ -62,6 +69,8 @@ export default class App extends React.Component {
                         }
                     }, path: '/addOffer',
                 },
+                {component: BlogsListView, path: '/blogs'},
+                {component: MyConsultationsListView, path: '/consult'},
                 // {component: UserLoginView, path: '/', exact: true},
                 {component: UserLoginView, path: '/login'},
                 {component: UserSignupView, path: '/register'}
