@@ -25,10 +25,12 @@ class MarketOfferForm extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.isUpdate = false;
+        this.state = {}
 
         if (this.props.marketOffer != undefined) {
-            this.state = {
+            this.state.values = {
                 category: props.marketOffer.category,
                 title: props.marketOffer.title,
                 description: props.marketOffer.description,
@@ -39,7 +41,7 @@ class MarketOfferForm extends React.Component {
             this.isUpdate = true;
 
         } else {
-            this.state = {
+            this.state.values = {
                 category: '',
                 title: '',
                 description: '',
@@ -50,7 +52,6 @@ class MarketOfferForm extends React.Component {
         }
 
         this.state.showDialog = false;
-        this.state.values = {};
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.cancelAction = this.cancelAction.bind(this);
@@ -136,11 +137,11 @@ class MarketOfferForm extends React.Component {
                     <Card style={{maxWidth: 500}}>
                         <Formik
                             initialValues={{
-                                category: this.state.category,
-                                title: this.state.title,
-                                description: this.state.description,
-                                denomination: this.state.denomination,
-                                pricePerUnit: this.state.pricePerUnit
+                                category: this.state.values.category,
+                                title: this.state.values.title,
+                                description: this.state.values.description,
+                                denomination: this.state.values.denomination,
+                                pricePerUnit: this.state.values.pricePerUnit
                             }}
                             validationSchema={this.getSchema}
                             onSubmit={this.handleSubmit}
