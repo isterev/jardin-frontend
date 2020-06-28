@@ -57,17 +57,17 @@ class MarketOfferForm extends React.Component {
         this.confirmAction = this.confirmAction.bind(this);
     }
 
-    handleSubmit(values) {
+    handleSubmit(values, actions) {
+
+        actions.setSubmitting(false);
+
         this.setState(state => ({
             showDialog: true,
             values: values
         }));
-
     }
 
     cancelAction() {
-
-        alert("cancel")
 
         this.setState(state => ({
             showDialog: false
@@ -75,8 +75,6 @@ class MarketOfferForm extends React.Component {
     }
 
     confirmAction() {
-
-        alert("confirm")
 
         this.props.onSubmit(this.state.values);
 

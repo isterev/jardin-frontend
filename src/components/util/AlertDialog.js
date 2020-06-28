@@ -40,7 +40,7 @@ class AlertDialog extends React.Component {
             <div>
                 <Dialog
                     open={this.props.open}
-                    // onClose={this.handleClose}
+                    //onClose={this.props.dialog.buttons[0].cancelAction}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
