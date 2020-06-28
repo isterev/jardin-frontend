@@ -53,7 +53,7 @@ export class MarketOfferFormView extends React.Component {
         if(this.state.marketOffer == undefined) {
             try {
                 let ret = await MarketOfferService.createMarketOffer(marketOffer);
-                this.props.history.push('/');
+                this.props.history.push('/myOffers');
             } catch(err) {
                 console.error(err);
                 this.setState(Object.assign({}, this.state, {error: 'Error while creating marketOffer'}));
