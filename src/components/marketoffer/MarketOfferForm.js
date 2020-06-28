@@ -15,6 +15,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import Page from '../Page';
 import Box from "@material-ui/core/Box";
+import AlertDialog from "../util/AlertDialog";
 
 const styles = (theme) => ({
     root: {maxWidth: 500}
@@ -43,46 +44,45 @@ class MarketOfferForm extends React.Component {
                 title: '',
                 description: '',
                 denomination: '',
-                pricePerUnit: 0,
+                pricePerUnit: '',
                 //productImage: null //TODO
             };
         }
 
-        this.onSubmit = this.onSubmit.bind(this);
+        this.state.showDialog = false;
+        this.state.values = {};
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.cancelAction = this.cancelAction.bind(this);
+        this.confirmAction = this.confirmAction.bind(this);
     }
 
-    onSubmit(values) {
-        
-        confirmAlert({
-            title: 'Confirm',
-            message: "Do you really want to " + (this.isUpdate ? "update" : "create") + " this market offer?",
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => this.confirmOk(values)
-                },
-                {
-                    label: 'No'
-                }
-            ]
-        });
+    handleSubmit(values) {
+        this.setState(state => ({
+            showDialog: true,
+            values: values
+        }));
 
     }
 
-    confirmOk(values) {
+    cancelAction() {
 
-        let marketOffer = this.props.marketOffer;
-        if (marketOffer == undefined) {
-            marketOffer = {};
-        }
+        alert("cancel")
 
-        marketOffer.category = values.category;
-        marketOffer.title = values.title;
-        marketOffer.description = values.description;
-        marketOffer.denomination = values.denomination;
-        marketOffer.pricePerUnit = values.pricePerUnit;
+        this.setState(state => ({
+            showDialog: false
+        }));
+    }
 
-        this.props.onSubmit(marketOffer);
+    confirmAction() {
+
+        alert("confirm")
+
+        this.props.onSubmit(this.state.values);
+
+        this.setState(state => ({
+            showDialog: false
+        }));
     }
 
 
@@ -134,7 +134,7 @@ class MarketOfferForm extends React.Component {
                                 pricePerUnit: this.state.pricePerUnit
                             }}
                             validationSchema={this.getSchema}
-                            onSubmit={this.onSubmit}
+                            onSubmit={this.handleSubmit}
                             render={() => (
                                 <Form mode='structured'>
 
@@ -256,7 +256,24 @@ class MarketOfferForm extends React.Component {
                     </Card>
                 </Page>
 
+                <AlertDialog open={this.state.showDialog} dialog={{
+                    title: 'Confirm',
+                    message: "Do you really want to " + (this.isUpdate ? "update" : "create")
+                        + " this market offer?",
+                    buttons: [
+                        {
+                            label: 'No',
+                            cancelAction: this.cancelAction
+                        },
+                        {
+                            label: 'Yes',
+                            confirmAction: this.confirmAction
+                        }
+                    ]
+                }}/>
+
             </div>
+
         )
     }
 }
