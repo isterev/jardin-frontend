@@ -28,10 +28,18 @@ const styles = (theme) => ({
     gridList: {
         width: 700,
         height: 'auto',
+        position: 'absolute',
+        top: '20%',
+        left: '25%',
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
+    add: {
+        position: 'absolute',
+        top: '10%',
+        right: '30%',
+    }
 });
 
 class MyMarketOfferGridList extends React.Component {
@@ -84,18 +92,20 @@ class MyMarketOfferGridList extends React.Component {
         const {classes} = this.props;
         return (
             <Page>
+                <div>
+                    <Link to="/addOffer">
+                        <Tooltip title="Add" aria-label="add" className={classes.add} >
+                            <Fab color="secondary">
+                                <AddIcon/>
+                            </Fab>
+                        </Tooltip>
+                    </Link>
+                    <br/>
+                </div>
+
                 <div className={classes.root}>
                     <GridList cols={3} spacing={8} cellHeight={180} className={classes.gridList}>
-                        <GridListTile key="Subheader" cols={3} style={{height: 'auto'}}>
-                            <Link to="/addOffer">
-                                <Tooltip title="Add" aria-label="add" style={{direction: 'rtl'}} >
-                                    <Fab color="secondary">
-                                        <AddIcon/>
-                                    </Fab>
-                                </Tooltip>
-                            </Link>
-                        </GridListTile>
-
+                        
                         {this.props.data.map((marketOffer, i) => <GridListTile key={i}>
                             <img src={'https://material-ui.com/static/images/grid-list/breakfast.jpg'}
                                  alt={marketOffer.title}/>

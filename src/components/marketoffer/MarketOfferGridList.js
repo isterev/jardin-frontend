@@ -22,6 +22,9 @@ const styles = (theme) => ({
     gridList: {
         width: 700,
         height: 'auto',
+        position: 'absolute',
+        top: '20%',
+        left: '25%',
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
