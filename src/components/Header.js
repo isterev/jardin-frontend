@@ -99,6 +99,7 @@ class Header extends React.Component {
         this.handleMyConsultations = this.handleMyConsultations.bind(this);
         this.handleSubscription = this.handleSubscription.bind(this);
         this.handleProfile = this.handleProfile.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
     }
 
@@ -151,6 +152,15 @@ class Header extends React.Component {
         this.setState(state => ({
             anchorEl: null
         }));
+    }
+
+    handleLogin() {
+
+        this.setState(state => ({
+            anchorEl: null
+        }));
+
+        this.props.history.push('/login');
     }
 
     handleLogout() {
@@ -216,16 +226,23 @@ class Header extends React.Component {
                                 open={Boolean(this.state.anchorEl)}
                                 onClose={this.handleMenuClose}
                             >
-                                <p><b> Topics </b></p>
-                                <hr></hr>
-                                <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>
-                                <MenuItem onClick={this.handleMyOffers}>My Offers</MenuItem>
-                                <MenuItem onClick={this.handleMyConsultations}>My Consultations</MenuItem>
-                                <p><b> User </b></p>
-                                <hr></hr>
-                                <MenuItem onClick={this.handleSubscription}>Subscription</MenuItem>
-                                <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
-                                <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+                                {UserService.isAuthenticated() ?
+                                    <div>
+                                        <p><b> Topics </b></p>
+                                        <hr></hr>
+                                        <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>
+                                        <MenuItem onClick={this.handleMyOffers}>My Offers</MenuItem>
+                                        <MenuItem onClick={this.handleMyConsultations}>My Consultations</MenuItem>
+                                        <p><b> User </b></p>
+                                        <hr></hr>
+                                        <MenuItem onClick={this.handleSubscription}>Subscription</MenuItem>
+                                        <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
+                                        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+                                    </div>
+
+
+                                    : <MenuItem onClick={this.handleLogin}>Login</MenuItem>
+                                }
                             </Menu>
                         </div>
                     </Toolbar>
