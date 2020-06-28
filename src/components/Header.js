@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {fade} from '@material-ui/core/styles';
 import {withStyles} from '@material-ui/styles';
 
@@ -14,6 +14,8 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import UserService from "../services/UserService";
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
 
 const styles = (theme) => ({
     grow: {
@@ -76,6 +78,13 @@ const styles = (theme) => ({
         [theme.breakpoints.up('md')]: {
             display: 'none',
         },
+    },
+    tabs: {
+        //width: 700,
+        height: 'auto',
+        position: 'absolute',
+        //top: '20%',
+        left: '15%',
     },
 });
 
@@ -246,7 +255,13 @@ class Header extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-
+                <Tabs className={classes.tabs} value={location.pathname}>
+                    <Tab label="Blogs" component={Link} to="/blogs"/>
+                    <Tab label="Forum" component={Link} to="/forum"/>
+                    <Tab label="Marketplace" component={Link} to="/offers" />
+                    <Tab label="Expert Consultation" component={Link} to="/consult" />
+                    <Tab label="Customer Service" component={Link} to="/service" />
+                </Tabs>
 
             </div>
         );

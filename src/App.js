@@ -1,11 +1,7 @@
 "use strict";
 
-import React from 'react';
-import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-
-//import {MarketOfferListView} from './views/MarketOfferListView';
-//import {MarketOfferDetailView} from './views/MarketOfferDetailView';
-//import {MarketOfferFormView} from './views/MarketOfferFormView';
+import React, {Fragment} from 'react';
+import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
 import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView";
@@ -65,9 +61,9 @@ export default class App extends React.Component {
                         }
                     }, path: '/addOffer',
                 },
-                 // {component: UserLoginView, path: '/', exact: true},
-                 {component: UserLoginView, path: '/login'},
-                 {component: UserSignupView, path: '/register'}
+                // {component: UserLoginView, path: '/', exact: true},
+                {component: UserLoginView, path: '/login'},
+                {component: UserSignupView, path: '/register'}
             ]
         };
     }
@@ -78,16 +74,25 @@ export default class App extends React.Component {
 
     render() {
         return (
+
             <MuiThemeProvider theme={theme}>
-                <CssBaseline />
-                <div>
-                    <Router>
-                        <Switch>
-                            {this.state.routes.map((route, i) => (<Route key={i} {...route}/>))}
-                        </Switch>
-                    </Router>
-                </div>
+                <CssBaseline/>
+                <Router>
+                    <div className="App">
+                        <Route
+                            path="/"
+                            render={({location}) => (
+                                <Fragment>
+                                    <Switch>
+                                        {this.state.routes.map((route, i) => (<Route key={i} {...route}/>))}
+                                    </Switch>
+                                </Fragment>
+                            )}
+                        />
+                    </div>
+                </Router>
             </MuiThemeProvider>
+
         );
     }
 }

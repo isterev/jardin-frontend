@@ -53,7 +53,7 @@ class MarketOfferGridList extends React.Component {
         return (
             <Page>
                 <div className={classes.root}>
-                    <GridList cols={3} spacing={8} cellHeight={180} className={classes.gridList}>
+                    <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
                         {/*<GridListTile key="Subheader" cols={3} style={{height: 'auto'}}>*/}
                         {/*    <ListSubheader component="div">Market Offers</ListSubheader>*/}
                         {/*</GridListTile>*/}
