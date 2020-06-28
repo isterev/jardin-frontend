@@ -16,9 +16,24 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import Page from '../Page';
 import Box from "@material-ui/core/Box";
 import AlertDialog from "../util/AlertDialog";
+import {withStyles} from "@material-ui/styles";
 
 const styles = (theme) => ({
-    root: {maxWidth: 500}
+    root: {
+        maxWidth: 500,
+        textAlign: 'center'
+    },
+    card: {
+        //maxWidth: 500,
+        position: 'absolute',
+        top: '20%',
+        left: '20%',
+        right: '20%',
+        //display: 'inline-block',
+        //display: 'flex',
+        //alignItems: 'center',
+        //justifyContent: 'center',
+    }
 });
 
 class MarketOfferForm extends React.Component {
@@ -134,7 +149,7 @@ class MarketOfferForm extends React.Component {
                     <br/>
                     <br/>
                     <br/>
-                    <Card style={{maxWidth: 500}}>
+                    <Card className={classes.card}>
                         <Formik
                             initialValues={{
                                 category: this.state.values.category,
@@ -288,4 +303,4 @@ class MarketOfferForm extends React.Component {
     }
 }
 
-export default withRouter(MarketOfferForm);
+export default withStyles(styles)(withRouter(MarketOfferForm));
