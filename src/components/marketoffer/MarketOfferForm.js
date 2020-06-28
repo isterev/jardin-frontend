@@ -76,7 +76,18 @@ class MarketOfferForm extends React.Component {
 
     confirmAction() {
 
-        this.props.onSubmit(this.state.values);
+        let marketOffer = this.props.marketOffer;
+        if(marketOffer == undefined) {
+            marketOffer = {};
+        }
+
+        marketOffer.category = this.state.values.category;
+        marketOffer.title = this.state.values.title;
+        marketOffer.description = this.state.values.description;
+        marketOffer.denomination = this.state.values.denomination;
+        marketOffer.pricePerUnit = this.state.values.pricePerUnit;
+
+        this.props.onSubmit(marketOffer);
 
         this.setState(state => ({
             showDialog: false

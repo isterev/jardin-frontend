@@ -15,6 +15,7 @@ import Page from '../Page'
 import UserService from "../../services/UserService";
 import Fab from "@material-ui/core/Fab";
 import Tooltip from "@material-ui/core/Tooltip";
+import AlertDialog from "../util/AlertDialog";
 
 const styles = (theme) => ({
     root: {
@@ -39,22 +40,43 @@ class MyMarketOfferGridList extends React.Component {
         super(props);
 
         this.state = {
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
+            id: undefined
         }
 
         this.handleEdit = this.handleEdit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.cancelAction = this.cancelAction.bind(this);
+        this.confirmAction = this.confirmAction.bind(this);
     }
 
     handleEdit(id) {
-        alert("edit")
+
         this.props.history.push('/edit/' + id); // TODO
     }
 
-    handleDelete(id) {
-        alert("delete")
-        this.props.onDelete(id)
-        //this.props.history.push('/delete/'+id); // TODO
+    handleDelete(id, e) {
+
+        e.stopPropagation();
+        this.setState(state => ({
+            showDialog: true,
+            id: id
+        }));
+    }
+
+    cancelAction() {
+
+        this.setState(state => ({
+            showDialog: false
+        }));
+    }
+
+    confirmAction() {
+
+        this.props.onDelete(this.state.id)
+        this.setState(state => ({
+            showDialog: false
+        }));
     }
 
     render() {
@@ -98,8 +120,22 @@ class MyMarketOfferGridList extends React.Component {
                             />
                         </GridListTile>)}
 
-
                     </GridList>
+
+                    <AlertDialog open={this.state.showDialog} dialog={{
+                        title: 'Confirm',
+                        message: "Do you really want to delete this market offer?",
+                        buttons: [
+                            {
+                                label: 'No',
+                                cancelAction: this.cancelAction
+                            },
+                            {
+                                label: 'Yes',
+                                confirmAction: this.confirmAction
+                            }
+                        ]
+                    }}/>
 
                 </div>
             </Page>
