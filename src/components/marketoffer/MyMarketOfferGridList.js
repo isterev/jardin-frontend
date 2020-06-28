@@ -23,11 +23,11 @@ const styles = (theme) => ({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
+        //backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-        width: 500,
-        height: 450,
+        width: 700,
+        height: 'auto',
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -85,8 +85,8 @@ class MyMarketOfferGridList extends React.Component {
         return (
             <Page>
                 <div className={classes.root}>
-                    <GridList cellHeight={180} className={classes.gridList}>
-                        <GridListTile key="Subheader" cols={2} style={{height: 'auto'}}>
+                    <GridList cols={3} spacing={8} cellHeight={180} className={classes.gridList}>
+                        <GridListTile key="Subheader" cols={3} style={{height: 'auto'}}>
                             <Link to="/addOffer">
                                 <Tooltip title="Add" aria-label="add" style={{direction: 'rtl'}} >
                                     <Fab color="secondary">
