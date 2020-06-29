@@ -23,7 +23,7 @@ export class MyMarketOfferGridListView extends React.Component {
             loading: true
         });
 
-        MarketOfferService.getMyMarketOffers().then((data) => {
+        MarketOfferService.getMarketOffers().then((data) => {
             this.setState({
                 data: [...data],
                 loading: false

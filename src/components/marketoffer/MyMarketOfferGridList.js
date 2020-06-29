@@ -12,7 +12,6 @@ import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import Page from '../Page'
-import UserService from "../../services/UserService";
 import Fab from "@material-ui/core/Fab";
 import Tooltip from "@material-ui/core/Tooltip";
 import AlertDialog from "../util/AlertDialog";
@@ -48,7 +47,6 @@ class MyMarketOfferGridList extends React.Component {
         super(props);
 
         this.state = {
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
             id: undefined
         }
 
