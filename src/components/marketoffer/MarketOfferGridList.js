@@ -9,6 +9,7 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import GridListTile from "@material-ui/core/GridListTile";
 
 import Page from '../Page'
+import UserService from "../../services/UserService";
 
 const styles = (theme) => ({
     root: {
@@ -34,6 +35,10 @@ class MarketOfferGridList extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
+        }
 
         this.handleDisplay = this.handleDisplay.bind(this);
     }

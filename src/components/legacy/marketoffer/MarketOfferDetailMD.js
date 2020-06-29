@@ -9,6 +9,7 @@
 // import 'react-confirm-alert/src/react-confirm-alert.css'
 //
 // import Page from '../../Page';
+// import UserService from '../../../services/UserService';
 //
 // const style = {maxWidth: 500};
 //
@@ -16,6 +17,8 @@
 //
 //     constructor(props) {
 //         super(props);
+//
+//         this.userId = UserService.getCurrentUser().id;
 //
 //         if(props.marketOffer != undefined) {
 //             this.state = {
@@ -60,7 +63,7 @@
 //             <Page>
 //                 <Card style={style} className="md-block-centered">
 //
-//
+//                     {UserService.isAuthenticated() && this.userId === this.props.marketOffer.creator ?
 //
 //                         <Grid className="grid-example">
 //                             <Cell size={1}>
@@ -74,7 +77,7 @@
 //                             </Cell>
 //                         </Grid>
 //
-//
+//                         : ""
 //                     }
 //
 //                     <CardTitle title={"Market Offer Details"}/>

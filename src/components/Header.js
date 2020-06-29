@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import UserService from "../services/UserService";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 
@@ -93,7 +94,7 @@ class Header extends React.Component {
         super(props);
 
         this.state = {
-            user: undefined,
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
             anchorEl: null
         }
 
@@ -173,8 +174,9 @@ class Header extends React.Component {
 
     handleLogout() {
 
+        UserService.logout();
         this.setState(state => ({
-            user: undefined,
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
             anchorEl: null
         }));
 
@@ -233,6 +235,7 @@ class Header extends React.Component {
                                 open={Boolean(this.state.anchorEl)}
                                 onClose={this.handleMenuClose}
                             >
+                                {UserService.isAuthenticated() ?
                                     <div>
                                         <p><b> Topics </b></p>
                                         <hr></hr>
@@ -246,6 +249,8 @@ class Header extends React.Component {
                                         <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                                     </div>
 
+                                    : <MenuItem onClick={this.handleLogin}>Login</MenuItem>
+                                }
                             </Menu>
                         </div>
                     </Toolbar>

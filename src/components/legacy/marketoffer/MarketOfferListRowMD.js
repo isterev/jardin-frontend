@@ -6,6 +6,7 @@
 // import {confirmAlert} from "react-confirm-alert";
 //
 // import { SimpleLink } from '../../SimpleLink';
+// import UserService from '../../../services/UserService';
 //
 // export class MarketOfferListRowMD extends React.Component {
 //
@@ -34,8 +35,15 @@
 //             <TableRow key={this.props.key}>
 //                 <TableColumn><Link to={`/show/${this.props.marketOffer._id}`}><FontIcon>image</FontIcon></Link></TableColumn>
 //                 <TableColumn><SimpleLink to={`/show/${this.props.marketOffer._id}`}>{this.props.marketOffer.title}</SimpleLink></TableColumn>
-//                 <TableColumn><Link to={`/edit/${this.props.marketOffer._id}`}><FontIcon>mode_edit</FontIcon></Link></TableColumn>
-//                 <TableColumn><Button onClick={() => this.onDelete(this.props.marketOffer)} icon>delete</Button></TableColumn>
+//                 {UserService.isAuthenticated() ?
+//                     <TableColumn><Link to={`/edit/${this.props.marketOffer._id}`}><FontIcon>mode_edit</FontIcon></Link></TableColumn>
+//                     : <TableColumn><Link to={'/login'}><FontIcon>mode_edit</FontIcon></Link></TableColumn>
+//                 }
+//                 {UserService.isAuthenticated() ?
+//                     <TableColumn><Button onClick={() => this.onDelete(this.props.marketOffer)} icon>delete</Button></TableColumn>
+//                     : <TableColumn><Link to={'/login'}><FontIcon>delete</FontIcon></Link></TableColumn>
+//                 }
+//
 //             </TableRow>
 //         );
 //     }

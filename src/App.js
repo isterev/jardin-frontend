@@ -12,8 +12,17 @@ import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridLi
 import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView";
 // TODO import {MarketOfferDetailView} from "./views/marketoffer/MarketOfferDetailView";
 
+import {UserLoginView} from "./views/UserLoginView";
+import {UserSignupView} from "./views/UserSignupView";
+
+import UserService from "./services/UserService";
+
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
+
+
+
+
 
 const theme = createMuiTheme({
     palette: {
@@ -44,16 +53,27 @@ export default class App extends React.Component {
                 // TODO {component: MarketOfferDetailView, path: '/show/:id'},
                 {
                     render: (props) => {
+                        if (UserService.isAuthenticated()) {
                             return (<MarketOfferFormView {...props} />)
+                        } else {
+                            return (<Redirect to={'/login'}/>)
+                        }
                     }, path: '/edit/:id'
                 },
                 {
                     render: (props) => {
+                        if (UserService.isAuthenticated()) {
                             return (<MarketOfferFormView {...props} />)
+                        } else {
+                            return (<Redirect to={'/login'}/>)
+                        }
                     }, path: '/addOffer',
                 },
                 {component: BlogsListView, path: '/blogs'},
-                {component: MyConsultationsListView, path: '/consult'}
+                {component: MyConsultationsListView, path: '/consult'},
+                // {component: UserLoginView, path: '/', exact: true},
+                {component: UserLoginView, path: '/login'},
+                {component: UserSignupView, path: '/register'}
             ]
         };
     }
