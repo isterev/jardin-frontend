@@ -1,7 +1,6 @@
 "use strict";
 
 import HttpService from './HttpService';
-import UserService from './UserService';
 
 export default class MarketOfferService {
 
@@ -76,11 +75,7 @@ export default class MarketOfferService {
     }
 
     static createMarketOffer(marketOffer) {
-
-        if(!UserService.isAuthenticated())
-            return;
-        marketOffer.creator = UserService.getCurrentUser().id;
-
+        //TODO marketOffer.creator = id;
         return new Promise((resolve, reject) => {
             HttpService.post(MarketOfferService.baseURL(), marketOffer, function(data) {
                 resolve(data);

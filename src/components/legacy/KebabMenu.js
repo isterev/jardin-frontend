@@ -5,23 +5,14 @@ import PropTypes from 'prop-types';
 import { MenuButton, ListItem, Avatar, FontIcon } from 'react-md';
 import { withRouter } from 'react-router-dom'
 
-import UserService from '../../services/UserService';
-
-
 class KebabMenuMD extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
-        }
     }
 
     logout() {
-        UserService.logout();
-        this.state = {
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
-        };
+
         if(this.props.location.pathname != '/') {
             this.props.history.push('/');
         }

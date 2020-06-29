@@ -5,7 +5,6 @@ import {withStyles} from "@material-ui/styles";
 import {withRouter} from "react-router-dom";
 
 import Page from '../Page'
-import UserService from "../../services/UserService";
 
 const styles = (theme) => ({
     root: {
@@ -31,10 +30,6 @@ class BlogsList extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
-        }
     }
 
     render() {
