@@ -11,7 +11,7 @@ First, all the libraries have to be installed:
 npm install
 ```
 
-This project use [webpack](https://github.com/webpack/webpack) version 1 for creating a bundle of the application and its dependencies
+This project uses [webpack](https://github.com/webpack/webpack) version 1 for creating a bundle of the application and its dependencies
 
 We have pre-configured `npm` to automatically run `webpack` so we can simply do:
 
