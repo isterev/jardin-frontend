@@ -23,7 +23,7 @@ const styles = (theme) => ({
         width: 700,
         height: 'auto',
         position: 'absolute',
-        top: '20%',
+        top: '29%',
         left: '25%',
     },
     icon: {

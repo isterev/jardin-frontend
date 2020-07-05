@@ -7,6 +7,8 @@ import Footer from './Footer';
 import Grid from "@material-ui/core/Grid";
 import SideLinks from "./SideLinks";
 import AdsLink from "./AdsLink";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 
 export default class Page extends React.Component {
@@ -36,7 +38,11 @@ export default class Page extends React.Component {
                                 <SideLinks/>
                             </Grid>
                             <Grid item xs={8} sm={8}>
-                                {this.props.children}
+                                <div>
+                                    <Box p={3}>
+                                        <Typography>{this.props.children}</Typography>
+                                    </Box>
+                                </div>
                             </Grid>
                             <Grid item xs={4} sm={2}>
                                 <AdsLink/>
@@ -44,7 +50,7 @@ export default class Page extends React.Component {
                         </Grid>
                     </Grid>
                 </div>
-                <Footer/>
+               <Footer/>
             </section>
         );
     }
