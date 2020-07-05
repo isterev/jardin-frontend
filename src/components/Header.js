@@ -17,6 +17,7 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 
 import jardinLogo from '../images/jardin_logo.png';
+import NavigationTabs from "./NavigationTabs";
 
 const styles = (theme) => ({
     logo: {
@@ -99,10 +100,6 @@ const styles = (theme) => ({
         //top: '20%',
         left: '20%',
     },
-    /*AppBar: {
-        BackgroundColor:"#cfdf72",
-        textColor:'black',
-    },*/
     tab: {
         border: '1px solid black',
         backgroundColor: 'white'
@@ -211,6 +208,8 @@ class Header extends React.Component {
         }
     }
 
+
+
     render() {
 
         const {classes} = this.props;
@@ -277,15 +276,7 @@ class Header extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                <div className={classes.tabs}>
-                    <Tabs classes={{indicator: classes.indicator}} value={location.pathname}>
-                        <Tab className={classes.tab} label="Blogs" component={Link} to="/blogs"/>
-                        <Tab className={classes.tab} label="Forum" component={Link} to="/forum"/>
-                        <Tab className={classes.tab} label="Marketplace" component={Link} to="/offers"/>
-                        <Tab className={classes.tab} label="Expert Consultation" component={Link} to="/consult"/>
-                        <Tab className={classes.tab} label="Customer Service" component={Link} to="/service"/>
-                    </Tabs>
-                </div>
+                <NavigationTabs/>
 
             </div>
         );
