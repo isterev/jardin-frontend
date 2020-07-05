@@ -1,34 +1,43 @@
 "use strict";
 
 import React from 'react';
-import Styled from 'styled-components';
+import Link from "@material-ui/core/Link";
+import {withStyles} from "@material-ui/styles";
+import {withRouter} from "react-router-dom";
 
+const styles = (theme) => ({
+    copyright: {
+        float : 'left'
+    },
+    footerLinks: {
+        float : 'right'
+    },
+});
 
-class PlainFooter extends React.Component {
+export class Footer extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
     render() {
+
+        const {classes} = this.props;
+
         return (
-            <div className={this.props.className}>
+            <div>
                 <hr/>
-                <p>© {new Date().getFullYear()} SEBA Team 46. All rights reserved.</p>
+                <span className={classes.copyright} > © {new Date().getFullYear()} Jardin. All rights reserved.</span>
+                <span className={classes.footerLinks}>
+                    <Link>About</Link>
+                    <span> | </span>
+                    <Link>Contact Us</Link>
+                    <span> | </span>
+                    <Link>Newsletter</Link>
+                </span>
             </div>
         );
     }
 }
 
-export const Footer = Styled(PlainFooter)`
-    max-height: 35px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
-    background: white;
-    > p {
-        text-align: center;
-        margin-top: 4px;
-    }
-`;
+export default withStyles(styles)(withRouter(Footer));

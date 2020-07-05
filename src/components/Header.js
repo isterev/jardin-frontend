@@ -3,7 +3,6 @@ import {Link, withRouter} from "react-router-dom";
 import {fade} from '@material-ui/core/styles';
 import {withStyles} from '@material-ui/styles';
 
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -17,7 +16,13 @@ import UserService from "../services/UserService";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 
+import jardinLogo from '../images/jardin_logo.png';
+
 const styles = (theme) => ({
+    logo: {
+        height: '100%',
+        width: 120
+    },
     grow: {
         flexGrow: 1,
     },
@@ -79,13 +84,35 @@ const styles = (theme) => ({
             display: 'none',
         },
     },
+    root: {
+        display: "flex"
+    },
+    paper: {
+        marginRight: theme.spacing(2)
+    },
+    appBar: {
+        backgroundColor: '#2b6343'
+    },
     tabs: {
-        //width: 700,
+        flexGrow: 1,
+        backgroundColor: '#cfdf72',
+        /*//width: 700,
         height: 'auto',
         position: 'absolute',
         //top: '20%',
-        left: '15%',
+        left: '15%',*/
     },
+    /*AppBar: {
+        BackgroundColor:"#cfdf72",
+        textColor:'black',
+    },*/
+    tab: {
+        border: '1px solid black',
+        backgroundColor: 'white'
+    },
+    indicator: {
+        backgroundColor: "blue"
+    }
 });
 
 class Header extends React.Component {
@@ -193,11 +220,9 @@ class Header extends React.Component {
 
         return (
             <div className={classes.grow}>
-                <AppBar position="static">
+                <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
-                        <Typography className={classes.title} variant="h6" noWrap>
-                            {this.props.title}
-                        </Typography>
+                        <img src={jardinLogo} alt="jardinLogo" className={classes.logo}/>
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon/>
@@ -255,13 +280,15 @@ class Header extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                <Tabs className={classes.tabs} value={location.pathname}>
-                    <Tab label="Blogs" component={Link} to="/blogs"/>
-                    <Tab label="Forum" component={Link} to="/forum"/>
-                    <Tab label="Marketplace" component={Link} to="/offers" />
-                    <Tab label="Expert Consultation" component={Link} to="/consult" />
-                    <Tab label="Customer Service" component={Link} to="/service" />
-                </Tabs>
+                <div className={classes.tabs}>
+                    <Tabs classes={{indicator: classes.indicator}} value={location.pathname}>
+                        <Tab className={classes.tab} label="Blogs" component={Link} to="/blogs"/>
+                        <Tab className={classes.tab} label="Forum" component={Link} to="/forum"/>
+                        <Tab className={classes.tab} label="Marketplace" component={Link} to="/offers"/>
+                        <Tab className={classes.tab} label="Expert Consultation" component={Link} to="/consult"/>
+                        <Tab className={classes.tab} label="Customer Service" component={Link} to="/service"/>
+                    </Tabs>
+                </div>
 
             </div>
         );
