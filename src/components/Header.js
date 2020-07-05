@@ -49,6 +49,7 @@ const styles = (theme) => ({
             marginLeft: theme.spacing(3),
             width: 'auto',
         },
+        flexGrow: 1,
     },
     searchIcon: {
         padding: theme.spacing(0, 2),
@@ -78,12 +79,6 @@ const styles = (theme) => ({
             display: 'flex',
         },
     },
-    sectionMobile: {
-        display: 'flex',
-        [theme.breakpoints.up('md')]: {
-            display: 'none',
-        },
-    },
     root: {
         display: "flex"
     },
@@ -96,11 +91,13 @@ const styles = (theme) => ({
     tabs: {
         flexGrow: 1,
         backgroundColor: '#cfdf72',
-        /*//width: 700,
+        alignItems: 'center',
+        justifyContent: 'center',
+        //width: 700,
         height: 'auto',
         position: 'absolute',
         //top: '20%',
-        left: '15%',*/
+        left: '20%',
     },
     /*AppBar: {
         BackgroundColor:"#cfdf72",
