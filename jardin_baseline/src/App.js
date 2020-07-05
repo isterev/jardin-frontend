@@ -9,6 +9,19 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
 import AdsLink from "./components/AdsLink";
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+import Myblogs from "./components/myblogs";
+import Home_blogs from "./components/home_blogs";
+import Post_blog from "./components/post_blog";
+
+
+
 const themeLight = createMuiTheme({
   palette: {
     background: {
@@ -20,6 +33,7 @@ const themeLight = createMuiTheme({
 export default class App extends React.Component {
   render() {
     return (
+      <Router>
         <MuiThemeProvider theme={themeLight}>
           <CssBaseline />
           <Header/>
@@ -30,7 +44,18 @@ export default class App extends React.Component {
                           <SideLinks/>
                       </Grid>
                       <Grid item xs={8} sm={8} >
-                          <NavigationTabs/>
+                      <Switch>
+          <Route path="/myblogs">
+            <Myblogs />
+          </Route>
+          <Route path="/post_blog">
+            <Post_blog />
+          </Route>
+          <Route path="/">
+            <Home_blogs />
+          </Route>
+          
+        </Switch>
                       </Grid>
                       <Grid item xs={4} sm={2}>
                           <AdsLink/>
@@ -41,6 +66,7 @@ export default class App extends React.Component {
           <Footer/>
 
         </MuiThemeProvider>
+        </Router>
     );
   }
 }

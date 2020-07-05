@@ -14,6 +14,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
+import { Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     logo:{
@@ -91,15 +92,7 @@ export default function PrimarySearchAppBar() {
     }
 
     // return focus to the button when we transitioned from !open -> open
-    const prevOpen = React.useRef(open);
-    React.useEffect(() => {
-        if (prevOpen.current === true && open === false) {
-            anchorRef.current.focus();
-        }
-
-        prevOpen.current = open;
-    }, [open]);
-
+    
     return (
         <div className={classes.grow}>
             <AppBar position ={"static"} style={{backgroundColor:'#2b6343'}}>
@@ -150,7 +143,7 @@ export default function PrimarySearchAppBar() {
                                                     </Typography>
                                                 </MenuItem>
                                                 <Divider />
-                                                <MenuItem onClick={handleClose}>My Blogs</MenuItem>
+                                             <Link to="/myblogs">  <MenuItem onClick={handleClose}>My Blogs</MenuItem> </Link>
                                                 <Divider />
                                                 <MenuItem onClick={handleClose}>My Offers</MenuItem>
                                                 <Divider />

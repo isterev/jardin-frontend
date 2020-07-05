@@ -78,10 +78,9 @@ export default function SimpleTabs() {
             </Tabs>
             <TabPanel value={value} index={0}>
             <div >
-      <header  >
-     <span style={{paddingLeft: '700px', }}> <Button variant='contained' color='primary'  > Post a blog </Button>  </span>
-      <br></br>
-      <br></br>
+      <header style={{}} >
+        <p> <b> Top Picks for today </b> </p>
+        <br></br>
         <a
           href="https://google.com"
           target="_blank"
@@ -98,7 +97,6 @@ export default function SimpleTabs() {
         <p> <b> Peter Miller, 22nd May 2020</b></p>
         <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum </p>
         <br></br>
-       <br></br> 
         <a
           href="https://reactjs.org"
           target="_blank"
@@ -117,7 +115,6 @@ export default function SimpleTabs() {
         <p> <b> Julia Schmidt, 22nd May 2020</b></p>
         <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum </p>
         <br></br>
-       <br></br> 
         <a
           href="https://reactjs.org"
           target="_blank"
