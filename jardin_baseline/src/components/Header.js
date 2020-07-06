@@ -15,6 +15,8 @@ import MenuList from "@material-ui/core/MenuList";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import { Link} from "react-router-dom";
+import NavigationTabs from "./NavigationTabs";
+import Tab from "@material-ui/core/Tab";
 
 const useStyles = makeStyles((theme) => ({
     logo:{
@@ -64,7 +66,14 @@ const useStyles = makeStyles((theme) => ({
         },
     paper: {
             marginRight: theme.spacing(2)
-        }
+        },
+     tabs:{
+            height:40,
+            width:'100%',
+            backgroundColor:"#367c55",
+            paddingLeft:200,
+     },
+    
 }));
 
 export default function PrimarySearchAppBar() {
@@ -166,6 +175,12 @@ export default function PrimarySearchAppBar() {
                     </div>
                 </Toolbar>
             </AppBar>
+            <div className={classes.tabs}>
+            < NavigationTabs/>
+           </div>
         </div>
+
+
+
     );
 }

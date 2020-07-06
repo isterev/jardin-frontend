@@ -44,18 +44,7 @@ export default class App extends React.Component {
                           <SideLinks/>
                       </Grid>
                       <Grid item xs={8} sm={8} >
-                      <Switch>
-          <Route path="/myblogs">
-            <Myblogs />
-          </Route>
-          <Route path="/post_blog">
-            <Post_blog />
-          </Route>
-          <Route path="/">
-            <Home_blogs />
-          </Route>
-          
-        </Switch>
+
                       </Grid>
                       <Grid item xs={4} sm={2}>
                           <AdsLink/>
