@@ -1,23 +1,21 @@
 import React from 'react';
-import {Link, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {fade} from '@material-ui/core/styles';
 import {withStyles} from '@material-ui/styles';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+
 import UserService from "../services/UserService";
-import Tab from "@material-ui/core/Tab";
-import Tabs from "@material-ui/core/Tabs";
+import NavigationTabs from "./NavigationTabs";
 
 import jardinLogo from '../images/jardin_logo.png';
-import NavigationTabs from "./NavigationTabs";
 
 const styles = (theme) => ({
     logo: {
@@ -276,7 +274,7 @@ class Header extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                <NavigationTabs/>
+                <NavigationTabs selectedTab={this.props.selectedTab}  handleTabChange={(value) => this.props.handleTabChange(value)} />
 
             </div>
         );

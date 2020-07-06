@@ -9,17 +9,31 @@ import SideLinks from "./SideLinks";
 import AdsLink from "./AdsLink";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import {withStyles} from "@material-ui/styles";
+import {withRouter} from "react-router-dom";
 
 
-export default class Page extends React.Component {
+class Page extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            title: ''
+            title: '',
+            selectedTab: this.props.location.pathname
         }
+        this.handleTabChange = this.handleTabChange.bind(this);
     }
+
+    handleTabChange(newValue) {
+
+        this.setState(state => ({
+            selectedTab: newValue //location.pathname
+        }));
+
+        this.props.history.push(newValue);
+
+    };
 
     componentDidMount() {
         this.setState({
@@ -30,7 +44,7 @@ export default class Page extends React.Component {
     render() {
         return (
             <section>
-                <Header title={this.state.title}/>
+                <Header title={this.state.title} selectedTab={this.state.selectedTab} handleTabChange={(value) => this.handleTabChange(value)} />
                 <div padding-top='90px' height={'100%'}>
                     <Grid container direction="column">
                         <Grid item container>
@@ -56,3 +70,4 @@ export default class Page extends React.Component {
     }
 }
 
+export default withRouter(Page);

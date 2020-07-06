@@ -1,12 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {makeStyles} from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
 import {withStyles} from "@material-ui/styles";
 import {withRouter} from "react-router-dom";
 
@@ -35,16 +29,15 @@ export class NavigationTabs extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+
+        this.handleTabChange = this.handleTabChange.bind(this);
     }
 
-    handleChange(event, newValue) {
-        //alert(newValue);
-        this.setState(state => ({
-            value: newValue //location.pathname
-        }));
+    handleTabChange(event, newValue) {
 
-        this.props.history.push(newValue);
+        event.stopPropagation()
+
+        this.props.handleTabChange(newValue)
 
     };
 
@@ -55,21 +48,14 @@ export class NavigationTabs extends React.Component {
         return (
 
             <div className={classes.root}>
-                <Tabs classes={{indicator: classes.indicator}} value={location.pathname} onChange={this.handleChange}>
-                    <Tab className={classes.tab} label="Blogs" component={Link} to="/blogs" value="/blogs" />
-                    <Tab className={classes.tab} label="Forum" component={Link} to="/forum" value="/forum" />
-                    <Tab className={classes.tab} label="Marketplace" component={Link} to="/offers" value="/offers" />
-                    <Tab className={classes.tab} label="Expert Consultation" component={Link} to="/consult" value="/consult" />
-                    <Tab className={classes.tab} label="Customer Service" component={Link} to="/service" value="/service" />
-
+                <Tabs indicatorColor="primary"
+                      textColor="primary" value={this.props.selectedTab} onChange={this.handleTabChange}>
+                    <Tab className={classes.tab} label="Blogs" value="/blogs" />
+                    <Tab className={classes.tab} label="Forum" value="/forum" />
+                    <Tab className={classes.tab} label="Marketplace" value="/offers" />
+                    <Tab className={classes.tab} label="Expert Consultation" value="/consult" />
+                    <Tab className={classes.tab} label="Customer Service" value="/service" />
                 </Tabs>
-                {/*<Tabs classes={{indicator: classes.indicator}} value={location.pathname} onChange={this.handleChange}>
-                    <Tab className={classes.tab} label="Blogs" component={Link} to="/blogs"/>
-                    <Tab className={classes.tab} label="Forum" component={Link} to="/forum"/>
-                    <Tab className={classes.tab} label="Marketplace" component={Link} to="/offers"/>
-                    <Tab className={classes.tab} label="Expert Consultation" component={Link} to="/consult"/>
-                    <Tab className={classes.tab} label="Customer Service" component={Link} to="/service"/>
-                </Tabs>*/}
             </div>
         );
     }
