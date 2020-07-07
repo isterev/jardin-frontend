@@ -17,7 +17,7 @@ const styles = (theme) => ({
         left: '20%',
     },
     tab: {
-        border: '1px solid black',
+        border: '1px solid #2D6042', // '1px solid black'
         backgroundColor: 'white'
     },
     indicator: {
@@ -48,7 +48,7 @@ export class NavigationTabs extends React.Component {
         return (
 
             <div className={classes.root}>
-                <Tabs indicatorColor="primary"
+                <Tabs classes={{ indicator: classes.indicator }}
                       textColor="primary" value={this.props.selectedTab} onChange={this.handleTabChange}>
                     <Tab className={classes.tab} label="Blogs" value="/blogs" />
                     <Tab className={classes.tab} label="Forum" value="/forum" />
