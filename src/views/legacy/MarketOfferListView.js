@@ -2,7 +2,7 @@
 //
 // import React from 'react';
 //
-// import { MarketOfferList } from '../components/reactmd/marketoffer/MarketOfferListMD';
+// import { MarketOfferList } from '../components/reactmd/marketoffers/MarketOfferListMD';
 //
 // import MarketOfferService from '../services/MarketOfferService';
 //

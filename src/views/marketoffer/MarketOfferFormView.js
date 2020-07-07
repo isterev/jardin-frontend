@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import MarketOfferForm from '../../components/marketoffer/MarketOfferForm';
+import MarketOfferForm from '../../components/marketoffers/MarketOfferForm';
 
 import MarketOfferService from '../../services/MarketOfferService';
 
@@ -64,7 +64,7 @@ export class MarketOfferFormView extends React.Component {
                 this.props.history.goBack();
             } catch(err) {
                 console.error(err);
-                this.setState(Object.assign({}, this.state, {error: 'Error while creating marketOffer'}));
+                this.setState(Object.assign({}, this.state, {error: 'Error while updating marketOffer'}));
             }
         }
     }

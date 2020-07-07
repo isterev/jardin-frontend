@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import MyMarketOfferGridList from '../../components/marketoffer/MyMarketOfferGridList';
+import MyMarketOfferGridList from '../../components/marketoffers/MyMarketOfferGridList';
 
 import MarketOfferService from '../../services/MarketOfferService';
 
