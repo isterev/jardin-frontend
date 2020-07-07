@@ -5,12 +5,13 @@ import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 
 // TODO
 import {BlogsListView} from "./views/blogs/BlogsListView";
+import BlogForm from "./components/blogs/BlogForm";
 import {MyConsultationsListView} from "./views/consultations/MyConsultationsListView";
 
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
 import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView";
 import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView";
-// TODO import {MarketOfferDetailView} from "./views/marketoffer/MarketOfferDetailView";
+// TODO import {MarketOfferDetailView} from "./views/marketoffers/MarketOfferDetailView";
 
 import {UserLoginView} from "./views/UserLoginView";
 import {UserSignupView} from "./views/UserSignupView";
@@ -19,8 +20,6 @@ import UserService from "./services/UserService";
 
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
-
-
 
 
 
@@ -70,6 +69,7 @@ export default class App extends React.Component {
                     }, path: '/addOffer',
                 },
                 {component: BlogsListView, path: '/blogs'},
+                {component: BlogForm, path: '/postBlog'},
                 {component: MyConsultationsListView, path: '/consult'},
                 // {component: UserLoginView, path: '/', exact: true},
                 {component: UserLoginView, path: '/login'},
