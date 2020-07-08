@@ -226,12 +226,12 @@ class Header extends React.Component {
                             >
                                 {UserService.isAuthenticated() ?
                                     <div>
-                                        <p><b> Topics </b></p>
+                                        <span style={{'position': 'relative', 'left': '7%' }}><p><b> Topics </b></p></span>
                                         <hr></hr>
                                         <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>
                                         <MenuItem onClick={this.handleMyOffers}>My Offers</MenuItem>
                                         <MenuItem onClick={this.handleMyConsultations}>My Consultations</MenuItem>
-                                        <p><b> User </b></p>
+                                        <span style={{'position': 'relative', 'left': '7%' }}><p><b> User </b></p></span>
                                         <hr></hr>
                                         <MenuItem onClick={this.handleSubscription}>Subscription</MenuItem>
                                         <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
