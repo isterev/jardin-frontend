@@ -9,6 +9,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     Box:{
+        position: "fixed",
         display: 'content',
         alignItems: 'center',
         justifyContent: 'center',

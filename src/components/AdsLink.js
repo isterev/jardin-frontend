@@ -7,7 +7,6 @@ import ads from '../images/ad_1.jpg';
 
 const useStyles = makeStyles((theme) => ({
     logo: {
-        height: 607, //TODO body height has to be set
         maxWidth: 400,
         overflow: 'hidden',
         display: 'block',
@@ -18,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom:10,
     },
     Box:{
+        position: "fixed",
         display: 'content',
         alignItems: 'center',
         justifyContent: 'center',
