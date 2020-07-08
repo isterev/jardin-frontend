@@ -6,7 +6,6 @@ import {withStyles} from "@material-ui/styles";
 import {withRouter} from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import {Copyright} from "@material-ui/icons";
 
 const styles = (theme) => ({
     root: {
@@ -53,7 +52,7 @@ export class Footer extends React.Component {
 
                 <footer className={classes.footer}>
                     <Container maxWidth="sm">
-                        <Typography variant="body1">
+                        <Typography variant="body1" color="primary">
                             <span className={classes.copyright}> © {new Date().getFullYear()} Jardin. All rights reserved.</span>
                             <span className={classes.footerLinks}>
                                   <Link>About</Link>
