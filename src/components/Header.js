@@ -72,38 +72,8 @@ const styles = (theme) => ({
             width: '20ch',
         },
     },
-    sectionDesktop: {
-        display: 'none',
-        [theme.breakpoints.up('md')]: {
-            display: 'flex',
-        },
-    },
-    root: {
-        display: "flex"
-    },
-    paper: {
-        marginRight: theme.spacing(2)
-    },
     appBar: {
         backgroundColor: '#2b6343'
-    },
-    tabs: {
-        flexGrow: 1,
-        backgroundColor: '#cfdf72',
-        alignItems: 'center',
-        justifyContent: 'center',
-        //width: 700,
-        height: 'auto',
-        position: 'absolute',
-        //top: '20%',
-        left: '20%',
-    },
-    tab: {
-        border: '1px solid black',
-        backgroundColor: 'white'
-    },
-    indicator: {
-        backgroundColor: "blue"
     }
 });
 
