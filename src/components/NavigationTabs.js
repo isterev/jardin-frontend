@@ -21,24 +21,10 @@ const styles = (theme) => ({
         backgroundColor:"#367c55",
         paddingLeft:200,
     },
-    tab: {
-        border: '1px solid #2D6042', // '1px solid black'
-        backgroundColor: 'white'
-    },
     indicator: {
-        backgroundColor: "blue"
-    },
-    Tabs: {
-
-    },
+        backgroundColor: "#F50057"
+    }
 });
-
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
 
 export class NavigationTabs extends React.Component {
 
@@ -63,12 +49,12 @@ export class NavigationTabs extends React.Component {
         return (
 
             <div className={classes.root}>
-                <Tabs value={this.props.selectedTab} onChange={this.handleTabChange}>
-                    <Tab label="Blogs" value="/blogs" {...a11yProps(0)} />
-                    <Tab label="Forum" value="/forum" {...a11yProps(1)} />
-                    <Tab label="Marketplace" value="/offers" {...a11yProps(2)} />
-                    <Tab label="Expert Consultation" value="/consult" {...a11yProps(3)} />
-                    <Tab label="Customer Service" value="/service" {...a11yProps(4)} />
+                <Tabs classes = {{  indicator: classes.indicator}} value={this.props.selectedTab} onChange={this.handleTabChange}>
+                    <Tab label="Blogs" value="/blogs" />
+                    <Tab label="Forum" value="/forum" />
+                    <Tab label="Marketplace" value="/offers" />
+                    <Tab label="Expert Consultation" value="/consult" />
+                    <Tab label="Customer Service" value="/service" />
                 </Tabs>
             </div>
         );
