@@ -20,8 +20,9 @@ const styles = (theme) => ({
         //backgroundColor: theme.palette.background.paper,
     },
     gridList: {
+        overflow: 'auto',
+        maxHeight: '100%',
         width: 700,
-        height: 'auto',
         position: 'absolute',
         top: '29%',
         left: '25%',
