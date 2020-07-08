@@ -15,6 +15,7 @@ const styles = (theme) => ({
         position: 'absolute',
         //top: '20%',
         left: '20%',*/
+        position: 'fixed',
         flexGrow: 1,
         height:40,
         width:'100%',
