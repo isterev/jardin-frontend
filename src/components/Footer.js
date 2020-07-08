@@ -12,6 +12,9 @@ const styles = (theme) => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
+        position: 'fixed',
+        bottom: 0,
+        width: '100%'
         //minHeight: '100vh',
     },
     footer: {
@@ -24,13 +27,13 @@ const styles = (theme) => ({
         position: 'absolute',
         float: 'left',
         left: '2%',
-        bottom: '2%'
+        bottom: '20%'
     },
     footerLinks: {
         position: 'absolute',
         float: 'right',
         right: '2%',
-        bottom: '2%'
+        bottom: '20%'
     },
 });
 
