@@ -22,15 +22,15 @@ const styles = (theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        overflow: 'hidden',
         //backgroundColor: theme.palette.background.paper,
     },
     gridList: {
         overflow: 'auto',
-        maxHeight: '100%',
-        width: 700,
+        maxHeight: '70%',
+        maxWidth: '50%',
         position: 'absolute',
         top: '29%',
+        bottom: '10%',
         left: '25%',
     },
     icon: {
