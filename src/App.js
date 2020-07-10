@@ -69,6 +69,7 @@ export default class App extends React.Component {
                     }, path: '/addOffer',
                 },
                 {component: BlogsListView, path: '/blogs'},
+                {component: MyBlogsListView, path: '/MyBlogsListView.js'},
                 {component: BlogForm, path: '/postBlog'},
                 {component: MyConsultationsListView, path: '/consult'},
                 // {component: UserLoginView, path: '/', exact: true},
