@@ -45,7 +45,7 @@ class MarketOfferGridList extends React.Component {
     }
 
     handleDisplay(id) {
-        this.props.history.push('/show/' + id); // TODO
+        this.props.history.push('/showOffer/' + id); // TODO
     }
 
     render() {

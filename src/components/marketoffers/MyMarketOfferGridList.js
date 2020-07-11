@@ -61,7 +61,7 @@ class MyMarketOfferGridList extends React.Component {
 
     handleEdit(id) {
 
-        this.props.history.push('/edit/' + id); // TODO
+        this.props.history.push('/editOffer/' + id); // TODO
     }
 
     handleDelete(id, e) {
@@ -114,7 +114,7 @@ class MyMarketOfferGridList extends React.Component {
                                 title={marketOffer.title}
                                 subtitle={<span>by: {marketOffer.creator}</span>}
                                 onClick={this.handleEdit.bind(this, marketOffer._id)}
-                                //onClick={this.props.history.push(`/edit/${this.props.marketOffer._id}`)}
+                                //onClick={this.props.history.push(`/editOffer/${this.props.marketOffer._id}`)}
 
                                 actionIcon={
                                     <IconButton
