@@ -1,10 +1,8 @@
 "use strict";
 
 import React from 'react';
-
 import BlogForm from "../../components/blogs/BlogForm";
-
-//import MarketOfferService from '../../services/BlogsService';
+import BlogService from '../../services/BlogService';
 
 
 export class BlogFormView extends React.Component {
@@ -37,7 +35,7 @@ export class BlogFormView extends React.Component {
 
             let id = this.props.match.params.id;
 
-            /*BlogService.getBlog(id).then((data) => {
+            BlogService.getBlog(id).then((data) => {
                 this.setState({
                     blog: data,
                     loading: false,
@@ -45,14 +43,14 @@ export class BlogFormView extends React.Component {
                 });
             }).catch((e) => {
                 console.error(e);
-            });*/
+            });
         }
     }
 
     async updateBlog(blog) {
         if(this.state.blog == undefined) {
             try {
-                //let ret = await BlogService.postBlog(blog);
+                let ret = await BlogService.postBlog(blog);
                 this.props.history.push('/MyBlogsListView.js');
             } catch(err) {
                 console.error(err);
@@ -60,7 +58,7 @@ export class BlogFormView extends React.Component {
             }
         } else {
             try {
-                //let ret = await BlogService.updateBlog(blog);
+                let ret = await BlogService.updateBlog(blog);
                 this.props.history.goBack();
             } catch(err) {
                 console.error(err);

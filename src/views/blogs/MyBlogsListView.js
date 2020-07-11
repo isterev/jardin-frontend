@@ -1,9 +1,9 @@
 "use strict";
 import React from 'react';
-import { BlogList } from '../components/reactmd/Blogs/BlogList';
-import BlogService from '../services/BlogService';
+import BlogService from "../../services/BlogService";
+import BlogsList from "../../components/blogs/BlogsList";
 
-export class BlogListView extends React.Component {
+export class MyBlogsListView extends React.Component {
 
     constructor(props) {
         super(props);
@@ -19,7 +19,7 @@ export class BlogListView extends React.Component {
             loading: true
         });
 
-        BlogService.getBlogs().then((data) => {
+        BlogService.getMyBlogs().then((data) => {
             this.setState({
                 data: [...data],
                 loading: false
@@ -55,7 +55,7 @@ export class BlogListView extends React.Component {
         }
 
         return (
-            <BlogList data={this.state.data} onDelete={(id) => this.deleteBlog(id)}/>
+            <BlogsList data={this.state.data} onDelete={(id) => this.deleteBlog(id)}/>
         );
     }
 }
