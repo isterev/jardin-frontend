@@ -4,7 +4,7 @@ import React, {Fragment} from 'react';
 import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 
 // TODO
-//import {BlogsListView} from "./views/blogs/BlogsListView";
+import {BlogsListView} from "./views/blogs/BlogsListView";
 import {MyConsultationsListView} from "./views/consultations/MyConsultationsListView";
 
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
@@ -19,8 +19,8 @@ import UserService from "./services/UserService";
 
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
-//import {MyBlogsListView} from "./views/blogs/MyBlogsListView";
-// import {BlogFormView} from "./views/blogs/BlogFormView";
+import {MyBlogsListView} from "./views/blogs/MyBlogsListView";
+import {BlogFormView} from "./views/blogs/BlogFormView";
 
 
 
@@ -58,7 +58,7 @@ export default class App extends React.Component {
                         } else {
                             return (<Redirect to={'/login'}/>)
                         }
-                    }, path: '/edit/:id'
+                    }, path: '/offers/edit/:id'
                 },
                 {
                     render: (props) => {
@@ -69,9 +69,9 @@ export default class App extends React.Component {
                         }
                     }, path: '/addOffer',
                 },
-               // {component: BlogsListView, path: '/blogs'},
-               // {component: MyBlogsListView, path: '/myBlogs'},
-                // {component: BlogFormView, path: '/postBlog'},
+                {component: BlogsListView, path: '/blogs'},
+                {component: MyBlogsListView, path: '/myBlogs'},
+                 {component: BlogFormView, path: '/postBlog'},
                 {component: MyConsultationsListView, path: '/consult'},
                 // {component: UserLoginView, path: '/', exact: true},
                 {component: UserLoginView, path: '/login'},

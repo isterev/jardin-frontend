@@ -8,7 +8,7 @@ export default class MarketOfferService {
     constructor(){
     }
 
-    static baseURL() {return 'http://localhost:3000/marketOffers' }
+    static baseURL() {return 'http://localhost:3000/offers' }
 
     static getMarketOffers(){
        return new Promise((resolve, reject) => {
