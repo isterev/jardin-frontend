@@ -58,7 +58,7 @@ class BlogForm extends React.Component {
 
                         <div className="textbox">
                             <header>
-                                <p><b>Post A Blog </b></p>
+                                <p><b>Post a Blog </b></p>
                                 <TextareaAutosize class="box" aria-label="minimum height" rowsMin={3}
                                                   placeholder="Article Title" style={{width: '835px'}}/> <br></br>
                                 <TextareaAutosize class="box" aria-label="minimum height" rowsMin={15}

@@ -16,15 +16,20 @@ const styles = (theme) => ({
         overflow: 'hidden',
         //backgroundColor: theme.palette.background.paper,
     },
+    icon: {
+        color: 'rgba(255, 255, 255, 0.54)',
+    },
     list: {
+        maxWidth: '36ch',
+        backgroundColor: theme.palette.background.paper,
         width: 700,
         height: 'auto',
         position: 'absolute',
         top: '20%',
         left: '25%',
     },
-    icon: {
-        color: 'rgba(255, 255, 255, 0.54)',
+    inline: {
+        display: 'inline',
     },
 });
 

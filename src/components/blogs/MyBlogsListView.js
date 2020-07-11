@@ -10,12 +10,17 @@ import {withRouter, Link} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 import Page from '../Page'
 import UserService from "../../services/UserService";
 import Fab from "@material-ui/core/Fab";
 import Tooltip from "@material-ui/core/Tooltip";
 import AlertDialog from "../util/AlertDialog";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
 
 const styles = (theme) => ({
     root: {
@@ -24,15 +29,6 @@ const styles = (theme) => ({
         justifyContent: 'space-around',
         //backgroundColor: theme.palette.background.paper,
     },
-    gridList: {
-        overflow: 'auto',
-        maxHeight: '70%',
-        maxWidth: '50%',
-        position: 'absolute',
-        top: '29%',
-        bottom: '10%',
-        left: '25%',
-    },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
@@ -40,6 +36,18 @@ const styles = (theme) => ({
         position: 'absolute',
         top: '18%',
         right: '20%',
+    },
+    list: {
+        maxWidth: '36ch',
+        backgroundColor: theme.palette.background.paper,
+        width: 700,
+        height: 'auto',
+        position: 'absolute',
+        top: '20%',
+        left: '25%',
+    },
+    inline: {
+        display: 'inline',
     }
 });
 
@@ -90,12 +98,14 @@ class MyBlogGridList extends React.Component {
 
     render() {
 
+
         const {classes} = this.props;
         return (
             <Page>
+                <div className={classes.root}>
                 <div>
-                    <Link to="/addOffer">
-                        <Tooltip title="Add" aria-label="add" className={classes.add} >
+                    <Link to="/postBlog">
+                        <Tooltip title="Post a Blog" aria-label="Post" className={classes.add}>
                             <Fab color="secondary">
                                 <AddIcon/>
                             </Fab>
@@ -103,39 +113,50 @@ class MyBlogGridList extends React.Component {
                     </Link>
                     <br/>
                 </div>
+                <List className={classes.list}>
+                    {this.props.data.map((blog, i) =>
+                        <ListItemText alignItems="flex-start">
 
-                <div className={classes.root}>
-                    <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
 
-                        {this.props.data.map((blog, i) => <GridListTile key={i}>
-                            <img src={'https://material-ui.com/static/images/grid-list/breakfast.jpg'}
-                                 alt={blog.title}/>
-                            <GridListTileBar
-                                title={blog.title}
-                                subtitle={<span>by: {blog.creator}</span>}
-                                onClick={this.handleEdit.bind(this, blog._id)}
-                                //onClick={this.props.history.push(`/edit/${this.props.blog._id}`)}
+                        <ListItemText
+                        primary="Brunch this weekend?"
+                        secondary={
+                        <React.Fragment>
+                        <span style={{paddingLeft: '250px'}}>
+                        <span>  <Button color='primary' onClick={this.handleEdit.bind(this, blog._id)}>
+                        Edit  </Button> </span>
+                        <span>   <IconButton
+                        // edge="end"
+                        aria-label={`delete ${blog.title}`}
+                        onClick={this.handleDelete.bind(this, blog._id)}
+                        color="inherit"
+                        className={classes.icon}
+                        >
+                        <DeleteIcon/> {/!* DeleteForever *!/}
+                        </IconButton> </span>
 
-                                actionIcon={
-                                    <IconButton
-                                        // edge="end"
-                                        aria-label={`delete ${blog.title}`}
-                                        onClick={this.handleDelete.bind(this, blog._id)}
-                                        color="inherit"
-                                        className={classes.icon}
-                                    >
-                                        <DeleteIcon/> {/* DeleteForever */}
-                                    </IconButton>
+                        </span>
 
-                                }
-                            />
-                        </GridListTile>)}
+                        <p><b>  {blog.author}, {blog.creation_date}</b></p>
+                        <p> {blog.description} </p>
+                        <br></br>
+                        <a
+                        href="https://reactjs.org"
+                        target="_blank"
+                        >
+                        {blog.title}
+                        </a>
+                        </React.Fragment>
+                    }
+                        />
+                    }
+                            <Divider variant="inset" component="li" />)
 
-                    </GridList>
+                        </List>
 
                     <AlertDialog open={this.state.showDialog} dialog={{
                         title: 'Confirm',
-                        message: "Do you really want to delete this market offer?",
+                        message: "Do you really want to delete this blog?",
                         buttons: [
                             {
                                 label: 'No',
