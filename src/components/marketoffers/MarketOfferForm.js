@@ -28,7 +28,7 @@ const styles = (theme) => ({
         position: 'absolute',
         top: '20%',
         left: '20%',
-        right: '20%',
+        right: '20%'
         //display: 'inline-block',
         //display: 'flex',
         //alignItems: 'center',

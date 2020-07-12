@@ -79,7 +79,8 @@ export default class BlogService {
 
         if(!UserService.isAuthenticated())
             return;
-        blog.creator = UserService.getCurrentUser().id;
+        blog.author = UserService.getCurrentUser().id;
+        blog.authorName = UserService.getCurrentUser().id;
 
         return new Promise((resolve, reject) => {
             HttpService.post(BlogService.baseURL(), blog, function(data) {

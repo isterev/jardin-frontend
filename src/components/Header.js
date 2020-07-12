@@ -120,6 +120,8 @@ class Header extends React.Component {
         this.setState(state => ({
             anchorEl: null
         }));
+        this.props.history.push('/myBlogs');
+
     }
 
     handleMyOffers() {

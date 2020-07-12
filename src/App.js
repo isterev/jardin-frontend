@@ -5,6 +5,9 @@ import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 
 // TODO
 import {BlogsListView} from "./views/blogs/BlogsListView";
+import {MyBlogsListView} from "./views/blogs/MyBlogsListView";
+import {BlogFormView} from "./views/blogs/BlogFormView";
+
 import {MyConsultationsListView} from "./views/consultations/MyConsultationsListView";
 
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
@@ -19,8 +22,6 @@ import UserService from "./services/UserService";
 
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import {MyBlogsListView} from "./views/blogs/MyBlogsListView";
-import {BlogFormView} from "./views/blogs/BlogFormView";
 
 
 
