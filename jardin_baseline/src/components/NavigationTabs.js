@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Blogs from './home_blogs'
+import ItemDetailPage from "./ItemDetailPage";
+import Marketplace from "./Marketplace";
 
 function TabPanel(props) {
     const { children, value, index } = props;
@@ -46,8 +47,10 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
 
-    Tabs:{
-
+    Tabs:  {
+        '&:hover': {
+            border:'3px solid black'
+        },
     },
 }));
 
@@ -62,7 +65,7 @@ export default function NavigationTabs() {
     return (
         <div className={classes.root}>
             <Tabs value={value} onChange={handleChange} >
-                <Tab className={classes.Tabs} label="Blogs" {...a11yProps(0)} />
+                <Tab className={classes.Tabs} label="Blogs" {...a11yProps(0)} indicatorColor ={"white"}  />
                 <Tab className={classes.Tabs} label="Forum" {...a11yProps(1)} />
                 <Tab className={classes.Tabs} label="Marketplace" {...a11yProps(2)} />
                 <Tab className={classes.Tabs} label="Expert Consultation" {...a11yProps(3)} />
@@ -72,10 +75,10 @@ export default function NavigationTabs() {
              <Blogs/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                welcome to Forum
+             <ItemDetailPage/>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                welcome to market
+               <Marketplace/>
             </TabPanel>
             <TabPanel value={value} index={3}>
                 welcome to Expert consultation

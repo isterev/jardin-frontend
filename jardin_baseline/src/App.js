@@ -19,6 +19,7 @@ import {
 import Myblogs from "./components/myblogs";
 import Home_blogs from "./components/home_blogs";
 import Post_blog from "./components/post_blog";
+import ItemDetailPage from "./components/ItemDetailPage";
 
 
 
@@ -37,23 +38,7 @@ export default class App extends React.Component {
         <MuiThemeProvider theme={themeLight}>
           <CssBaseline />
           <Header/>
-          <div  padding-top ='90px' height ={'100%'}>
-              <Grid container direction="column">
-                  <Grid item container>
-                      <Grid item xs={4} sm={2} >
-                          <SideLinks/>
-                      </Grid>
-                      <Grid item xs={8} sm={8} >
-
-                      </Grid>
-                      <Grid item xs={4} sm={2}>
-                          <AdsLink/>
-                          </Grid>
-                  </Grid>
-              </Grid>
-          </div>
           <Footer/>
-
         </MuiThemeProvider>
         </Router>
     );

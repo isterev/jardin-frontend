@@ -17,6 +17,9 @@ import Typography from "@material-ui/core/Typography";
 import { Link} from "react-router-dom";
 import NavigationTabs from "./NavigationTabs";
 import Tab from "@material-ui/core/Tab";
+import Grid from "@material-ui/core/Grid";
+import SideLinks from "./SideLinks";
+import AdsLink from "./AdsLink";
 
 const useStyles = makeStyles((theme) => ({
     logo:{
@@ -71,18 +74,25 @@ const useStyles = makeStyles((theme) => ({
             height:40,
             width:'100%',
             backgroundColor:"#367c55",
-            paddingLeft:200,
      },
-    
+     text:{
+         fontWeight:700,
+     }
+
 }));
 
 export default function PrimarySearchAppBar() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
 
-    const handleToggle = () => {
-        setOpen(prevOpen => !prevOpen);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [open, setOpen] = React.useState(false);
+    const [placement, setPlacement] = React.useState();
+
+    const handleClick = (newPlacement) => (event) => {
+        setAnchorEl(event.currentTarget);
+        setOpen((prev) => placement !== newPlacement || !prev);
+        setPlacement(newPlacement);
     };
 
     const handleClose = event => {
@@ -120,67 +130,64 @@ export default function PrimarySearchAppBar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </div>
-                    <div>
-                        <IconButton color="inherit" onClick={handleToggle}>
-                            <AccountCircle fontSize="large"/>
-                        </IconButton>
-                        <Popper
-                            open={open}
-                            anchorEl={anchorRef.current}
-                            role={undefined}
-                            transition
-                            disablePortal
-                        >
-                            {({ TransitionProps, placement }) => (
-                                <Grow
-                                    {...TransitionProps}
-                                    style={{
-                                        transformOrigin:
-                                            placement === "bottom" ? "center top" : "center bottom"
-                                    }}
-                                >
-                                    <Paper>
-                                        <ClickAwayListener onClickAway={handleClose}>
-                                            <MenuList
-                                                autoFocusItem={open}
-                                                id="menu-list-grow"
-                                                onKeyDown={handleListKeyDown}
-                                            >
-                                                <MenuItem onClick={handleClose}>
-                                                    <Typography fontWeight="fontWeightBold">
-                                                        Topics
-                                                    </Typography>
-                                                </MenuItem>
-                                                <Divider />
-                                             <Link to="/myblogs">  <MenuItem onClick={handleClose}>My Blogs</MenuItem> </Link>
-                                                <Divider />
-                                                <MenuItem onClick={handleClose}>My Offers</MenuItem>
-                                                <Divider />
-                                                <MenuItem onClick={handleClose}>My Consultation</MenuItem>
-                                                <Divider />
-                                                <MenuItem onClick={handleClose}>User</MenuItem>
-                                                <Divider />
-                                                <MenuItem onClick={handleClose}>Subscription</MenuItem>
-                                                <Divider />
-                                                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                                <Divider />
-                                                <MenuItem onClick={handleClose}>Logout</MenuItem>
-                                                <Divider />
-                                            </MenuList>
-                                        </ClickAwayListener>
-                                    </Paper>
-                                </Grow>
-                            )}
-                        </Popper>
-                    </div>
+                    <IconButton
+                        onClick={handleClick('bottom-end')}
+                        color="inherit">
+                        <AccountCircle fontSize="large"/>
+                    </IconButton>
+
+                    <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
+                        {({ TransitionProps }) => (
+                            <Paper>
+                                <ClickAwayListener onClickAway={handleClose}>
+                                    <MenuList
+                                        autoFocusItem={open}
+                                        onKeyDown={handleListKeyDown}
+                                        backgroundColor="white"
+                                    >
+                                        <MenuItem onClick={handleClose}>
+                                            <Typography className={classes.text} >Topics</Typography>
+                                        </MenuItem>
+                                        <Divider />
+                                        <MenuItem onClick={handleClose}>My Blogs</MenuItem>
+                                        <Divider />
+                                        <MenuItem onClick={handleClose}>My Offers</MenuItem>
+                                        <Divider />
+                                        <MenuItem onClick={handleClose}>My Consultation</MenuItem>
+                                        <Divider />
+                                        <MenuItem onClick={handleClose}>
+                                            <Typography className={classes.text}>User</Typography></MenuItem>
+                                        <Divider />
+                                        <MenuItem onClick={handleClose}>Subscription</MenuItem>
+                                        <Divider />
+                                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                        <Divider />
+                                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                        <Divider />
+                                    </MenuList>
+                                </ClickAwayListener>
+                            </Paper>
+                        )}
+                    </Popper>
                 </Toolbar>
             </AppBar>
-            <div className={classes.tabs}>
-            < NavigationTabs/>
+            <div  className={classes.tabs}>
+                <div  padding-top ='90px' height ={'100%'}>
+                    <Grid container direction="column">
+                        <Grid item container>
+                            <Grid item xs={4} sm={2} >
+                                <SideLinks/>
+                            </Grid>
+                            <Grid item xs={8} sm={8} >
+                                <NavigationTabs/>
+                            </Grid>
+                            <Grid item xs={4} sm={2}>
+                                <AdsLink/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </div>
            </div>
         </div>
-
-
-
     );
 }
