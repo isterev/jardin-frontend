@@ -1,65 +1,88 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {makeStyles} from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import {withStyles} from "@material-ui/styles";
-import {withRouter} from "react-router-dom";
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-const styles = (theme) => ({
-    root: {
-        /*flexGrow: 1,
-        backgroundColor: '#cfdf72',
-        alignItems: 'center',
-        justifyContent: 'center',
-        //width: 700,
-        height: 'auto',
-        position: 'absolute',
-        //top: '20%',
-        left: '20%',*/
-        position: 'absolute',
-        flexGrow: 1,
-        height:40,
-        width:'100%',
-        backgroundColor:"#367c55",
-        paddingLeft:200,
-    },
-    indicator: {
-        backgroundColor: "#F50057"
-    }
-});
+function TabPanel(props) {
+    const { children, value, index } = props;
 
-export class NavigationTabs extends React.Component {
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
 
-    constructor(props) {
-        super(props);
-
-        this.handleTabChange = this.handleTabChange.bind(this);
-    }
-
-    handleTabChange(event, newValue) {
-
-        event.stopPropagation()
-
-        this.props.handleTabChange(newValue)
-
-    };
-
-    render() {
-
-        const {classes} = this.props;
-
-        return (
-
-            <div className={classes.root}>
-                <Tabs classes = {{  indicator: classes.indicator}} value={this.props.selectedTab} onChange={this.handleTabChange}>
-                    <Tab label="Blogs" value="/blogs" />
-                    <Tab label="Forum" value="/forum" />
-                    <Tab label="Marketplace" value="/offers" />
-                    <Tab label="Expert Consultation" value="/consult" />
-                    <Tab label="Customer Service" value="/service" />
-                </Tabs>
-            </div>
-        );
-    }
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
 }
 
-export default withStyles(styles)(withRouter(NavigationTabs));
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+
+    Tabs:  {
+        '&:hover': {
+            border:'3px solid black'
+        },
+    },
+}));
+
+export default function NavigationTabs() {
+    const classes = useStyles();
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    return (
+        <div className={classes.root}>
+            <Tabs value={value} onChange={handleChange} >
+                <Tab className={classes.Tabs} label="Blogs" {...a11yProps(0)} indicatorColor ={"white"}  />
+                <Tab className={classes.Tabs} label="Forum" {...a11yProps(1)} />
+                <Tab className={classes.Tabs} label="Marketplace" {...a11yProps(2)} />
+                <Tab className={classes.Tabs} label="Expert Consultation" {...a11yProps(3)} />
+                <Tab className={classes.Tabs} label="Customer Service" {...a11yProps(4)} />
+            </Tabs>
+            <TabPanel value={value} index={0}>
+               blogs
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+               forum
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+               marketplace
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                welcome to Expert consultation
+            </TabPanel>
+            <TabPanel value={value} index={4}>
+                welcome to customer service
+            </TabPanel>
+        </div>
+    );
+}

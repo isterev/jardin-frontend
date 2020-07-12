@@ -2,7 +2,6 @@ import React from 'react';
 import {withRouter} from "react-router-dom";
 import {fade} from '@material-ui/core/styles';
 import {withStyles} from '@material-ui/styles';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,28 +10,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
 import UserService from "../services/UserService";
-import NavigationTabs from "./NavigationTabs";
-
 import jardinLogo from '../images/jardin_logo.png';
 
 const styles = (theme) => ({
     logo: {
         height: '100%',
         width: 120
-    },
-    grow: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-            display: 'block',
-        },
     },
     search: {
         position: 'relative',
@@ -78,20 +62,15 @@ const styles = (theme) => ({
 });
 
 class Header extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
-            anchorEl: null
+            anchorEl: null,
         }
-
         this.menuId = 'primary-search-account-menu';
-
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
         this.handleMenuClose = this.handleMenuClose.bind(this);
-
         this.handleMyBlogs = this.handleMyBlogs.bind(this);
         this.handleMyOffers = this.handleMyOffers.bind(this);
         this.handleMyConsultations = this.handleMyConsultations.bind(this);
@@ -99,14 +78,15 @@ class Header extends React.Component {
         this.handleProfile = this.handleProfile.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
+
     }
 
     handleProfileMenuOpen(event) {
         //alert("profile menu");
         this.setState(state => ({
             anchorEl: event.currentTarget
-        }));
 
+        }));
     };
 
     handleMenuClose() {
@@ -175,11 +155,7 @@ class Header extends React.Component {
             window.location.reload();
         }
     }
-
-
-
     render() {
-
         const {classes} = this.props;
 
         return (
@@ -200,9 +176,7 @@ class Header extends React.Component {
                                 inputProps={{'aria-label': 'search'}}
                             />
                         </div>
-                        <div className={classes.grow}/>
                         <div>
-
                             <IconButton
                                 edge="end"
                                 aria-label="account of current user"
@@ -211,7 +185,7 @@ class Header extends React.Component {
                                 onClick={this.handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle/>
+                                <AccountCircle fontSize="large"/>
                             </IconButton>
 
                             <Menu
@@ -244,15 +218,9 @@ class Header extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                <NavigationTabs selectedTab={this.props.selectedTab}  handleTabChange={(value) => this.props.handleTabChange(value)} />
-
             </div>
         );
     }
-};
-
-/*Header.propTypes = {
-  classes: PropTypes.object.isRequired,
-};*/
+}
 
 export default withStyles(styles)(withRouter(Header));
