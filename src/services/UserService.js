@@ -2,6 +2,8 @@
 
 import HttpService from './HttpService';
 
+let currentUser = null
+
 export default class UserService {
 
     constructor() {
@@ -31,7 +33,6 @@ export default class UserService {
                 username: user,
                 password: pass
             }, function(data) {
-                alert(JSON.stringify((data)));
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
@@ -41,22 +42,29 @@ export default class UserService {
 
     static logout(){
         window.localStorage.removeItem('jwtToken');
+        currentUser = null
     }
 
     static getCurrentUser() {
+
+        if(currentUser)
+            return currentUser
+
         let token = window.localStorage['jwtToken'];
         if (!token) return {};
 
         let base64Url = token.split('.')[1];
         let base64 = base64Url.replace('-', '+').replace('_', '/');
-        alert(JSON.stringify(JSON.parse(window.atob(base64))));
-        return {
+
+        currentUser = {
             id : JSON.parse(window.atob(base64)).id,
             username: JSON.parse(window.atob(base64)).username,
             email: JSON.parse(window.atob(base64)).email,
             firstName: JSON.parse(window.atob(base64)).firstName,
             lastName: JSON.parse(window.atob(base64)).lastName
         };
+
+        return currentUser
     }
 
     static isAuthenticated() {
