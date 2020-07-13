@@ -11,6 +11,7 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import UserService from "../services/UserService";
+import NavigationTabs from "./NavigationTabs";
 import jardinLogo from '../images/jardin_logo.png';
 
 const styles = (theme) => ({
@@ -218,6 +219,8 @@ class Header extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
+                <NavigationTabs selectedTab={this.props.selectedTab}  handleTabChange={(value) => this.props.handleTabChange(value)} />
+
             </div>
         );
     }

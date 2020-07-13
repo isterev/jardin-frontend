@@ -10,8 +10,6 @@ import {MyConsultationsListView} from "./views/consultations/MyConsultationsList
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
 import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView";
 import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView";
-// TODO import {MarketOfferDetailView} from "./views/marketoffers/MarketOfferDetailView";
-
 import {UserLoginView} from "./views/UserLoginView";
 import {UserSignupView} from "./views/UserSignupView";
 
@@ -21,6 +19,7 @@ import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {MyBlogsListView} from "./views/blogs/MyBlogsListView";
 import {BlogFormView} from "./views/blogs/BlogFormView";
+import {MarketOfferDetailView} from "./views/marketoffer/MarketOfferDetailView";
 
 
 
@@ -50,7 +49,7 @@ export default class App extends React.Component {
                 {component: MarketOfferGridListView, path: '/', exact: true},
                 {component: MarketOfferGridListView, path: '/offers'},
                 {component: MyMarketOfferGridListView, path: '/myOffers'},
-                // TODO {component: MarketOfferDetailView, path: '/showOffer/:id'},
+                {component: MarketOfferDetailView, path: '/showOffer/:id'},
                 {
                     render: (props) => {
                         if (UserService.isAuthenticated()) {

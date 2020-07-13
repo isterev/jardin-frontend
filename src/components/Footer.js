@@ -43,13 +43,9 @@ export class Footer extends React.Component {
     }
 
     render() {
-
         const {classes} = this.props;
-
         return (
-
             <div className={classes.root}>
-
                 <footer className={classes.footer}>
                     <Container maxWidth="sm">
                         <Typography variant="body1" color="primary">

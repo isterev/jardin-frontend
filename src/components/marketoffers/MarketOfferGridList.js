@@ -21,7 +21,7 @@ const styles = (theme) => ({
     gridList: {
         overflow: 'auto',
         maxHeight: '70%',
-        maxWidth: '50%',
+        maxWidth: '700px',
         position: 'absolute',
         top: '29%',
         bottom: '10%',
