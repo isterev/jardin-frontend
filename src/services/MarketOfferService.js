@@ -80,6 +80,7 @@ export default class MarketOfferService {
         if(!UserService.isAuthenticated())
             return;
         marketOffer.creator = UserService.getCurrentUser().id;
+        marketOffer.contact = 'TODO@web.com'
 
         return new Promise((resolve, reject) => {
             HttpService.post(MarketOfferService.baseURL(), marketOffer, function(data) {

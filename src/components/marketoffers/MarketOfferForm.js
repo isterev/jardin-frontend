@@ -8,15 +8,16 @@ import * as yup from 'yup';
 
 import {Button, Card, InputLabel, MenuItem} from '@material-ui/core';
 
-import {TextField, Select} from 'formik-material-ui';
-
-import {confirmAlert} from 'react-confirm-alert';
+import {Select, TextField} from 'formik-material-ui';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import Page from '../Page';
-import Box from "@material-ui/core/Box";
 import AlertDialog from "../util/AlertDialog";
 import {withStyles} from "@material-ui/styles";
+import Grid from "@material-ui/core/Grid";
+import ImageUploadCard from "../util/ImageUpload";
+import Box from "@material-ui/core/Box";
+
 
 const styles = (theme) => ({
     root: {
@@ -28,11 +29,28 @@ const styles = (theme) => ({
         position: 'absolute',
         top: '20%',
         left: '20%',
-        right: '20%'
+        right: '20%',
         //display: 'inline-block',
         //display: 'flex',
         //alignItems: 'center',
         //justifyContent: 'center',
+    },
+    imageUpload: {
+        position: 'absolute',
+        left: '33px'
+    },
+    field: {
+        width: "80%"
+    },
+    buttons: {
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '20px',
+        //position: 'relative',
+        //top: '10px'
+    },
+    button: {
+        margin: '3px'
     }
 });
 
@@ -46,23 +64,25 @@ class MarketOfferForm extends React.Component {
 
         if (this.props.marketOffer != undefined) {
             this.state.values = {
+                type: props.marketOffer.type,
                 category: props.marketOffer.category,
                 title: props.marketOffer.title,
                 description: props.marketOffer.description,
                 denomination: props.marketOffer.denomination,
                 pricePerUnit: props.marketOffer.pricePerUnit,
-                //productImage: props.marketOffer.productImage //TODO
+                //productImage: props.marketOffer.productImage
             };
             this.isUpdate = true;
 
         } else {
             this.state.values = {
+                type: '',
                 category: '',
                 title: '',
                 description: '',
                 denomination: '',
                 pricePerUnit: '',
-                //productImage: null //TODO
+                //productImage: null
             };
         }
 
@@ -93,15 +113,17 @@ class MarketOfferForm extends React.Component {
     confirmAction() {
 
         let marketOffer = this.props.marketOffer;
-        if(marketOffer == undefined) {
+        if (marketOffer == undefined) {
             marketOffer = {};
         }
 
+        marketOffer.type = this.state.values.type;
         marketOffer.category = this.state.values.category;
         marketOffer.title = this.state.values.title;
         marketOffer.description = this.state.values.description;
         marketOffer.denomination = this.state.values.denomination;
         marketOffer.pricePerUnit = this.state.values.pricePerUnit;
+        //marketOffer.productImage = this.state.values.productImage
 
         this.props.onSubmit(marketOffer);
 
@@ -114,10 +136,17 @@ class MarketOfferForm extends React.Component {
     // validation with yup
     getSchema() {
         return yup.object().shape({
+            //productImage: yup.mixed().required('Product image is required'),
+            type: yup.string()
+                .required('Type is required')
+                .oneOf(
+                    ['Rental', 'Sale'],
+                    'Invalid type'
+                ),
             category: yup.string()
                 .required('Category is required')
                 .oneOf(
-                    ['SEEDS_SMALL_PLANTS', 'FERTILISERS', 'MECHANICAL_EQUIPMENT', 'ELECTRONIC_EQUIPMENT', 'OTHERS'],
+                    ['Seeds and Small Plants', 'Fertilisers', 'Mechanical Equipment', 'Electronic Equipment', 'Others'],
                     'Invalid category type'
                 ),
             title: yup.string()
@@ -127,7 +156,7 @@ class MarketOfferForm extends React.Component {
             denomination: yup.string()
                 .required('Denomination is required')
                 .oneOf(
-                    ['UNIT', 'PER_KG', 'PER_GRAM', 'PER_DAY'],
+                    ['unit', 'per kg', 'per gram', 'per day'],
                     'Invalid Denomination type'
                 ),
             pricePerUnit: yup.number()
@@ -156,123 +185,161 @@ class MarketOfferForm extends React.Component {
                                 title: this.state.values.title,
                                 description: this.state.values.description,
                                 denomination: this.state.values.denomination,
-                                pricePerUnit: this.state.values.pricePerUnit
+                                pricePerUnit: this.state.values.pricePerUnit,
+                                //productImage: this.state.values.productImage
                             }}
                             validationSchema={this.getSchema}
                             onSubmit={this.handleSubmit}
                             render={() => (
                                 <Form mode='structured'>
 
-                                    <Box margin={1}>
+                                    <Grid container spacing={3}>
+                                        <Grid item xs={6}>
+
+                                            <br/>
+
+                                            <Box className={classes.imageUpload}>
+
+                                            <InputLabel htmlFor="productImage">Upload Image</InputLabel>
+                                            <Field
+                                                component={ImageUploadCard}
+                                                name="productImage"
+                                                inputProps={{
+                                                    id: 'productImage',
+                                                }}
+                                                //className={classes.field}
+                                            />
+
+                                            </Box>
+
+                                            <br/>
+
+
+                                        </Grid>
+                                        <Grid item xs={6}>
+
+                                            <br/>
+
+                                            <InputLabel htmlFor="category">Type</InputLabel>
+                                            <Field
+                                                component={Select}
+                                                name="type"
+                                                inputProps={{
+                                                    id: 'type',
+                                                }}
+                                                className={classes.field}
+                                            >
+                                                <MenuItem value={'Rental'}>Rental</MenuItem>
+                                                <MenuItem value={'Sale'}>Sale</MenuItem>
+                                            </Field>
+
+                                            <br/>
+
+                                            <br/>
+
+                                            <InputLabel htmlFor="category">Category</InputLabel>
+                                            <Field
+                                                component={Select}
+                                                name="category"
+                                                inputProps={{
+                                                    id: 'category',
+                                                }}
+                                                className={classes.field}
+                                            >
+                                                <MenuItem value={'Seeds and Small Plants'}>Seeds and Small
+                                                    Plants</MenuItem>
+                                                <MenuItem value={'Fertilisers'}>Fertilisers</MenuItem>
+                                                <MenuItem value={'Mechanical Equipment'}>Mechanical Equipment</MenuItem>
+                                                <MenuItem value={'Electronic Equipment'}>Electronic Equipment</MenuItem>
+                                                <MenuItem value={'Others'}>Others</MenuItem>
+                                            </Field>
+
+                                            <br/>
+
+                                            <Field
+                                                component={TextField}
+                                                name="title"
+                                                label="Title"
+                                                //helperText="Specify a title"
+                                                className={classes.field}
+                                            />
+
+                                            <br/>
+
+                                            <Field
+                                                component={TextField}
+                                                name='description'
+                                                label='Description'
+                                                //helperText='Write a detailed description'
+                                                multiline={true}
+                                                rows='5'
+                                                rowsMax='20'
+                                                className={classes.field}
+                                                // style={height: "150px"}}
+                                            />
+
+                                            <br/>
+                                            <br/>
+
+                                            <InputLabel htmlFor="category">Denomination</InputLabel>
+                                            <Field
+                                                component={Select}
+                                                name="denomination"
+                                                inputProps={{
+                                                    id: 'denomination',
+                                                }}
+                                                className={classes.field}
+                                            >
+                                                <MenuItem value={'unit'}>unit</MenuItem>
+                                                <MenuItem value={'per kg'}>per kg</MenuItem>
+                                                <MenuItem value={'per gram'}>per gram</MenuItem>
+                                                <MenuItem value={'per day'}>per day</MenuItem>
+                                            </Field>
+
+                                            <br/>
+
+
+                                            <Field
+                                                component={TextField}
+                                                name="pricePerUnit"
+                                                label="Price per unit"
+                                                //helperText="Define the price per unit"
+                                                className={classes.field}
+                                            />
+
+                                            <br/>
+
+
+                                        </Grid>
 
                                         <br/>
 
-                                        <InputLabel htmlFor="category">Category</InputLabel>
-                                        <Field
-                                            component={Select}
-                                            name="category"
-                                            inputProps={{
-                                                id: 'category',
-                                            }}
-                                            style={{width: "66%"}}
-                                        >
-                                            <MenuItem value={'SEEDS_SMALL_PLANTS'}>seeds and small plants</MenuItem>
-                                            <MenuItem value={'FERTILISERS'}>fertilisers</MenuItem>
-                                            <MenuItem value={'MECHANICAL_EQUIPMENT'}>mechanical equipment</MenuItem>
-                                            <MenuItem value={'ELECTRONIC_EQUIPMENT'}>electronic equipment</MenuItem>
-                                            <MenuItem value={'OTHERS'}>others</MenuItem>
-                                        </Field>
 
-                                        <br/>
+                                        <Grid item xs={12} className={classes.buttons}>
 
-                                    </Box>
-                                    <Box margin={1}>
+                                            <Button
+                                                type="submit"
+                                                variant="contained"
+                                                color="primary"
+                                                className={classes.button}
+                                                onClick={(() => this.form.submit())}
+                                            >
+                                                Submit
+                                            </Button>
 
-                                        <Field
-                                            component={TextField}
-                                            name="title"
-                                            label="Title"
-                                            helperText="Specify a title"
-                                            style={{width: "66%"}}
-                                        />
+                                            <Button
+                                                // type="reset"
+                                                variant="contained"
+                                                color="secondary"
+                                                className={classes.button}
+                                                onClick={(() => history.go(-1))}
+                                            >
+                                                Cancel
+                                            </Button>
 
-                                        <br/>
+                                        </Grid>
+                                    </Grid>
 
-                                    </Box>
-                                    <Box margin={1}>
-
-                                        <Field
-                                            component={TextField}
-                                            name='description'
-                                            label='Description'
-                                            helperText='Write a detailed description'
-                                            multiline={true}
-                                            rows='5'
-                                            rowsMax='20'
-                                            style={{width: "66%"}}
-                                            // style={{width: "90%", height: "150px"}}
-                                        />
-
-                                        <br/>
-
-                                    </Box>
-                                    <Box margin={1}>
-
-                                        <InputLabel htmlFor="category">Denomination</InputLabel>
-                                        <Field
-                                            component={Select}
-                                            name="denomination"
-                                            inputProps={{
-                                                id: 'denomination',
-                                            }}
-                                            style={{width: "66%"}}
-                                        >
-                                            <MenuItem value={'UNIT'}>unit</MenuItem>
-                                            <MenuItem value={'PER_KG'}>per kg</MenuItem>
-                                            <MenuItem value={'PER_GRAM'}>per gram</MenuItem>
-                                            <MenuItem value={'PER_DAY'}>per day</MenuItem>
-                                        </Field>
-
-                                        <br/>
-
-                                    </Box>
-                                    <Box margin={1}>
-
-                                        <Field
-                                            component={TextField}
-                                            name="pricePerUnit"
-                                            label="Price per unit"
-                                            helperText="Define the price per unit"
-                                            style={{width: "66%"}}
-                                        />
-
-                                        <br/>
-
-                                    </Box>
-                                    <Box margin={1}>
-
-                                        <br/>
-                                        <br/>
-
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={(() => this.form.submit())}
-                                        >
-                                            Submit
-                                        </Button>
-
-                                        <Button
-                                            // type="reset"
-                                            variant="contained"
-                                            color="secondary"
-                                            onClick={(() => history.go(-1))}
-                                        >
-                                            Cancel
-                                        </Button>
-
-                                    </Box>
 
                                 </Form>
 
