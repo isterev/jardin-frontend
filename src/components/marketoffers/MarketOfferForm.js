@@ -70,7 +70,7 @@ class MarketOfferForm extends React.Component {
                 description: props.marketOffer.description,
                 denomination: props.marketOffer.denomination,
                 pricePerUnit: props.marketOffer.pricePerUnit,
-                //productImage: props.marketOffer.productImage
+                productImage: props.marketOffer.productImage
             };
             this.isUpdate = true;
 
@@ -82,7 +82,7 @@ class MarketOfferForm extends React.Component {
                 description: '',
                 denomination: '',
                 pricePerUnit: '',
-                //productImage: null
+                productImage: null
             };
         }
 
@@ -123,7 +123,7 @@ class MarketOfferForm extends React.Component {
         marketOffer.description = this.state.values.description;
         marketOffer.denomination = this.state.values.denomination;
         marketOffer.pricePerUnit = this.state.values.pricePerUnit;
-        //marketOffer.productImage = this.state.values.productImage
+        marketOffer.productImage = this.state.values.productImage
 
         this.props.onSubmit(marketOffer);
 
@@ -181,12 +181,13 @@ class MarketOfferForm extends React.Component {
                     <Card className={classes.card}>
                         <Formik
                             initialValues={{
+                                type: this.state.values.type,
                                 category: this.state.values.category,
                                 title: this.state.values.title,
                                 description: this.state.values.description,
                                 denomination: this.state.values.denomination,
                                 pricePerUnit: this.state.values.pricePerUnit,
-                                //productImage: this.state.values.productImage
+                                productImage: this.state.values.productImage
                             }}
                             validationSchema={this.getSchema}
                             onSubmit={this.handleSubmit}
@@ -207,7 +208,6 @@ class MarketOfferForm extends React.Component {
                                                 inputProps={{
                                                     id: 'productImage',
                                                 }}
-                                                //className={classes.field}
                                             />
 
                                             </Box>

@@ -27,11 +27,15 @@ const styles = (theme) => ({
     gridList: {
         overflow: 'auto',
         maxHeight: '70%',
-        maxWidth: 700,//'50%',
+        width: '700px',//'50%',
         position: 'absolute',
         top: '29%',
         bottom: '10%',
         left: '25%',
+    },
+    image:{
+        /*maxHeight: '200px',
+        maxWidth: '200px',//'50%'*/
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -108,8 +112,8 @@ class MyMarketOfferGridList extends React.Component {
                     <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
 
                         {this.props.data.map((marketOffer, i) => <GridListTile key={i}>
-                            <img src={'https://material-ui.com/static/images/grid-list/breakfast.jpg'}
-                                 alt={marketOffer.title}/>
+                            <img src={marketOffer.productImage}
+                                 alt={marketOffer.title} className={classes.image}/>
                             <GridListTileBar
                                 title={marketOffer.title}
                                 subtitle={<span>by: {marketOffer.creator}</span>}
