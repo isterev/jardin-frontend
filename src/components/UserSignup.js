@@ -16,7 +16,7 @@ import {AlertMessage} from './util/AlertMessage';
 import Page from './Page';
 
 
-const style = {maxWidth: 500};
+const style = {maxWidth: 500, backgroundColor: "#cede6e"};
 
 
 class UserSignup extends React.Component {
@@ -26,7 +26,10 @@ class UserSignup extends React.Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            email: '',
+            firstName: '',
+            lastName: ''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,7 +39,10 @@ class UserSignup extends React.Component {
 
         let user = {
             username: values.username,
-            password: values.password
+            password: values.password,
+            email: values.email,
+            firstName: values.firstName,
+            lastName: values.lastName
         };
 
         this.props.onSubmit(user);
@@ -49,6 +55,12 @@ class UserSignup extends React.Component {
                 .required('Username is required'),
             password: yup.string()
                 .required('Password is required'),
+            email: yup.string()
+                .required('Email is required'),
+            firstName: yup.string()
+                .required('First name is required'),
+            lastName: yup.string()
+                .required('Last name is required'),
         })
     };
 
@@ -64,7 +76,11 @@ class UserSignup extends React.Component {
                         <Formik
                             initialValues={{
                                 username: this.state.username,
-                                password: this.state.password
+                                password: this.state.password,
+                                email: this.state.email,
+                                firstName: this.state.firstName,
+                                lastName: this.state.lastName,
+
                             }}
                             validationSchema={this.getSchema}
                             onSubmit={this.handleSubmit}
@@ -84,6 +100,28 @@ class UserSignup extends React.Component {
                                         label="Password"
                                         name="password"
                                     />
+                                    <br/>
+                                    <Field
+                                        component={TextField}
+                                        name="email"
+                                        label="User Email"
+                                        type="email"
+                                    />
+                                    <br></br>
+                                    <Field
+                                        component={TextField}
+                                        name="firstName"
+                                        label="First Name"
+                                    />
+                                    <br></br>
+
+                                    <Field
+                                        component={TextField}
+                                        name="lastName"
+                                        label="Last Name"
+                                    />
+
+                                    <br></br>
 
 
                                     <Button

@@ -75,12 +75,14 @@ export default class BlogService {
         });
     }
 
-    static createBlog(blog) {
+    static postBlog(blog) {
 
         if(!UserService.isAuthenticated())
             return;
-        blog.author = UserService.getCurrentUser().id;
-        blog.authorName = UserService.getCurrentUser().id;
+        blog.authorId = UserService.getCurrentUser().id;
+        blog.authorFirstName = UserService.getCurrentUser().firstName;
+        blog.authorLastName = UserService.getCurrentUser().lastName;
+        alert(JSON.stringify(blog))
 
         return new Promise((resolve, reject) => {
             HttpService.post(BlogService.baseURL(), blog, function(data) {

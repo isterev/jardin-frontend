@@ -9,11 +9,14 @@ export default class UserService {
 
     static baseURL() {return 'http://localhost:3000/auth'; }
 
-    static register(user, pass) {
+    static register(user, pass, email, firstName, lastName) {
         return new Promise((resolve, reject) => {
             HttpService.post(`${UserService.baseURL()}/register`, {
                 username: user,
-                password: pass
+                password: pass,
+                email: email,
+                firstName: firstName,
+                lastName: lastName
             }, function(data) {
                 resolve(data);
             }, function(textStatus) {
@@ -28,6 +31,7 @@ export default class UserService {
                 username: user,
                 password: pass
             }, function(data) {
+                alert(JSON.stringify((data)));
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
@@ -45,9 +49,13 @@ export default class UserService {
 
         let base64Url = token.split('.')[1];
         let base64 = base64Url.replace('-', '+').replace('_', '/');
+        alert(JSON.stringify(JSON.parse(window.atob(base64))));
         return {
             id : JSON.parse(window.atob(base64)).id,
-            username: JSON.parse(window.atob(base64)).username
+            username: JSON.parse(window.atob(base64)).username,
+            email: JSON.parse(window.atob(base64)).email,
+            firstName: JSON.parse(window.atob(base64)).firstName,
+            lastName: JSON.parse(window.atob(base64)).lastName
         };
     }
 

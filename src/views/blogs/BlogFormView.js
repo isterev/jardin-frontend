@@ -51,7 +51,7 @@ export class BlogFormView extends React.Component {
         if(this.state.blog == undefined) {
             try {
                 let ret = await BlogService.postBlog(blog);
-                this.props.history.push('/MyBlogsListView_Old.js');
+                this.props.history.push('/blogs');
             } catch(err) {
                 console.error(err);
                 this.setState(Object.assign({}, this.state, {error: 'Error while creating blog'}));

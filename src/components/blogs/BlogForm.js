@@ -49,16 +49,18 @@ class BlogForm extends React.Component {
 
         if (this.props.blog != undefined) {
             this.state.values = {
-                title: props.blog.title,
-                content: props.blog.content,
+
+                articleTitle: props.blog.articleTitle,
+                articleBody: props.blog.articleBody
+
                 //productImage: props.blog.productImage //TODO
             };
             this.isUpdate = true;
 
         } else {
             this.state.values = {
-                title: '',
-                content: '',
+                articleTitle: '',
+                articleBody: '',
                 //productImage: null //TODO
             };
         }
@@ -72,7 +74,6 @@ class BlogForm extends React.Component {
 
     handleSubmit(values, actions) {
 
-        alert("hello");
         actions.setSubmitting(false);
 
         this.setState(state => ({
@@ -95,8 +96,8 @@ class BlogForm extends React.Component {
             blog = {};
         }
 
-        blog.title = this.state.values.title;
-        blog.content = this.state.values.content;
+        blog.articleTitle = this.state.values.articleTitle;
+        blog.articleBody = this.state.values.articleBody;
 
         this.props.onSubmit(blog);
 
@@ -108,10 +109,10 @@ class BlogForm extends React.Component {
     // validation with yup
     getSchema() {
         return yup.object().shape({
-            title: yup.string()
+            /*articleTitle: yup.string()
                 .required('Title is required'),
-            content: yup.string()
-                .required('Content is required')
+            articleBody: yup.string()
+                .required('Content is required')*/
         })
     };
 
@@ -129,8 +130,8 @@ class BlogForm extends React.Component {
                     <Card className={classes.card}>
                         <Formik
                             initialValues={{
-                                title: this.state.values.title,
-                                content: this.state.values.content,
+                                articleTitle: this.state.values.articleTitle,
+                                articleBody: this.state.values.articleBody,
                             }}
                             validationSchema={this.getSchema}
                             onSubmit={this.handleSubmit}
@@ -141,9 +142,9 @@ class BlogForm extends React.Component {
 
                                         <Field
                                             component={TextareaAutosize}
-                                            name="title"
+                                            name="articleTitle"
                                             placeholder = "Article Title"
-                                            helperText="Specify a title"
+                                            helperText="Specify a articleTitle"
                                             style={{width: "900px"}}
                                             rows='3'
                                             aria-label="minimum height"
@@ -157,9 +158,9 @@ class BlogForm extends React.Component {
 
                                         <Field
                                             component={TextareaAutosize}
-                                            name='content'
+                                            name='articleBody'
                                             placeholder = "Article Content"
-                                            helperText='Write a detailed content'
+                                            helperText='Write a detailed articleBody'
                                             multiline={true}
                                             rows='15'
                                             style={{width: "900px"}}
@@ -216,7 +217,7 @@ margin={1}>
                 </Page>
 
                 <AlertDialog open={this.state.showDialog} dialog={{
-                    title: 'Confirm',
+                    articleTitle: 'Confirm',
                     message: "Do you really want to " + (this.isUpdate ? "update" : "create")
                         + " this blog article?",
                     buttons: [
