@@ -82,7 +82,6 @@ export default class BlogService {
         blog.authorId = UserService.getCurrentUser().id;
         blog.authorFirstName = UserService.getCurrentUser().firstName;
         blog.authorLastName = UserService.getCurrentUser().lastName;
-        alert(JSON.stringify(blog))
 
         return new Promise((resolve, reject) => {
             HttpService.post(BlogService.baseURL(), blog, function(data) {

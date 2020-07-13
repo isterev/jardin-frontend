@@ -141,12 +141,13 @@ class BlogForm extends React.Component {
                                     <Box margin={1}>
 
                                         <Field
-                                            component={TextareaAutosize}
+                                            component={TextField} //TextareaAutosize
                                             name="articleTitle"
                                             placeholder = "Article Title"
                                             helperText="Specify a articleTitle"
                                             style={{width: "900px"}}
-                                            rows='3'
+                                            multiline={true}
+                                            rows='2'
                                             aria-label="minimum height"
 
                                         />
@@ -157,7 +158,7 @@ class BlogForm extends React.Component {
                                     <Box margin={1}>
 
                                         <Field
-                                            component={TextareaAutosize}
+                                            component={TextField} //TextareaAutosize
                                             name='articleBody'
                                             placeholder = "Article Content"
                                             helperText='Write a detailed articleBody'
