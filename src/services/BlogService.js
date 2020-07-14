@@ -39,7 +39,6 @@ export default class BlogService {
         return new Promise((resolve, reject) => {
             HttpService.get(`${BlogService.baseURL()}/myBlogs`, function(data) {
                 if(data != undefined) {
-                    alert(data)
                     resolve(data);
                 }
                 else {

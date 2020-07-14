@@ -84,13 +84,10 @@ export default class MarketOfferService {
         marketOffer.creatorLastName = UserService.getCurrentUser().lastName;
         marketOffer.contact = UserService.getCurrentUser().email; // maybe extend also to other data
 
-        alert(JSON.stringify(UserService.getCurrentUser()))
-
         return new Promise((resolve, reject) => {
             HttpService.post(MarketOfferService.baseURL(), marketOffer, function(data) {
                 resolve(data);
             }, function(textStatus) {
-                alert(textStatus)
                 reject(textStatus);
             });
         });

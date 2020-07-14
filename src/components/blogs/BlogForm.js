@@ -92,8 +92,6 @@ class BlogForm extends React.Component {
 
     confirmAction() {
 
-        alert(JSON.stringify(this.state.values))
-
         let blog = this.props.blog;
         if(blog == undefined) {
             blog = {};
