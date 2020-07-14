@@ -10,6 +10,8 @@ import GridListTile from "@material-ui/core/GridListTile";
 
 import Page from '../Page'
 import UserService from "../../services/UserService";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 const styles = (theme) => ({
     root: {
@@ -21,15 +23,15 @@ const styles = (theme) => ({
     gridList: {
         overflow: 'auto',
         maxHeight: '70%',
-        width: '700px',//'50%',
+        width: '800px',//'50%',
         position: 'absolute',
         top: '29%',
         bottom: '10%',
         left: '25%',
     },
-    image:{
-        /*maxHeight: '200px',
-         maxWidth: '200px',//'50%'*/
+    gridListTile:{
+        //maxHeight: '250px',
+        maxWidth: '25%',//'50%'
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -63,12 +65,24 @@ class MarketOfferGridList extends React.Component {
                         {/*    <ListSubheader component="div">Market Offers</ListSubheader>*/}
                         {/*</GridListTile>*/}
 
-                        {this.props.data.map((marketOffer, i) => <GridListTile key={i}>
+                        {this.props.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
                                  alt={marketOffer.title} className={classes.image}/>
                             <GridListTileBar
                                 title={marketOffer.title}
-                                subtitle={<span>by: {marketOffer.creator}</span>}
+                                subtitle={
+                                    <div>
+                                        <Typography variant="inherit">
+                                            <Box fontStyle="italic">
+                                                  by: {marketOffer.creatorFirstName + " " + marketOffer.creatorLastName}
+                                            </Box>
+                                        </Typography>
+                                        <br/>
+                                        <Typography variant="inherit">
+                                            {marketOffer.type + ": " + marketOffer.pricePerUnit + " EUR " + marketOffer.denomination}
+                                        </Typography>
+                                    </div>
+                                }
                                 onClick={this.handleDisplay.bind(this, marketOffer._id)}
                             />
                         </GridListTile>)}

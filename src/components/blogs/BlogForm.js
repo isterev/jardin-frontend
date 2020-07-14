@@ -23,6 +23,7 @@ import PublishIcon from '@material-ui/icons/Publish';
 import CancelIcon from '@material-ui/icons/Cancel';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import Paper from "@material-ui/core/Paper";
+import TextareaAutosizeInput from "../util/TextareaAutosizeInput";
 
 const styles = (theme) => ({
     root: {
@@ -91,6 +92,8 @@ class BlogForm extends React.Component {
 
     confirmAction() {
 
+        alert(JSON.stringify(this.state.values))
+
         let blog = this.props.blog;
         if(blog == undefined) {
             blog = {};
@@ -109,10 +112,10 @@ class BlogForm extends React.Component {
     // validation with yup
     getSchema() {
         return yup.object().shape({
-            /*articleTitle: yup.string()
+            articleTitle: yup.string()
                 .required('Title is required'),
             articleBody: yup.string()
-                .required('Content is required')*/
+                .required('Content is required')
         })
     };
 
@@ -141,12 +144,12 @@ class BlogForm extends React.Component {
                                     <Box margin={1}>
 
                                         <Field
-                                            component={TextField} //TextareaAutosize
+                                            component={TextareaAutosizeInput} //TextareaAutosize
                                             name="articleTitle"
                                             placeholder = "Article Title"
-                                            helperText="Specify a articleTitle"
+                                            helperText="Specify a article title"
                                             style={{width: "900px"}}
-                                            multiline={true}
+                                            //multiline={true}
                                             rows='2'
                                             aria-label="minimum height"
 
@@ -158,11 +161,11 @@ class BlogForm extends React.Component {
                                     <Box margin={1}>
 
                                         <Field
-                                            component={TextField} //TextareaAutosize
+                                            component={TextareaAutosizeInput} //TextareaAutosize
                                             name='articleBody'
                                             placeholder = "Article Content"
-                                            helperText='Write a detailed articleBody'
-                                            multiline={true}
+                                            helperText='Write a detailed article body'
+                                            //multiline={true}
                                             rows='15'
                                             style={{width: "900px"}}
                                             // style={{width: "90%", height: "150px"}}

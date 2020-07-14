@@ -16,6 +16,7 @@ import UserService from "../../services/UserService";
 import Fab from "@material-ui/core/Fab";
 import Tooltip from "@material-ui/core/Tooltip";
 import AlertDialog from "../util/AlertDialog";
+import Typography from "@material-ui/core/Typography";
 
 const styles = (theme) => ({
     root: {
@@ -27,15 +28,15 @@ const styles = (theme) => ({
     gridList: {
         overflow: 'auto',
         maxHeight: '70%',
-        width: '700px',//'50%',
+        width: '800px',//'50%',
         position: 'absolute',
         top: '29%',
         bottom: '10%',
         left: '25%',
     },
-    image:{
-        /*maxHeight: '200px',
-        maxWidth: '200px',//'50%'*/
+    gridListTile:{
+        //maxHeight: '250px',
+        maxWidth: '25%',//'50%'
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -109,14 +110,24 @@ class MyMarketOfferGridList extends React.Component {
                 </div>
 
                 <div className={classes.root}>
-                    <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
+                    <GridList cols={4} spacing={8} cellHeight={180}  className={classes.gridList}>
 
-                        {this.props.data.map((marketOffer, i) => <GridListTile key={i}>
+                        {this.props.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
-                                 alt={marketOffer.title} className={classes.image}/>
+                                 alt={marketOffer.title} />
                             <GridListTileBar
                                 title={marketOffer.title}
-                                subtitle={<span>by: {marketOffer.creator}</span>}
+                                subtitle={
+                                    <div>
+                                        <Typography variant="caption">
+                                            by: {marketOffer.creatorFirstName + " " + marketOffer.creatorLastName}
+                                        </Typography>
+                                        <br/>
+                                        <Typography variant="body2">
+                                            {marketOffer.type + ": " + marketOffer.pricePerUnit + " EUR " + marketOffer.denomination}
+                                        </Typography>
+                                    </div>
+                                }
                                 onClick={this.handleEdit.bind(this, marketOffer._id)}
                                 //onClick={this.props.history.push(`/editOffer/${this.props.marketOffer._id}`)}
 

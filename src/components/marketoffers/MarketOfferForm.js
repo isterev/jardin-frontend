@@ -136,7 +136,7 @@ class MarketOfferForm extends React.Component {
     // validation with yup
     getSchema() {
         return yup.object().shape({
-            //productImage: yup.mixed().required('Product image is required'),
+            productImage: yup.mixed().required('Product image is required'),
             type: yup.string()
                 .required('Type is required')
                 .oneOf(
@@ -272,6 +272,7 @@ class MarketOfferForm extends React.Component {
                                                 label='Description'
                                                 //helperText='Write a detailed description'
                                                 multiline={true}
+                                                //variant="outlined"
                                                 rows='5'
                                                 rowsMax='20'
                                                 className={classes.field}

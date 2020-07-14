@@ -10,6 +10,7 @@ import blue from "@material-ui/core/colors/blue";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
 import withStyles from "@material-ui/core/styles/withStyles";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 
 const styles = (theme) => ({
@@ -115,7 +116,10 @@ class ImageUploadCard extends React.Component {
                         {
                             this.props.form.touched[this.props.field.name] &&
                             this.props.form.errors[this.props.field.name] &&
-                            <div className="error">{this.props.form.errors[this.props.field.name]}</div>
+
+                            <FormHelperText error={true}>
+                                {this.props.form.errors[this.props.field.name]}
+                            </FormHelperText>
                         }
 
                     </Grid>

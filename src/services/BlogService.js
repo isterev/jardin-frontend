@@ -38,11 +38,12 @@ export default class BlogService {
     static getMyBlogs() {
         return new Promise((resolve, reject) => {
             HttpService.get(`${BlogService.baseURL()}/myBlogs`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
+                if(data != undefined) {
+                    alert(data)
                     resolve(data);
                 }
                 else {
-                    reject('Error while retrieving blog');
+                    reject('Error while retrieving blogs');
                 }
             }, function(textStatus) {
                 reject(textStatus);
