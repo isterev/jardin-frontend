@@ -59,6 +59,9 @@ const styles = (theme) => ({
     },
     appBar: {
         backgroundColor: '#2b6343'
+    },
+    menu:{
+        position:'relative'
     }
 });
 
@@ -200,7 +203,7 @@ class Header extends React.Component {
                                 onClose={this.handleMenuClose}
                             >
                                 {UserService.isAuthenticated() ?
-                                    <div>
+                                    <div className={classes.menu}>
                                         <span style={{'position': 'relative', 'left': '7%' }}><p><b> Topics </b></p></span>
                                         <hr></hr>
                                         <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>

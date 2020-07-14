@@ -6,15 +6,6 @@ import {withRouter} from "react-router-dom";
 
 const styles = (theme) => ({
     root: {
-        /*flexGrow: 1,
-        backgroundColor: '#cfdf72',
-        alignItems: 'center',
-        justifyContent: 'center',
-        //width: 700,
-        height: 'auto',
-        position: 'absolute',
-        //top: '20%',
-        left: '20%',*/
         position: 'absolute',
         flexGrow: 1,
         height:40,
@@ -22,37 +13,39 @@ const styles = (theme) => ({
         backgroundColor:"#367c55",
         paddingLeft:200,
     },
+    tabs: {
+       textTransform:'none',
+        color:'#ededed',
+        fontWeight:'700',
+        fontSize:'initial',
+        '&:hover': {
+            border:'1.5px solid black'
+        },
+    },
 });
 
 export class NavigationTabs extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.handleTabChange = this.handleTabChange.bind(this);
     }
 
     handleTabChange(event, newValue) {
-
         event.stopPropagation()
-
         this.props.handleTabChange(newValue)
-
     };
 
     render() {
-
         const {classes} = this.props;
-
         return (
-
             <div className={classes.root}>
                 <Tabs value={this.props.selectedTab} onChange={this.handleTabChange}>
-                    <Tab label="Blogs" value="/blogs" />
-                    <Tab label="Forum" value="/forum" />
-                    <Tab label="Marketplace" value="/offers" />
-                    <Tab label="Expert Consultation" value="/consult" />
-                    <Tab label="Customer Service" value="/service" />
+                    <Tab className={classes.tabs} label="Blogs" value="/blogs" />
+                    <Tab className={classes.tabs} label="Forum" value="/forum" />
+                    <Tab className={classes.tabs} label="Marketplace" value="/offers" />
+                    <Tab className={classes.tabs} label="Expert Consultation" value="/consult" />
+                    <Tab className={classes.tabs} label="Customer Service" value="/service" />
                 </Tabs>
             </div>
         );

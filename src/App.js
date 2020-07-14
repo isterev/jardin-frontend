@@ -85,7 +85,6 @@ export default class App extends React.Component {
 
     render() {
         return (
-
             <MuiThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Router>
@@ -103,7 +102,6 @@ export default class App extends React.Component {
                     </div>
                 </Router>
             </MuiThemeProvider>
-
         );
     }
 }

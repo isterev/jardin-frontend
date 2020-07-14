@@ -32,11 +32,13 @@ const useStyles = makeStyles((theme) => ({
         borderRight:'1',
         overflow:'hidden',
         position: 'absolute',
-        top: '20%',
+        top: '25%',
     },
     detailDiv:{
         float:"right",
         paddingRight: 200,
+        paddingLeft: 75,
+
     },
     imageDiv:{
         float:"left",
@@ -47,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 150,
         backgroundColor:"#cfdf72",
     },
+    text:{
+        fontWeight: 600,
+    }
 
 }));
 
@@ -58,7 +63,7 @@ export default function MarketOfferDetails(props) {
     const classes = useStyles();
 
     const rows = [
-        createData('Type', props.marketOffer.type),//todo
+        createData('Type', props.marketOffer.type),
         createData('Category', props.marketOffer.category),
         createData('Title', props.marketOffer.title),
         createData('Description', props.marketOffer.description),
@@ -79,8 +84,10 @@ export default function MarketOfferDetails(props) {
                 <TableBody>
                     {rows.map((row) => (
                         <TableRow key={row.name}>
-                            <TableCell border= "0" component="th" scope="row">
-                                {row.name}
+                            <TableCell border= "0" component="th" scope="row" >
+                               <Typography className={classes.text}>
+                                   {row.name}
+                               </Typography>
                             </TableCell>
                             <TableCell align="left">{row.values}</TableCell>
                         </TableRow>

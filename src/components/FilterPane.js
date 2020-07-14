@@ -13,7 +13,26 @@ function valueprice(value) {
     return `${value}€`;
 }
 
+const useStyles = makeStyles((theme) => ({
+    Box:{
+        display: 'content',
+        alignItems: 'center',
+        justifyContent: 'center',
+        border:1,
+        borderColor:'black',
+        overflow:'hidden',
+        paddingTop:125
+    },
+    label:{
+        fontWeight:'Bold',
+        color:'black'
+    },
+    group:{
+        paddingLeft: 20,
+    }
+}))
 export default function CheckboxesGroup() {
+    const classes = useStyles();
     const [value, setValue] = React.useState([5, 250]);
 
     const handleRangeChange = (event, newValue) => {
@@ -47,11 +66,13 @@ export default function CheckboxesGroup() {
     } = state;
 
     return (
-        <Box>
-        <div paddingTop={"75"}>
+        <Box className={classes.Box}>
+        <div >
             <FormControl component="fieldset">
-                <FormLabel component="legend">Marketplace</FormLabel>
-                <FormGroup>
+                <FormLabel component="legend">
+                    <Typography className={classes.label}>Marketplace</Typography>
+                </FormLabel>
+                <FormGroup className={classes.group}>
                     <FormControlLabel
                         control={
                             <Checkbox
@@ -76,7 +97,7 @@ export default function CheckboxesGroup() {
                     />
                 </FormGroup>
                 <div>
-                    <Typography id="range-slider" gutterBottom>
+                    <Typography id="range-slider" gutterBottom className={classes.label}>
                         Price Range
                     </Typography>
                     <Slider
@@ -88,8 +109,8 @@ export default function CheckboxesGroup() {
                         getAriaValueText={valueprice}
                     />
                 </div>
-                <FormLabel component="legend">Category</FormLabel>
-                <FormGroup>
+                <FormLabel component="legend" className={classes.label}>Category</FormLabel>
+                <FormGroup className={classes.group}>
                     <FormControlLabel
                         control={
                             <Checkbox
