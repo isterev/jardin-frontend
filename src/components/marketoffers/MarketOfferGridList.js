@@ -73,14 +73,13 @@ class MarketOfferGridList extends React.Component {
                                 subtitle={
                                     <div>
                                         <Typography variant="inherit">
-                                            <Box fontStyle="italic">
-                                                  by: {marketOffer.creatorFirstName + " " + marketOffer.creatorLastName}
-                                            </Box>
-                                        </Typography>
-                                        <br/>
-                                        <Typography variant="inherit">
                                             {marketOffer.type + ": " + marketOffer.pricePerUnit + " EUR " + marketOffer.denomination}
                                         </Typography>
+                                        {/*<Typography variant="inherit">
+                                            <Box fontStyle="italic">
+                                                by: {marketOffer.creatorFirstName + " " + marketOffer.creatorLastName}
+                                            </Box>
+                                        </Typography>*/}
                                     </div>
                                 }
                                 onClick={this.handleDisplay.bind(this, marketOffer._id)}

@@ -119,13 +119,14 @@ class MyMarketOfferGridList extends React.Component {
                                 title={marketOffer.title}
                                 subtitle={
                                     <div>
-                                        <Typography variant="caption">
-                                            by: {marketOffer.creatorFirstName + " " + marketOffer.creatorLastName}
-                                        </Typography>
-                                        <br/>
-                                        <Typography variant="body2">
+                                        <Typography variant="inherit">
                                             {marketOffer.type + ": " + marketOffer.pricePerUnit + " EUR " + marketOffer.denomination}
                                         </Typography>
+                                        {/*<Typography variant="inherit">
+                                            <Box fontStyle="italic">
+                                                by: {marketOffer.creatorFirstName + " " + marketOffer.creatorLastName}
+                                            </Box>
+                                        </Typography>*/}
                                     </div>
                                 }
                                 onClick={this.handleEdit.bind(this, marketOffer._id)}
