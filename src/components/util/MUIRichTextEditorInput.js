@@ -18,9 +18,8 @@ class MUIRichTextEditorInput extends React.Component {
     }
 
     onSave(data) {
-        alert(data)
-        this.props.form.setFieldValue(this.props.field.name, data)
-        this.props.form.submit()
+        this.props.form.setFieldValue(this.props.field.name, JSON.stringify(data))
+        // this.props.form.submitForm()
     }
 
     render() {
@@ -32,6 +31,7 @@ class MUIRichTextEditorInput extends React.Component {
                 <MUIRichTextEditor
                     label="Type something here..."
                     inlineToolbar={true}
+                    defaultValue = {this.props.field.value}
                     {...this.props} onSave={this.onSave}/>
 
                 {

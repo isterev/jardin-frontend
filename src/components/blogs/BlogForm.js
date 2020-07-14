@@ -5,25 +5,14 @@ import {withRouter} from 'react-router-dom';
 
 import {Field, Form, Formik} from 'formik';
 import * as yup from 'yup';
-
-import {Button, Card, InputLabel, MenuItem} from '@material-ui/core';
-
-import {TextField, Select} from 'formik-material-ui';
-
-import {confirmAlert} from 'react-confirm-alert';
+import {Card} from '@material-ui/core';
 import 'react-confirm-alert/src/react-confirm-alert.css'
-
 import Page from '../Page';
 import Box from "@material-ui/core/Box";
 import AlertDialog from "../util/AlertDialog";
 import {withStyles} from "@material-ui/styles";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import ImageIcon from '@material-ui/icons/Image';
-import PublishIcon from '@material-ui/icons/Publish';
-import CancelIcon from '@material-ui/icons/Cancel';
-import PostAddIcon from '@material-ui/icons/PostAdd';
-import Paper from "@material-ui/core/Paper";
-import TextareaAutosizeInput from "../util/TextareaAutosizeInput";
+import MUIRichTextEditorInput from "../util/MUIRichTextEditorInput";
+import TextField from "@material-ui/core/TextField";
 
 const styles = (theme) => ({
     root: {
@@ -93,7 +82,7 @@ class BlogForm extends React.Component {
     confirmAction() {
 
         let blog = this.props.blog;
-        if(blog == undefined) {
+        if (blog == undefined) {
             blog = {};
         }
 
@@ -112,7 +101,7 @@ class BlogForm extends React.Component {
         return yup.object().shape({
             articleTitle: yup.string()
                 .required('Title is required'),
-            articleBody: yup.string()
+            articleBody: yup.mixed()
                 .required('Content is required')
         })
     };
@@ -138,76 +127,41 @@ class BlogForm extends React.Component {
                             onSubmit={this.handleSubmit}
                             render={() => (
                                 <Form mode='structured'>
-                                    <p><b> <center> ----- POST A BLOG ----- </center></b></p>
+                                    <p><b>
+                                        <center> POST A BLOG</center>
+                                    </b></p>
                                     <Box margin={1}>
 
                                         <Field
-                                            component={TextareaAutosizeInput} //TextareaAutosize
+                                            component={TextField} //TextareaAutosize
                                             name="articleTitle"
-                                            placeholder = "Article Title"
+                                            placeholder="Article Title..."
                                             helperText="Specify a article title"
                                             style={{width: "900px"}}
-                                            //multiline={true}
-                                            rows='2'
+                                            multiline={true}
+                                            rows='1'
+                                            rowsMax={1}
                                             aria-label="minimum height"
-
+                                            inlineToolbar={true}
                                         />
-
                                         <br/>
-
                                     </Box>
-                                    <Box margin={1}>
+
+                                    <Box margin={1} style={{backgroundColor: "#cede6e"}}>
 
                                         <Field
-                                            component={TextareaAutosizeInput} //TextareaAutosize
+                                            component={MUIRichTextEditorInput} //MUIRichTextEditor
                                             name='articleBody'
-                                            placeholder = "Article Content"
+                                            placeholder="Article Content"
                                             helperText='Write a detailed article body'
                                             //multiline={true}
                                             rows='15'
                                             style={{width: "900px"}}
+
                                             // style={{width: "90%", height: "150px"}}
                                         />
 
                                         <br/>
-
-                                    </Box>
-<Box style={{ display: 'flex',
-    justifyContent: 'center'}}
-margin={1}>
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={(() => this.form.submit())}
-                                            variant='contained'
-                                            color='primary'
-                                        >
-                                            Submit <PublishIcon/>
-                                        </Button>
-
-                                    <Button
-                                        type="submit"
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={(() => this.form.submit())}
-                                        variant='contained'
-                                        color='primary'
-                                    >
-
-                                        Upload an Image <ImageIcon/>
-                                    </Button>
-
-                                        <Button
-                                            type="reset"
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={(() => history.go(-1))}
-                                        >
-                                            Cancel <CancelIcon/>
-                                        </Button>
-
-
 
                                     </Box>
 
