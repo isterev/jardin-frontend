@@ -5,11 +5,16 @@ import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 
 // TODO
 import {BlogsListView} from "./views/blogs/BlogsListView";
+import {MyBlogsListView} from "./views/blogs/MyBlogsListView";
+import {BlogFormView} from "./views/blogs/BlogFormView";
+
 import {MyConsultationsListView} from "./views/consultations/MyConsultationsListView";
 
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
 import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView";
 import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView";
+// TODO import {MarketOfferDetailView} from "./views/marketoffers/MarketOfferDetailView";
+
 import {UserLoginView} from "./views/UserLoginView";
 import {UserSignupView} from "./views/UserSignupView";
 
@@ -17,9 +22,6 @@ import UserService from "./services/UserService";
 
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import {MyBlogsListView} from "./views/blogs/MyBlogsListView";
-import {BlogFormView} from "./views/blogs/BlogFormView";
-import {MarketOfferDetailView} from "./views/marketoffer/MarketOfferDetailView";
 
 
 
@@ -49,7 +51,7 @@ export default class App extends React.Component {
                 {component: MarketOfferGridListView, path: '/', exact: true},
                 {component: MarketOfferGridListView, path: '/offers'},
                 {component: MyMarketOfferGridListView, path: '/myOffers'},
-                {component: MarketOfferDetailView, path: '/showOffer/:id'},
+                // TODO {component: MarketOfferDetailView, path: '/showOffer/:id'},
                 {
                     render: (props) => {
                         if (UserService.isAuthenticated()) {
@@ -85,6 +87,7 @@ export default class App extends React.Component {
 
     render() {
         return (
+
             <MuiThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Router>
@@ -102,6 +105,7 @@ export default class App extends React.Component {
                     </div>
                 </Router>
             </MuiThemeProvider>
+
         );
     }
 }

@@ -18,30 +18,104 @@ import Box from "@material-ui/core/Box";
 import AlertDialog from "../util/AlertDialog";
 import {withStyles} from "@material-ui/styles";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import ImageIcon from '@material-ui/icons/Image';
+import PublishIcon from '@material-ui/icons/Publish';
+import CancelIcon from '@material-ui/icons/Cancel';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import Paper from "@material-ui/core/Paper";
+import TextareaAutosizeInput from "../util/TextareaAutosizeInput";
 
 const styles = (theme) => ({
     root: {
-        maxWidth: 500,
         textAlign: 'center'
     },
     card: {
-        //maxWidth: 500,
+        maxWidth: 850,
         position: 'absolute',
         top: '20%',
         left: '20%',
         right: '20%',
-        //display: 'inline-block',
-        //display: 'flex',
-        //alignItems: 'center',
-        //justifyContent: 'center',
+        backgroundColor: '#cede6e'
     }
+
 });
 
 class BlogForm extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.isUpdate = false;
+        this.state = {}
+
+        if (this.props.blog != undefined) {
+            this.state.values = {
+
+                articleTitle: props.blog.articleTitle,
+                articleBody: props.blog.articleBody
+
+                //productImage: props.blog.productImage //TODO
+            };
+            this.isUpdate = true;
+
+        } else {
+            this.state.values = {
+                articleTitle: '',
+                articleBody: '',
+                //productImage: null //TODO
+            };
+        }
+
+        this.state.showDialog = false;
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.cancelAction = this.cancelAction.bind(this);
+        this.confirmAction = this.confirmAction.bind(this);
     }
+
+    handleSubmit(values, actions) {
+
+        actions.setSubmitting(false);
+
+        this.setState(state => ({
+            showDialog: true,
+            values: values
+        }));
+    }
+
+    cancelAction() {
+
+        this.setState(state => ({
+            showDialog: false
+        }));
+    }
+
+    confirmAction() {
+
+        let blog = this.props.blog;
+        if(blog == undefined) {
+            blog = {};
+        }
+
+        blog.articleTitle = this.state.values.articleTitle;
+        blog.articleBody = this.state.values.articleBody;
+
+        this.props.onSubmit(blog);
+
+        this.setState(state => ({
+            showDialog: false
+        }));
+    }
+
+    // validation with yup
+    getSchema() {
+        return yup.object().shape({
+            articleTitle: yup.string()
+                .required('Title is required'),
+            articleBody: yup.string()
+                .required('Content is required')
+        })
+    };
 
     render() {
 
@@ -55,22 +129,110 @@ class BlogForm extends React.Component {
                     <br/>
                     <br/>
                     <Card className={classes.card}>
+                        <Formik
+                            initialValues={{
+                                articleTitle: this.state.values.articleTitle,
+                                articleBody: this.state.values.articleBody,
+                            }}
+                            validationSchema={this.getSchema}
+                            onSubmit={this.handleSubmit}
+                            render={() => (
+                                <Form mode='structured'>
+                                    <p><b> <center> ----- POST A BLOG ----- </center></b></p>
+                                    <Box margin={1}>
 
-                        <div className="textbox">
-                            <header>
-                                <p><b>Post a Blog </b></p>
-                                <TextareaAutosize class="box" aria-label="minimum height" rowsMin={3}
-                                                  placeholder="Article Title" style={{width: '835px'}}/> <br></br>
-                                <TextareaAutosize class="box" aria-label="minimum height" rowsMin={15}
-                                                  placeholder="Article Body" style={{width: '835px'}}/>
-                                <br></br>
-                                <span style={{paddingLeft: "290px"}}> <Button variant='contained'
-                                                                              color='primary'> Submit </Button>  </span>
-                                <span> <Button variant='contained' color='primary'> Upload an Image </Button>  </span>
-                            </header>
-                        </div>
+                                        <Field
+                                            component={TextareaAutosizeInput} //TextareaAutosize
+                                            name="articleTitle"
+                                            placeholder = "Article Title"
+                                            helperText="Specify a article title"
+                                            style={{width: "900px"}}
+                                            //multiline={true}
+                                            rows='2'
+                                            aria-label="minimum height"
+
+                                        />
+
+                                        <br/>
+
+                                    </Box>
+                                    <Box margin={1}>
+
+                                        <Field
+                                            component={TextareaAutosizeInput} //TextareaAutosize
+                                            name='articleBody'
+                                            placeholder = "Article Content"
+                                            helperText='Write a detailed article body'
+                                            //multiline={true}
+                                            rows='15'
+                                            style={{width: "900px"}}
+                                            // style={{width: "90%", height: "150px"}}
+                                        />
+
+                                        <br/>
+
+                                    </Box>
+<Box style={{ display: 'flex',
+    justifyContent: 'center'}}
+margin={1}>
+                                        <Button
+                                            type="submit"
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={(() => this.form.submit())}
+                                            variant='contained'
+                                            color='primary'
+                                        >
+                                            Submit <PublishIcon/>
+                                        </Button>
+
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={(() => this.form.submit())}
+                                        variant='contained'
+                                        color='primary'
+                                    >
+
+                                        Upload an Image <ImageIcon/>
+                                    </Button>
+
+                                        <Button
+                                            type="reset"
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={(() => history.go(-1))}
+                                        >
+                                            Cancel <CancelIcon/>
+                                        </Button>
+
+
+
+                                    </Box>
+
+                                </Form>
+
+                            )}
+                        />
                     </Card>
                 </Page>
+
+                <AlertDialog open={this.state.showDialog} dialog={{
+                    articleTitle: 'Confirm',
+                    message: "Do you really want to " + (this.isUpdate ? "update" : "create")
+                        + " this blog article?",
+                    buttons: [
+                        {
+                            label: 'No',
+                            cancelAction: this.cancelAction
+                        },
+                        {
+                            label: 'Yes',
+                            confirmAction: this.confirmAction
+                        }
+                    ]
+                }}/>
 
             </div>
 

@@ -2,6 +2,7 @@
 import React from 'react';
 import BlogService from "../../services/BlogService";
 import BlogsList from "../../components/blogs/BlogsList";
+import MyBlogsList from "../../components/blogs/MyBlogsList";
 
 export class MyBlogsListView extends React.Component {
 
@@ -55,7 +56,7 @@ export class MyBlogsListView extends React.Component {
         }
 
         return (
-            <BlogsList data={this.state.data} onDelete={(id) => this.deleteBlog(id)}/>
+            <MyBlogsList data={this.state.data} onDelete={(id) => this.deleteBlog(id)}/>
         );
     }
 }

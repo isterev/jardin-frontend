@@ -6,37 +6,34 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import {withStyles} from "@material-ui/styles";
-import {withRouter, Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
-import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import Page from '../Page'
 import UserService from "../../services/UserService";
-import Fab from "@material-ui/core/Fab";
-import Tooltip from "@material-ui/core/Tooltip";
 import AlertDialog from "../util/AlertDialog";
-import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
+import Tooltip from "@material-ui/core/Tooltip";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 
 const styles = (theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        //backgroundColor: theme.palette.background.paper,
+        backgroundColor: theme.palette.background.paper,
     },
     gridList: {
         overflow: 'auto',
         maxHeight: '70%',
-        width: '800px',//'50%',
+        maxWidth: '50%',
         position: 'absolute',
         top: '29%',
         bottom: '10%',
         left: '25%',
-    },
-    gridListTile:{
-        //maxHeight: '250px',
-        maxWidth: '25%',//'50%'
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -48,7 +45,7 @@ const styles = (theme) => ({
     }
 });
 
-class MyMarketOfferGridList extends React.Component {
+class MyBlogsList extends React.Component {
 
     constructor(props) {
         super(props);
@@ -66,7 +63,7 @@ class MyMarketOfferGridList extends React.Component {
 
     handleEdit(id) {
 
-        this.props.history.push('/editOffer/' + id); // TODO
+        this.props.history.push('/edit/' + id); // TODO
     }
 
     handleDelete(id, e) {
@@ -95,48 +92,32 @@ class MyMarketOfferGridList extends React.Component {
 
     render() {
 
-        const {classes} = this.props;
+        const {classes} = this.props
         return (
             <Page>
                 <div>
-                    <Link to="/addOffer">
-                        <Tooltip title="Add" aria-label="add" className={classes.add} >
-                            <Fab color="secondary">
-                                <AddIcon/>
-                            </Fab>
-                        </Tooltip>
-                    </Link>
-                    <br/>
+                    <span style={{paddingLeft: '700px'}} className={classes.add}> <Button variant='contained' color='primary'
+                                                                                          onClick={() => this.props.history.push("/postBlog")}
+                    > Post a blog </Button>  </span>
                 </div>
 
                 <div className={classes.root}>
-                    <GridList cols={4} spacing={8} cellHeight={180}  className={classes.gridList}>
+                    <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
 
-                        {this.props.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
-                            <img src={marketOffer.productImage}
-                                 alt={marketOffer.title} />
+                        {this.props.data.map((blog, i) => <GridListTile key={i}>
+                            <img src={'https://material-ui.com/static/images/grid-list/breakfast.jpg'}
+                                 alt={blog.title}/>
                             <GridListTileBar
-                                title={marketOffer.title}
-                                subtitle={
-                                    <div>
-                                        <Typography variant="inherit">
-                                            {marketOffer.type + ": " + marketOffer.pricePerUnit + " EUR " + marketOffer.denomination}
-                                        </Typography>
-                                        {/*<Typography variant="inherit">
-                                            <Box fontStyle="italic">
-                                                by: {marketOffer.creatorFirstName + " " + marketOffer.creatorLastName}
-                                            </Box>
-                                        </Typography>*/}
-                                    </div>
-                                }
-                                onClick={this.handleEdit.bind(this, marketOffer._id)}
-                                //onClick={this.props.history.push(`/editOffer/${this.props.marketOffer._id}`)}
+                                title={blog.title}
+                                subtitle={<span>by: {blog.creator}</span>}
+                                onClick={this.handleEdit.bind(this, blog._id)}
+                                //onClick={this.props.history.push(`/edit/${this.props.blog._id}`)}
 
                                 actionIcon={
                                     <IconButton
                                         // edge="end"
-                                        aria-label={`delete ${marketOffer.title}`}
-                                        onClick={this.handleDelete.bind(this, marketOffer._id)}
+                                        aria-label={`delete ${blog.title}`}
+                                        onClick={this.handleDelete.bind(this, blog._id)}
                                         color="inherit"
                                         className={classes.icon}
                                     >
@@ -151,7 +132,7 @@ class MyMarketOfferGridList extends React.Component {
 
                     <AlertDialog open={this.state.showDialog} dialog={{
                         title: 'Confirm',
-                        message: "Do you really want to delete this market offer?",
+                        message: "Do you really want to delete this blog?",
                         buttons: [
                             {
                                 label: 'No',
@@ -170,4 +151,7 @@ class MyMarketOfferGridList extends React.Component {
     }
 };
 
-export default withStyles(styles)(withRouter(MyMarketOfferGridList));
+export default withStyles(styles)(withRouter(MyBlogsList));
+
+
+

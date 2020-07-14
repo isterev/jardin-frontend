@@ -38,11 +38,11 @@ export default class BlogService {
     static getMyBlogs() {
         return new Promise((resolve, reject) => {
             HttpService.get(`${BlogService.baseURL()}/myBlogs`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
+                if(data != undefined) {
                     resolve(data);
                 }
                 else {
-                    reject('Error while retrieving blog');
+                    reject('Error while retrieving blogs');
                 }
             }, function(textStatus) {
                 reject(textStatus);
@@ -75,11 +75,13 @@ export default class BlogService {
         });
     }
 
-    static createBlog(blog) {
+    static postBlog(blog) {
 
         if(!UserService.isAuthenticated())
             return;
-        blog.creator = UserService.getCurrentUser().id;
+        blog.authorId = UserService.getCurrentUser().id;
+        blog.authorFirstName = UserService.getCurrentUser().firstName;
+        blog.authorLastName = UserService.getCurrentUser().lastName;
 
         return new Promise((resolve, reject) => {
             HttpService.post(BlogService.baseURL(), blog, function(data) {

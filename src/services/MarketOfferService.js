@@ -38,7 +38,7 @@ export default class MarketOfferService {
     static getMyMarketOffers() {
         return new Promise((resolve, reject) => {
             HttpService.get(`${MarketOfferService.baseURL()}/myOffers/`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
+                if(data != undefined) {
                     resolve(data);
                 }
                 else {
@@ -80,6 +80,9 @@ export default class MarketOfferService {
         if(!UserService.isAuthenticated())
             return;
         marketOffer.creator = UserService.getCurrentUser().id;
+        marketOffer.creatorFirstName = UserService.getCurrentUser().firstName;
+        marketOffer.creatorLastName = UserService.getCurrentUser().lastName;
+        marketOffer.contact = UserService.getCurrentUser().email; // maybe extend also to other data
 
         return new Promise((resolve, reject) => {
             HttpService.post(MarketOfferService.baseURL(), marketOffer, function(data) {
