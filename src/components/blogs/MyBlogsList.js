@@ -18,6 +18,11 @@ import Link from "@material-ui/core/Link";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Card from "@material-ui/core/Card";
+import EditIcon from "@material-ui/icons/Edit";
 
 const styles = (theme) => ({
     root: {
@@ -63,7 +68,7 @@ class MyBlogsList extends React.Component {
 
     handleEdit(id) {
 
-        this.props.history.push('/edit/' + id); // TODO
+        this.props.history.push('/blog/edit/' + id); // TODO
     }
 
     handleDelete(id, e) {
@@ -102,34 +107,33 @@ class MyBlogsList extends React.Component {
                 </div>
 
                 <div className={classes.root}>
-                    <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
+                    <List cols={4} spacing={8} cellHeight={180} className={classes.list}>
+                        {this.props.data.map((blog, i) => <ListItem alignItems="flex-start">
+                                <ListItemText
+                                    primary={blog.title}
+                                    secondary={
+                                        <React.Fragment>
+                                            <Card style={{backgroundColor: "#cede6e", boxShadow: "20px"}}>
+                                                    <span style={{paddingLeft: '400px'}}>
+                            <span>  <Button color='primary'  onClick={this.handleEdit.bind(this, blog._id)}> Edit <EditIcon/>  </Button> </span>
+                            <span>  <Button color='primary'  onClick={this.handleDelete.bind(this, blog._id)}> Delete <DeleteIcon/> </Button> </span>
+                        </span>
 
-                        {this.props.data.map((blog, i) => <GridListTile key={i}>
-                            <img src={'https://material-ui.com/static/images/grid-list/breakfast.jpg'}
-                                 alt={blog.title}/>
-                            <GridListTileBar
-                                title={blog.title}
-                                subtitle={<span>by: {blog.creator}</span>}
-                                onClick={this.handleEdit.bind(this, blog._id)}
-                                //onClick={this.props.history.push(`/edit/${this.props.blog._id}`)}
-
-                                actionIcon={
-                                    <IconButton
-                                        // edge="end"
-                                        aria-label={`delete ${blog.title}`}
-                                        onClick={this.handleDelete.bind(this, blog._id)}
-                                        color="inherit"
-                                        className={classes.icon}
-                                    >
-                                        <DeleteIcon/> {/* DeleteForever */}
-                                    </IconButton>
-
-                                }
-                            />
-                        </GridListTile>)}
-
-                    </GridList>
-
+                                                <br></br>
+                                                <p>
+                                                    <b>{blog.authorFirstName + " " + blog.authorLastName + ", " + blog.createdAt}</b>
+                                                    <br></br>
+                                                    {blog.content}
+                                                </p>
+                                                <br></br>
+                                                <br></br>
+                                            </Card>
+                                        </React.Fragment>
+                                    }
+                                />
+                            </ListItem>
+                        )}
+                    </List>
                     <AlertDialog open={this.state.showDialog} dialog={{
                         title: 'Confirm',
                         message: "Do you really want to delete this blog?",
