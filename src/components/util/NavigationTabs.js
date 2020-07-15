@@ -44,7 +44,7 @@ export class NavigationTabs extends React.Component {
                     <Tab className={classes.tabs} label="Blogs" value="/blogs"/>
                     <Tab className={classes.tabs} label="Forum" value="/forum"/>
                     <Tab className={classes.tabs} label="Marketplace" value="/offers"/>
-                    <Tab className={classes.tabs} label="Expert Consultation" value="/consult"/>
+                    <Tab className={classes.tabs} label="Expert Consultation" value="/expert-consultation/request"/>
                     <Tab className={classes.tabs} label="Customer Service" value="/service"/>
                 </Tabs>
             </div>

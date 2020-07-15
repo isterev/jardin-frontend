@@ -18,7 +18,7 @@ const styles = (theme) => ({
     root: {
         width:'100%'
     },
-        logo: {
+    logo: {
         height: '100%',
         width: 120
     },
@@ -87,6 +87,7 @@ class Header extends React.Component {
         this.handleMyBlogs = this.handleMyBlogs.bind(this)
         this.handleMyOffers = this.handleMyOffers.bind(this)
         this.handleMyConsultations = this.handleMyConsultations.bind(this)
+        this.handleMyConsultationRequests = this.handleMyConsultationRequests.bind(this)
         this.handleSubscription = this.handleSubscription.bind(this)
         this.handleProfile = this.handleProfile.bind(this)
         this.handleLogin = this.handleLogin.bind(this)
@@ -125,7 +126,8 @@ class Header extends React.Component {
     handleMyConsultations() {
         this.setState(state => ({
             anchorEl: null
-        }))
+        }));
+        this.props.history.push('/expert-consultation/my-consultations')
     }
 
     handleSubscription() {
@@ -162,6 +164,14 @@ class Header extends React.Component {
             window.location.reload()
         }
     }
+
+    handleMyConsultationRequests() {
+        this.setState(state => ({
+            anchorEl: null
+        }));
+        this.props.history.push('/expert-consultation/my-requests')
+    }
+
     render() {
         const {classes} = this.props
 
@@ -213,6 +223,7 @@ class Header extends React.Component {
                                         <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>
                                         <MenuItem onClick={this.handleMyOffers}>My Offers</MenuItem>
                                         <MenuItem onClick={this.handleMyConsultations}>My Consultations</MenuItem>
+                                        <MenuItem onClick={this.handleMyConsultationRequests}>My Consultation Requests</MenuItem>
                                         <span style={{'position': 'relative', 'left': '7%' }}><p><b> User </b></p></span>
                                         <hr/>
                                         <MenuItem onClick={this.handleSubscription}>Subscription</MenuItem>
