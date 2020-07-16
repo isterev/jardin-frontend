@@ -1,11 +1,11 @@
-"use strict";
+"use strict"
 
-import React from 'react';
-import Link from "@material-ui/core/Link";
-import {withStyles} from "@material-ui/styles";
-import {withRouter} from "react-router-dom";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
+import React from 'react'
+import Link from "@material-ui/core/Link"
+import {withStyles} from "@material-ui/styles"
+import {withRouter} from "react-router-dom"
+import Container from "@material-ui/core/Container"
+import Typography from "@material-ui/core/Typography"
 
 const styles = (theme) => ({
     root: {
@@ -14,7 +14,6 @@ const styles = (theme) => ({
         position: 'fixed',
         bottom: 0,
         width: '100%'
-        //minHeight: '100vh',
     },
     footer: {
         padding: theme.spacing(3, 2),
@@ -34,17 +33,17 @@ const styles = (theme) => ({
         right: '2%',
         bottom: '20%'
     },
-});
+})
 
 export class Footer extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     render() {
 
-        const {classes} = this.props;
+        const {classes} = this.props
 
         return (
 
@@ -66,8 +65,8 @@ export class Footer extends React.Component {
                 </footer>
 
             </div>
-        );
+        )
     }
 }
 
-export default withStyles(styles)(withRouter(Footer));
+export default withStyles(styles)(withRouter(Footer))

@@ -1,11 +1,11 @@
-import React from "react";
-import {Box} from "@material-ui/core";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import List from "@material-ui/core/List";
-import Link from "@material-ui/core/Link";
-import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
+import React from "react"
+import {Box} from "@material-ui/core"
+import ListItemText from "@material-ui/core/ListItemText"
+import ListItem from "@material-ui/core/ListItem"
+import List from "@material-ui/core/List"
+import Link from "@material-ui/core/Link"
+import Typography from "@material-ui/core/Typography"
+import {makeStyles} from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
     Box:{
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SideLink() {
-        const classes = useStyles();
+        const classes = useStyles()
         return (
             <Box className={classes.Box} >
                 <List >
@@ -64,5 +64,5 @@ export default function SideLink() {
                     </ListItem>
                 </List>
             </Box>
-        );
+        )
 }

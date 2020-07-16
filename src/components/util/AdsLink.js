@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Box} from "@material-ui/core";
 import React from "react";
 
-import ads from '../images/ad_1.jpg';
+import ads from '../../images/ad_1.jpg';
 
 const useStyles = makeStyles((theme) => ({
     logo: {

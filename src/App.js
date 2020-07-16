@@ -1,27 +1,25 @@
-"use strict";
+"use strict"
 
-import React, {Fragment} from 'react';
-import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import React, {Fragment} from 'react'
+import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 
-// TODO
-import {BlogsListView} from "./views/blogs/BlogsListView";
-import {MyBlogsListView} from "./views/blogs/MyBlogsListView";
-import {BlogFormView} from "./views/blogs/BlogFormView";
+import {BlogsListView} from "./views/blogs/BlogsListView"
+import {MyBlogsListView} from "./views/blogs/MyBlogsListView"
+import {BlogFormView} from "./views/blogs/BlogFormView"
 
-import {MyConsultationsListView} from "./views/consultations/MyConsultationsListView";
+import {MyConsultationsListView} from "./views/consultations/MyConsultationsListView"
 
-import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
-import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView";
-import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView";
-// TODO import {MarketOfferDetailView} from "./views/marketoffers/MarketOfferDetailView";
+import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView"
+import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView"
+import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView"
 
-import {UserLoginView} from "./views/UserLoginView";
-import {UserSignupView} from "./views/UserSignupView";
+import {UserLoginView} from "./views/UserLoginView"
+import {UserSignUpView} from "./views/UserSignUpView"
 
-import UserService from "./services/UserService";
+import UserService from "./services/UserService"
 
-import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
-import CssBaseline from "@material-ui/core/CssBaseline";
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
+import CssBaseline from "@material-ui/core/CssBaseline"
 
 
 
@@ -37,13 +35,13 @@ const theme = createMuiTheme({
             default: "#CFE070"
         }
     },
-});
+})
 
 
 export default class App extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             title: 'Jardin',
@@ -51,7 +49,6 @@ export default class App extends React.Component {
                 {component: MarketOfferGridListView, path: '/', exact: true},
                 {component: MarketOfferGridListView, path: '/offers'},
                 {component: MyMarketOfferGridListView, path: '/myOffers'},
-                // TODO {component: MarketOfferDetailView, path: '/showOffer/:id'},
                 {
                     render: (props) => {
                         if (UserService.isAuthenticated()) {
@@ -91,15 +88,14 @@ export default class App extends React.Component {
                     }, path: '/postBlog',
                 },
                 {component: MyConsultationsListView, path: '/consult'},
-                // {component: UserLoginView, path: '/', exact: true},
                 {component: UserLoginView, path: '/login'},
-                {component: UserSignupView, path: '/register'}
+                {component: UserSignUpView, path: '/register'}
             ]
-        };
+        }
     }
 
     componentDidMount() {
-        document.title = this.state.title;
+        document.title = this.state.title
     }
 
     render() {
@@ -123,7 +119,7 @@ export default class App extends React.Component {
                 </Router>
             </MuiThemeProvider>
 
-        );
+        )
     }
 }
 

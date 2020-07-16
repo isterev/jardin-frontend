@@ -1,21 +1,21 @@
-import React from 'react';
-import {withRouter} from "react-router-dom";
-import {fade} from '@material-ui/core/styles';
-import {withStyles} from '@material-ui/styles';
+import React from 'react'
+import {withRouter} from "react-router-dom"
+import {fade} from '@material-ui/core/styles'
+import {withStyles} from '@material-ui/styles'
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import InputBase from '@material-ui/core/InputBase'
+import MenuItem from '@material-ui/core/MenuItem'
+import Menu from '@material-ui/core/Menu'
+import SearchIcon from '@material-ui/icons/Search'
+import AccountCircle from '@material-ui/icons/AccountCircle'
 
-import UserService from "../services/UserService";
-import NavigationTabs from "./NavigationTabs";
+import UserService from "../../services/UserService"
+import NavigationTabs from "./NavigationTabs"
 
-import jardinLogo from '../images/jardin_logo.png';
+import jardinLogo from '../../images/jardin_logo.png'
 
 const styles = (theme) => ({
     logo: {
@@ -64,7 +64,6 @@ const styles = (theme) => ({
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -75,106 +74,100 @@ const styles = (theme) => ({
     appBar: {
         backgroundColor: '#2b6343'
     }
-});
+})
 
 class Header extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
             anchorEl: null
         }
 
-        this.menuId = 'primary-search-account-menu';
+        this.menuId = 'primary-search-account-menu'
 
-        this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
-        this.handleMenuClose = this.handleMenuClose.bind(this);
+        this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this)
+        this.handleMenuClose = this.handleMenuClose.bind(this)
 
-        this.handleMyBlogs = this.handleMyBlogs.bind(this);
-        this.handleMyOffers = this.handleMyOffers.bind(this);
-        this.handleMyConsultations = this.handleMyConsultations.bind(this);
-        this.handleSubscription = this.handleSubscription.bind(this);
-        this.handleProfile = this.handleProfile.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleLogout = this.handleLogout.bind(this);
+        this.handleMyBlogs = this.handleMyBlogs.bind(this)
+        this.handleMyOffers = this.handleMyOffers.bind(this)
+        this.handleMyConsultations = this.handleMyConsultations.bind(this)
+        this.handleSubscription = this.handleSubscription.bind(this)
+        this.handleProfile = this.handleProfile.bind(this)
+        this.handleLogin = this.handleLogin.bind(this)
+        this.handleLogout = this.handleLogout.bind(this)
     }
 
     handleProfileMenuOpen(event) {
-        //alert("profile menu");
         this.setState(state => ({
             anchorEl: event.currentTarget
-        }));
+        }))
 
-    };
+    }
 
     handleMenuClose() {
         this.setState(state => ({
             anchorEl: null
-        }));
-    };
+        }))
+    }
 
     handleMyBlogs(event) {
-        //alert("My Blogs" + " " + event.target);
         this.setState(state => ({
             anchorEl: null
-        }));
-        this.props.history.push('/myBlogs');
+        }))
+        this.props.history.push('/myBlogs')
 
     }
 
     handleMyOffers() {
-        //alert("My Offers");
         this.setState(state => ({
             anchorEl: null
-        }));
+        }))
 
-        this.props.history.push('/myOffers');
+        this.props.history.push('/myOffers')
     }
 
     handleMyConsultations() {
-        //alert("My Consultations");
         this.setState(state => ({
             anchorEl: null
-        }));
+        }))
     }
 
     handleSubscription() {
-        //alert("My Subscription");
         this.setState(state => ({
             anchorEl: null
-        }));
+        }))
     }
 
     handleProfile() {
-        //alert("My Profile");
         this.setState(state => ({
             anchorEl: null
-        }));
+        }))
     }
 
     handleLogin() {
 
         this.setState(state => ({
             anchorEl: null
-        }));
+        }))
 
-        this.props.history.push('/login');
+        this.props.history.push('/login')
     }
 
     handleLogout() {
 
-        UserService.logout();
+        UserService.logout()
         this.setState(state => ({
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
             anchorEl: null
-        }));
+        }))
 
-        if (this.props.location.pathname != '/') {
-            this.props.history.push('/');
+        if (this.props.location.pathname !== '/') {
+            this.props.history.push('/')
         } else {
-            window.location.reload();
+            window.location.reload()
         }
     }
 
@@ -182,7 +175,7 @@ class Header extends React.Component {
 
     render() {
 
-        const {classes} = this.props;
+        const {classes} = this.props
 
         return (
             <div className={classes.grow}>
@@ -229,12 +222,12 @@ class Header extends React.Component {
                                 {UserService.isAuthenticated() ?
                                     <div>
                                         <span style={{'position': 'relative', 'left': '7%' }}><p><b> Topics </b></p></span>
-                                        <hr></hr>
+                                        <hr/>
                                         <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>
                                         <MenuItem onClick={this.handleMyOffers}>My Offers</MenuItem>
                                         <MenuItem onClick={this.handleMyConsultations}>My Consultations</MenuItem>
                                         <span style={{'position': 'relative', 'left': '7%' }}><p><b> User </b></p></span>
-                                        <hr></hr>
+                                        <hr/>
                                         <MenuItem onClick={this.handleSubscription}>Subscription</MenuItem>
                                         <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
                                         <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
@@ -249,12 +242,8 @@ class Header extends React.Component {
                 <NavigationTabs selectedTab={this.props.selectedTab}  handleTabChange={(value) => this.props.handleTabChange(value)} />
 
             </div>
-        );
+        )
     }
-};
+}
 
-/*Header.propTypes = {
-  classes: PropTypes.object.isRequired,
-};*/
-
-export default withStyles(styles)(withRouter(Header));
+export default withStyles(styles)(withRouter(Header))
