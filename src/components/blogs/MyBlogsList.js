@@ -27,14 +27,12 @@ import EditIcon from "@material-ui/icons/Edit";
 const styles = (theme) => ({
     root: {
         display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        backgroundColor: theme.palette.background.paper,
+        justifyContent: 'flex-start',
     },
-    gridList: {
+    page: {
         overflow: 'auto',
         maxHeight: '70%',
-        maxWidth: '50%',
+        maxWidth: '90%',
         position: 'absolute',
         top: '29%',
         bottom: '10%',
@@ -101,13 +99,13 @@ class MyBlogsList extends React.Component {
         return (
             <Page>
                 <div>
-                    <span style={{paddingLeft: '700px'}} className={classes.add}> <Button variant='contained' color='primary'
+                    <span style={{paddingLeft: '900px'}} className={classes.add}> <Button variant='contained' color='primary'
                                                                                           onClick={() => this.props.history.push("/postBlog")}
                     > Post a blog </Button>  </span>
                 </div>
 
                 <div className={classes.root}>
-                    <List cols={4} spacing={8} cellHeight={180} className={classes.list}>
+                    <List className={classes.list} style={{paddingTop: '80px'}}>
                         {this.props.data.map((blog, i) => <ListItem alignItems="flex-start">
                                 <ListItemText
                                     primary={blog.title}
@@ -136,7 +134,7 @@ class MyBlogsList extends React.Component {
                     </List>
                     <AlertDialog open={this.state.showDialog} dialog={{
                         title: 'Confirm',
-                        message: "Do you really want to delete this blog?",
+                        message: "Are you sure you want to delete this blog?",
                         buttons: [
                             {
                                 label: 'No',

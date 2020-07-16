@@ -2,17 +2,12 @@
 
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-
-import {Field} from 'formik';
-import * as yup from 'yup';
-import {Card} from '@material-ui/core';
+import {Button, Card} from '@material-ui/core';
 import Page from '../Page';
 import Box from "@material-ui/core/Box";
-import AlertDialog from "../util/AlertDialog";
 import {withStyles} from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
 import MUIRichTextEditor from "mui-rte";
-import {convertToRaw} from "draft-js";
 
 const styles = (theme) => ({
     root: {
@@ -22,7 +17,7 @@ const styles = (theme) => ({
         maxWidth: 850,
         height: 300,
         position: 'absolute',
-        top: '20%',
+        top: '30%',
         left: '20%',
         right: '20%',
         backgroundColor: '#cede6e'
@@ -112,16 +107,6 @@ class BlogForm extends React.Component {
         }));
     }
 
-    // validation with yup
-    getSchema() {
-        return yup.object().shape({
-            articleTitle: yup.string()
-                .required('Title is required'),
-            articleBody: yup.mixed()
-                .required('Content is required')
-        })
-    };
-
     render() {
 
         const {classes} = this.props;
@@ -133,12 +118,36 @@ class BlogForm extends React.Component {
                     <br/>
                     <br/>
                     <br/>
+                    <React.Fragment >
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className={classes.button}
+                            onClick={(() => this.form.submit())}
+                            style={{ marginLeft: "700px"}}
+                        >
+                            Submit
+                        </Button>
+                    </React.Fragment>
+                    <React.Fragment >
+                        <Button
+                            // type="reset"
+                            variant="contained"
+                            color="secondary"
+                            className={classes.button}
+                            onClick={(() => history.go(-1))}
+                            style={{ marginLeft: "790px", marginTop: "-62px"}}
+
+                        >
+                            Cancel
+                        </Button>
+                    </React.Fragment>
+                    <br/>
+                    <br/>
+                    <br/>
+
                     <Card className={classes.card}>
-
-                        <p><b>
-                            <center> POST A BLOG</center>
-                        </b></p>
-
                         <form className="form">
                             <div className="container">
                                 <section>
@@ -146,9 +155,7 @@ class BlogForm extends React.Component {
                                         <TextField
                                             name="articleTitle"
                                             placeholder="Article Title..."
-                                            helperText="Specify a article title"
                                             style={{width: "900px"}}
-                                            aria-label="minimum height"
                                             defaultValue={this.state.articleTitle}
                                             onChange=
                                                 {
@@ -170,14 +177,10 @@ class BlogForm extends React.Component {
 
                                     <Box margin={1} style={{backgroundColor: "#cede6e"}}>
                                         <MUIRichTextEditor
-                                            toolbarButtonSize="small"
                                             inlineToolbar
-                                            label="Article Content"
-
+                                            label="Article Content..."
                                             name='articleBody'
                                             placeholder="Article Content"
-                                            helperText='Write a detailed article body'
-                                            //multiline={true}
                                             rows='15'
                                             style={{width: "900px"}}
                                             onChange={value => {
