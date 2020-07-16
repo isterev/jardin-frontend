@@ -4,8 +4,6 @@ export default class HttpService {
     constructor() {
     }
 
-    static apiURL() {return 'http://localhost:3000'; }
-
     static async get(url, onSuccess, onError) {
         let token = window.localStorage['jwtToken'];
         let header = new Headers();
@@ -36,30 +34,6 @@ export default class HttpService {
         } catch(err) {
             onError(err.message);
         }
-
-        // fetch(url, {
-        //     method: 'GET',
-        //     headers: header
-        // }).then((resp) => {
-        //     if(this.checkIfUnauthorized(resp)) {
-        //         window.location = "/#login";
-        //     }
-        //     else {
-        //         return resp.json();
-        //     }
-        // }).then((resp) => {
-        //     if(resp.error) {
-        //         onError(resp.error);
-        //     }
-        //     else {
-        //         if(resp.hasOwnProperty('token')) {
-        //             window.localStorage['jwtToken'] = resp.token;
-        //         }
-        //         onSuccess(resp);
-        //     }
-        // }).catch((e) => {
-        //     onError(e.message);
-        // });
     }
 
     static async put(url, data, onSuccess, onError) {
@@ -169,10 +143,7 @@ export default class HttpService {
     }
 
     static checkIfUnauthorized(res) {
-        if(res.status === 401) {
-            return true;
-        }
-        return false;
+        return res.status === 401
     }
 
 }

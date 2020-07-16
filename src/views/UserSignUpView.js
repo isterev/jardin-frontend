@@ -2,21 +2,21 @@
 
 import React from 'react'
 
-import UserLogin from '../components/UserLogin'
+import UserSignUp from '../components/UserSignUp'
 
 import UserService from '../services/UserService'
 
 
-export class UserLoginView extends React.Component {
+export class UserSignUpView extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {}
     }
 
-    async login(user) {
+    async signup(user) {
         try {
-            let ret = await UserService.login(user.username, user.password)
+            let ret = await UserService.register(user.username, user.password, user.email, user.firstName, user.lastName)
             this.props.history.push('/')
         } catch(err) {
             console.error(err)
@@ -28,7 +28,7 @@ export class UserLoginView extends React.Component {
 
     render() {
         return (
-            <UserLogin onSubmit={(user) => this.login(user)} error={this.state.error}/>
+            <UserSignUp onSubmit={(user) => this.signup(user)} error={this.state.error}/>
         )
     }
 }

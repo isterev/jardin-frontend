@@ -1,34 +1,32 @@
-"use strict";
+"use strict"
 
-import React from 'react';
-import {withRouter, Link} from 'react-router-dom';
+import React from 'react'
+import {Link, withRouter} from 'react-router-dom'
 
-import {Formik, Form, Field} from 'formik';
-import * as yup from 'yup';
+import {Field, Form, Formik} from 'formik'
+import * as yup from 'yup'
 
-import {Card, Button} from '@material-ui/core';
+import {Button, Card} from '@material-ui/core'
 
-import {TextField} from 'formik-material-ui';
-
-
-import {AlertMessage} from './util/AlertMessage';
-import Page from './Page';
+import {TextField} from 'formik-material-ui'
+import Page from './Page'
+import FormHelperText from "@material-ui/core/FormHelperText"
 
 
-const style = {maxWidth: 500};
+const style = {maxWidth: 500}
 
 
 class UserLogin extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             username: '',
             password: ''
-        };
+        }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleSubmit(values) {
@@ -36,9 +34,9 @@ class UserLogin extends React.Component {
         let user = {
             username: values.username,
             password: values.password
-        };
+        }
 
-        this.props.onSubmit(user);
+        this.props.onSubmit(user)
     }
 
     // validation with yup
@@ -49,16 +47,13 @@ class UserLogin extends React.Component {
             password: yup.string()
                 .required('Password is required'),
         })
-    };
+    }
 
     render() {
         return (
 
-            <div class="scroll">
+            <div>
                 <Page>
-                    <br/>
-                    <br/>
-                    <br/>
                     <Card style={style}>
                         <Formik
                             initialValues={{
@@ -102,7 +97,12 @@ class UserLogin extends React.Component {
                                     </Button>
 
                                     <Link to={'/register'}>Not registered yet?</Link>
-                                    <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+
+                                    {this.props.error &&
+                                         <FormHelperText error={true}>
+                                             {`${this.props.error}`}
+                                         </FormHelperText>
+                                    }
 
                                 </Form>
 
@@ -118,4 +118,4 @@ class UserLogin extends React.Component {
 
 }
 
-export default withRouter(UserLogin);
+export default withRouter(UserLogin)

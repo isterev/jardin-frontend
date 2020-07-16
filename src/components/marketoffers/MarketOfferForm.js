@@ -1,22 +1,22 @@
-"use strict";
+"use strict"
 
-import React from 'react';
-import {withRouter} from 'react-router-dom';
+import React from 'react'
+import {withRouter} from 'react-router-dom'
 
-import {Field, Form, Formik} from 'formik';
-import * as yup from 'yup';
+import {Field, Form, Formik} from 'formik'
+import * as yup from 'yup'
 
-import {Button, Card, InputLabel, MenuItem} from '@material-ui/core';
+import {Button, Card, InputLabel, MenuItem} from '@material-ui/core'
 
-import {Select, TextField} from 'formik-material-ui';
+import {Select, TextField} from 'formik-material-ui'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
-import Page from '../Page';
-import AlertDialog from "../util/AlertDialog";
-import {withStyles} from "@material-ui/styles";
-import Grid from "@material-ui/core/Grid";
-import ImageUploadCard from "../util/ImageUpload";
-import Box from "@material-ui/core/Box";
+import Page from '../Page'
+import AlertDialog from "../util/AlertDialog"
+import {withStyles} from "@material-ui/styles"
+import Grid from "@material-ui/core/Grid"
+import ImageUploadCard from "../util/ImageUpload"
+import Box from "@material-ui/core/Box"
 
 
 const styles = (theme) => ({
@@ -25,15 +25,10 @@ const styles = (theme) => ({
         textAlign: 'center'
     },
     card: {
-        //maxWidth: 500,
         position: 'absolute',
         top: '20%',
         left: '20%',
         right: '20%',
-        //display: 'inline-block',
-        //display: 'flex',
-        //alignItems: 'center',
-        //justifyContent: 'center',
     },
     imageUpload: {
         position: 'absolute',
@@ -46,23 +41,21 @@ const styles = (theme) => ({
         display: 'flex',
         justifyContent: 'center',
         padding: '20px',
-        //position: 'relative',
-        //top: '10px'
     },
     button: {
         margin: '3px'
     }
-});
+})
 
 class MarketOfferForm extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
-        this.isUpdate = false;
+        this.isUpdate = false
         this.state = {}
 
-        if (this.props.marketOffer != undefined) {
+        if (this.props.marketOffer !== undefined) {
             this.state.values = {
                 type: props.marketOffer.type,
                 category: props.marketOffer.category,
@@ -71,8 +64,8 @@ class MarketOfferForm extends React.Component {
                 denomination: props.marketOffer.denomination,
                 pricePerUnit: props.marketOffer.pricePerUnit,
                 productImage: props.marketOffer.productImage
-            };
-            this.isUpdate = true;
+            }
+            this.isUpdate = true
 
         } else {
             this.state.values = {
@@ -83,53 +76,53 @@ class MarketOfferForm extends React.Component {
                 denomination: '',
                 pricePerUnit: '',
                 productImage: null
-            };
+            }
         }
 
-        this.state.showDialog = false;
+        this.state.showDialog = false
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.cancelAction = this.cancelAction.bind(this);
-        this.confirmAction = this.confirmAction.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.cancelAction = this.cancelAction.bind(this)
+        this.confirmAction = this.confirmAction.bind(this)
     }
 
     handleSubmit(values, actions) {
 
-        actions.setSubmitting(false);
+        actions.setSubmitting(false)
 
         this.setState(state => ({
             showDialog: true,
             values: values
-        }));
+        }))
     }
 
     cancelAction() {
 
         this.setState(state => ({
             showDialog: false
-        }));
+        }))
     }
 
     confirmAction() {
 
-        let marketOffer = this.props.marketOffer;
-        if (marketOffer == undefined) {
-            marketOffer = {};
+        let marketOffer = this.props.marketOffer
+        if (marketOffer === undefined) {
+            marketOffer = {}
         }
 
-        marketOffer.type = this.state.values.type;
-        marketOffer.category = this.state.values.category;
-        marketOffer.title = this.state.values.title;
-        marketOffer.description = this.state.values.description;
-        marketOffer.denomination = this.state.values.denomination;
-        marketOffer.pricePerUnit = this.state.values.pricePerUnit;
+        marketOffer.type = this.state.values.type
+        marketOffer.category = this.state.values.category
+        marketOffer.title = this.state.values.title
+        marketOffer.description = this.state.values.description
+        marketOffer.denomination = this.state.values.denomination
+        marketOffer.pricePerUnit = this.state.values.pricePerUnit
         marketOffer.productImage = this.state.values.productImage
 
-        this.props.onSubmit(marketOffer);
+        this.props.onSubmit(marketOffer)
 
         this.setState(state => ({
             showDialog: false
-        }));
+        }))
     }
 
 
@@ -165,19 +158,16 @@ class MarketOfferForm extends React.Component {
                 //.positive('Must be positive')
                 .typeError("Price per unit is required")
         })
-    };
+    }
 
     render() {
 
-        const {classes} = this.props;
+        const {classes} = this.props
 
         return (
 
-            <div class="scroll">
+            <div className={classes.scroll}>
                 <Page>
-                    <br/>
-                    <br/>
-                    <br/>
                     <Card className={classes.card}>
                         <Formik
                             initialValues={{
@@ -260,7 +250,6 @@ class MarketOfferForm extends React.Component {
                                                 component={TextField}
                                                 name="title"
                                                 label="Title"
-                                                //helperText="Specify a title"
                                                 className={classes.field}
                                             />
 
@@ -270,13 +259,10 @@ class MarketOfferForm extends React.Component {
                                                 component={TextField}
                                                 name='description'
                                                 label='Description'
-                                                //helperText='Write a detailed description'
                                                 multiline={true}
-                                                //variant="outlined"
                                                 rows='5'
                                                 rowsMax='20'
                                                 className={classes.field}
-                                                // style={height: "150px"}}
                                             />
 
                                             <br/>
@@ -304,7 +290,6 @@ class MarketOfferForm extends React.Component {
                                                 component={TextField}
                                                 name="pricePerUnit"
                                                 label="Price per unit"
-                                                //helperText="Define the price per unit"
                                                 className={classes.field}
                                             />
 
@@ -329,7 +314,6 @@ class MarketOfferForm extends React.Component {
                                             </Button>
 
                                             <Button
-                                                // type="reset"
                                                 variant="contained"
                                                 color="secondary"
                                                 className={classes.button}
@@ -371,4 +355,4 @@ class MarketOfferForm extends React.Component {
     }
 }
 
-export default withStyles(styles)(withRouter(MarketOfferForm));
+export default withStyles(styles)(withRouter(MarketOfferForm))

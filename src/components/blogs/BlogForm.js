@@ -35,6 +35,9 @@ class BlogForm extends React.Component {
 
         if (this.props.blog != undefined) {
             this.state = {
+                authorId: props.blog.authorId,
+                authorFirstName: props.blog.authorFirstName,
+                authorLastName: props.blog.authorLastName,
                 articleTitle: props.blog.articleTitle,
                 articleBody: props.blog.articleBody
             };
@@ -75,6 +78,13 @@ class BlogForm extends React.Component {
         if (blog == undefined) {
             blog = {};
         }
+
+        if (this.isUpdate) {
+            blog.authorId = this.state.values.authorId,
+            blog.authorFirstName = this.state.values.authorFirstName,
+            blog.authorLastName = this.state.values.authorLastName
+        }
+
         blog.articleTitle = this.state.articleTitle;
         blog.articleBody = JSON.stringify(rteData)
 

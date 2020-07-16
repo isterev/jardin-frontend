@@ -1,20 +1,11 @@
-import React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import {withStyles} from "@material-ui/styles";
-import {withRouter} from "react-router-dom";
+import React from 'react'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import {withStyles} from "@material-ui/styles"
+import {withRouter} from "react-router-dom"
 
 const styles = (theme) => ({
     root: {
-        /*flexGrow: 1,
-        backgroundColor: '#cfdf72',
-        alignItems: 'center',
-        justifyContent: 'center',
-        //width: 700,
-        height: 'auto',
-        position: 'absolute',
-        //top: '20%',
-        left: '20%',*/
         position: 'absolute',
         flexGrow: 1,
         height:40,
@@ -25,14 +16,14 @@ const styles = (theme) => ({
     indicator: {
         backgroundColor: "#F50057"
     }
-});
+})
 
 export class NavigationTabs extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
-        this.handleTabChange = this.handleTabChange.bind(this);
+        this.handleTabChange = this.handleTabChange.bind(this)
     }
 
     handleTabChange(event, newValue) {
@@ -41,11 +32,11 @@ export class NavigationTabs extends React.Component {
 
         this.props.handleTabChange(newValue)
 
-    };
+    }
 
     render() {
 
-        const {classes} = this.props;
+        const {classes} = this.props
 
         return (
 
@@ -58,8 +49,8 @@ export class NavigationTabs extends React.Component {
                     <Tab label="Customer Service" value="/service" />
                 </Tabs>
             </div>
-        );
+        )
     }
 }
 
-export default withStyles(styles)(withRouter(NavigationTabs));
+export default withStyles(styles)(withRouter(NavigationTabs))

@@ -1,44 +1,43 @@
-"use strict";
+"use strict"
 
-import React from 'react';
+import React from 'react'
 
-import Header from './Header';
-import Footer from './Footer';
-import Grid from "@material-ui/core/Grid";
-import SideLinks from "./SideLinks";
-import AdsLink from "./AdsLink";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import {withStyles} from "@material-ui/styles";
-import {withRouter} from "react-router-dom";
+import Header from './util/Header'
+import Footer from './util/Footer'
+import Grid from "@material-ui/core/Grid"
+import SideLinks from "./util/SideLinks"
+import AdsLink from "./util/AdsLink"
+import Typography from "@material-ui/core/Typography"
+import Box from "@material-ui/core/Box"
+import {withRouter} from "react-router-dom"
 
 
 class Page extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             title: '',
             selectedTab: this.props.location.pathname
         }
-        this.handleTabChange = this.handleTabChange.bind(this);
+        this.handleTabChange = this.handleTabChange.bind(this)
     }
 
     handleTabChange(newValue) {
 
         this.setState(state => ({
-            selectedTab: newValue //location.pathname
-        }));
+            selectedTab: newValue
+        }))
 
-        this.props.history.push(newValue);
+        this.props.history.push(newValue)
 
-    };
+    }
 
     componentDidMount() {
         this.setState({
             title: document.title
-        });
+        })
     }
 
     render() {
@@ -66,8 +65,8 @@ class Page extends React.Component {
                 </div>
                <Footer/>
             </section>
-        );
+        )
     }
 }
 
-export default withRouter(Page);
+export default withRouter(Page)

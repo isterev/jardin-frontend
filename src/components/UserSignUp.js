@@ -1,28 +1,24 @@
-"use strict";
+"use strict"
 
-import React from 'react';
-import {withRouter} from 'react-router-dom';
+import React from 'react'
+import {withRouter} from 'react-router-dom'
 
-import {Formik, Form, Field} from 'formik';
-import * as yup from 'yup';
+import {Field, Form, Formik} from 'formik'
+import * as yup from 'yup'
 
-import {Card, Button} from '@material-ui/core';
-import {InputLabel, FormHelperText} from '@material-ui/core';
+import {Button, Card, FormHelperText} from '@material-ui/core'
 
-import {TextField} from 'formik-material-ui';
-
-
-import {AlertMessage} from './util/AlertMessage';
-import Page from './Page';
+import {TextField} from 'formik-material-ui'
+import Page from './Page'
 
 
-const style = {maxWidth: 500, backgroundColor: "#cede6e"};
+const style = {maxWidth: 500, backgroundColor: "#cede6e"}
 
 
-class UserSignup extends React.Component {
+class UserSignUp extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             username: '',
@@ -30,9 +26,9 @@ class UserSignup extends React.Component {
             email: '',
             firstName: '',
             lastName: ''
-        };
+        }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleSubmit(values) {
@@ -43,9 +39,9 @@ class UserSignup extends React.Component {
             email: values.email,
             firstName: values.firstName,
             lastName: values.lastName
-        };
+        }
 
-        this.props.onSubmit(user);
+        this.props.onSubmit(user)
     }
 
     // validation with yup
@@ -62,16 +58,13 @@ class UserSignup extends React.Component {
             lastName: yup.string()
                 .required('Last name is required'),
         })
-    };
+    }
 
     render() {
         return (
 
-            <div class="scroll">
+            <div>
                 <Page>
-                    <br/>
-                    <br/>
-                    <br/>
                     <Card style={style}>
                         <Formik
                             initialValues={{
@@ -107,13 +100,13 @@ class UserSignup extends React.Component {
                                         label="User Email"
                                         type="email"
                                     />
-                                    <br></br>
+                                    <br/>
                                     <Field
                                         component={TextField}
                                         name="firstName"
                                         label="First Name"
                                     />
-                                    <br></br>
+                                    <br/>
 
                                     <Field
                                         component={TextField}
@@ -142,7 +135,11 @@ class UserSignup extends React.Component {
                                         Dismiss
                                     </Button>
 
-                                    <AlertMessage>{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                                    {this.props.error &&
+                                         <FormHelperText error={true}>
+                                             {`${this.props.error}`}
+                                         </FormHelperText>
+                                    }
 
                                 </Form>
 
@@ -157,6 +154,6 @@ class UserSignup extends React.Component {
     }
 
 
-};
+}
 
-export default withRouter(UserSignup);
+export default withRouter(UserSignUp)

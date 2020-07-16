@@ -23,7 +23,7 @@ export default class BlogService {
     static getBlog(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${BlogService.baseURL()}/${id}`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
+                if(data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
                 else {
@@ -38,7 +38,7 @@ export default class BlogService {
     static getMyBlogs() {
         return new Promise((resolve, reject) => {
             HttpService.get(`${BlogService.baseURL()}/myBlogs`, function(data) {
-                if(data != undefined) {
+                if(data !== undefined) {
                     resolve(data);
                 }
                 else {
@@ -53,7 +53,7 @@ export default class BlogService {
     static deleteBlog(id) {
         return new Promise((resolve, reject) => {
             HttpService.remove(`${BlogService.baseURL()}/${id}`, function(data) {
-                if(data.message != undefined) {
+                if(data.message !== undefined) {
                     resolve(data.message);
                 }
                 else {
