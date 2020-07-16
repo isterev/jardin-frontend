@@ -68,7 +68,7 @@ class MyBlogsList extends React.Component {
 
     handleEdit(id) {
 
-        this.props.history.push('/blog/edit/' + id); // TODO
+        this.props.history.push('/editBlog/' + id); // TODO
     }
 
     handleDelete(id, e) {

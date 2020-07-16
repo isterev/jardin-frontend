@@ -72,7 +72,24 @@ export default class App extends React.Component {
                 },
                 {component: BlogsListView, path: '/blogs'},
                 {component: MyBlogsListView, path: '/myBlogs'},
-                 {component: BlogFormView, path: '/postBlog'},
+                {
+                    render: (props) => {
+                        if (UserService.isAuthenticated()) {
+                            return (<BlogFormView {...props} />)
+                        } else {
+                            return (<Redirect to={'/login'}/>)
+                        }
+                    }, path: '/editBlog/:id'
+                },
+                {
+                    render: (props) => {
+                        if (UserService.isAuthenticated()) {
+                            return (<BlogFormView {...props} />)
+                        } else {
+                            return (<Redirect to={'/login'}/>)
+                        }
+                    }, path: '/postBlog',
+                },
                 {component: MyConsultationsListView, path: '/consult'},
                 // {component: UserLoginView, path: '/', exact: true},
                 {component: UserLoginView, path: '/login'},

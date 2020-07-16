@@ -61,19 +61,31 @@ class BlogForm extends React.Component {
 
     handleSave(rteData) {
 
-        if (!this.state.articleTitle || this.state.articleTitle == "") {
+        /*if (!this.state.articleTitle || this.state.articleTitle == "") {
             // TODO
-        }
+        }*/
 
         if (!rteData || rteData == "") {
             //TODO
         }
 
-        this.setState(state => ({
+        /*this.setState(state => ({
             showDialog: true,
             // articleTitle is already set
+            articleTitle : "trst",
             articleBody: JSON.stringify(rteData)
         }));
+*/
+        let blog = this.props.blog;
+        if (blog == undefined) {
+            blog = {};
+        }
+        blog.articleTitle = this.state.articleTitle;
+        blog.articleBody = JSON.stringify(rteData)
+
+        this.props.onSubmit(blog);
+
+        //this.confirmAction()
     }
 
     cancelAction() {
@@ -190,7 +202,7 @@ class BlogForm extends React.Component {
                     </Card>
                 </Page>
 
-                <AlertDialog open={this.state.showDialog} dialog={{
+                {/*<AlertDialog open={this.state.showDialog} dialog={{
                     title: 'Confirm',
                     message: "Do you really want to " + (this.isUpdate ? "update" : "create")
                         + " this blog article?",
@@ -204,7 +216,7 @@ class BlogForm extends React.Component {
                             confirmAction: this.confirmAction
                         }
                     ]
-                }}/>
+                }}/>*/}
 
             </div>
 

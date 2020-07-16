@@ -50,9 +50,9 @@ class BlogsList extends React.Component {
         }
     }
 
-    handleEdit(id) {
+    handleDisplay(id) {
 
-        this.props.history.push('/blog/edit/' + id); // TODO
+        this.props.history.push('/showBlog/' + id); // TODO
     }
 
     handleDelete(id, e) {
@@ -99,7 +99,7 @@ class BlogsList extends React.Component {
                                             <React.Fragment>
                                                 <Card style={{backgroundColor: "#cede6e", boxShadow: "20px"}}>
                                                     <span style={{paddingLeft: '400px'}}>
-                           <span>  <Button color='primary'  onClick={this.handleEdit.bind(this, blog._id)}> Edit <EditIcon/>  </Button> </span>
+                           <span>  <Button color='primary'  onClick={this.handleDisplay.bind(this, blog._id)}> Edit <EditIcon/>  </Button> </span>
                             <span>  <Button color='primary'  onClick={this.handleDelete.bind(this, blog._id)}> Delete <DeleteIcon/> </Button> </span>
                         </span>
 
