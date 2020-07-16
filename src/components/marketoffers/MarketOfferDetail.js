@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
     text:{
         fontWeight: 600,
     }
-
 }));
 
 function createData(name, values) {
@@ -76,7 +75,7 @@ export default function MarketOfferDetails(props) {
         <Page>
         <Box className={classes.Box}>
             <img className={classes.img}
-                 src ="https://www.mercurynews.com/wp-content/uploads/2020/04/SJM-L-GARTIPS-0412-01_73870816.jpg?w=839"
+                 src ={props.marketOffer.productImage}
                  alt ="title"/>
         <div className={classes.detailDiv}>
         <TableContainer component={Paper}>

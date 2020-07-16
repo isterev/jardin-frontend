@@ -13,7 +13,7 @@ import {MyConsultationsListView} from "./views/consultations/MyConsultationsList
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView";
 import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView";
 import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView";
-// TODO import {MarketOfferDetailView} from "./views/marketoffers/MarketOfferDetailView";
+import {MarketOfferDetailView} from "./views/marketoffer/MarketOfferDetailView";
 
 import {UserLoginView} from "./views/UserLoginView";
 import {UserSignupView} from "./views/UserSignupView";
@@ -48,10 +48,9 @@ export default class App extends React.Component {
         this.state = {
             title: 'Jardin',
             routes: [
-                {component: MarketOfferGridListView, path: '/', exact: true},
                 {component: MarketOfferGridListView, path: '/offers'},
                 {component: MyMarketOfferGridListView, path: '/myOffers'},
-                // TODO {component: MarketOfferDetailView, path: '/showOffer/:id'},
+                {component: MarketOfferDetailView, path: '/showOffer/:id'},
                 {
                     render: (props) => {
                         if (UserService.isAuthenticated()) {
@@ -70,6 +69,7 @@ export default class App extends React.Component {
                         }
                     }, path: '/addOffer',
                 },
+                {component: BlogsListView, path: '/',exact: true},
                 {component: BlogsListView, path: '/blogs'},
                 {component: MyBlogsListView, path: '/myBlogs'},
                  {component: BlogFormView, path: '/postBlog'},
@@ -87,7 +87,6 @@ export default class App extends React.Component {
 
     render() {
         return (
-
             <MuiThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Router>

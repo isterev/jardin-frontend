@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -31,39 +31,53 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: 20,
     }
 }))
-export default function CheckboxesGroup() {
+export default function CheckboxesGroup(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState([5, 250]);
+
+    const [sale, setSale] = React.useState(false)
+    const [rental, setRental] = React.useState(false)
+    const [seeds, setSeeds] = React.useState(false)
+    const [fertiliser, setFertiliser] = React.useState(false)
+    const [mechanical, setMechanical] = React.useState(false)
+    const [electronic, setElectronic] = React.useState(false)
+    const [others, setOthers] = React.useState(false)
+
+    useEffect(()=>{props.handleFilterChange({'Sale': sale, 'Rental':rental, 'Seeds and Small Plants':seeds,'Fertilisers': fertiliser,
+        'Mechanical Equipment':mechanical,
+        'Electronic Equipment':electronic,
+        'Others': others,})}, [sale, rental, seeds, fertiliser, mechanical, electronic, others])
 
     const handleRangeChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    const [state, setState] = React.useState({
-        sale: true,
-        rental: false,
-        seeds: false,
-        fertilizer: false,
-        mechanical: false,
-        electrical: false,
-        pesticide: false,
-        others: true
-    });
-
-    const handleChange = event => {
-        setState({ state, [event.target.name]: event.target.checked });
-    };
-
-    const {
-        sale,
-        rental,
-        seeds,
-        fertilizer,
-        mechanical,
-        electrical,
-        pesticide,
-        others
-    } = state;
+    const handleChange = (e) => {
+        alert("filterpane change called")
+           switch(e.target.name) {
+               case 'Sale':
+                   setSale(e.target.checked)
+                   break;
+               case 'Rental':
+                   setRental(e.target.checked)
+                   break;
+               case 'Seeds':
+                   setSeeds(e.target.checked)
+                   break;
+               case 'Fertiliser':
+                   setFertiliser(e.target.checked)
+                   break;
+               case 'Mechanical':
+                   setMechanical(e.target.checked)
+                   break;
+               case 'Electronic':
+                   setElectronic(e.target.checked)
+                   break;
+               case 'Others':
+                   setOthers(e.target.checked)
+                   break;
+           }
+        };
 
     return (
         <Box className={classes.Box}>
@@ -78,7 +92,7 @@ export default function CheckboxesGroup() {
                             <Checkbox
                                 checked={sale}
                                 onChange={handleChange}
-                                name="sale"
+                                name='Sale'
                                 color="default"
                             />
                         }
@@ -89,7 +103,7 @@ export default function CheckboxesGroup() {
                             <Checkbox
                                 checked={rental}
                                 onChange={handleChange}
-                                name="rental"
+                                name='Rental'
                                 color="default"
                             />
                         }
@@ -116,29 +130,29 @@ export default function CheckboxesGroup() {
                             <Checkbox
                                 checked={seeds}
                                 onChange={handleChange}
-                                name="seeds"
+                                name='Seeds'
                                 color="default"
                             />
                         }
-                        label="Seeds"
+                        label="Seeds and Small Plants"
                     />
                     <FormControlLabel
                         control={
                             <Checkbox
-                                checked={fertilizer}
+                                checked={fertiliser}
                                 onChange={handleChange}
-                                name="fertilizer"
+                                name='Fertiliser'
                                 color="default"
                             />
                         }
-                        label="Fertilizer"
+                        label="Fertiliser"
                     />
                     <FormControlLabel
                         control={
                             <Checkbox
                                 checked={mechanical}
                                 onChange={handleChange}
-                                name="mechanical"
+                                name='Mechanical'
                                 color="default"
                             />
                         }
@@ -147,9 +161,9 @@ export default function CheckboxesGroup() {
                     <FormControlLabel
                         control={
                             <Checkbox
-                                checked={electrical}
+                                checked={electronic}
                                 onChange={handleChange}
-                                name="electrical"
+                                name='Electronic'
                                 color="default"
                             />
                         }
@@ -158,20 +172,9 @@ export default function CheckboxesGroup() {
                     <FormControlLabel
                         control={
                             <Checkbox
-                                checked={pesticide}
-                                onChange={handleChange}
-                                name="pesticide"
-                                color="default"
-                            />
-                        }
-                        label="Pesticide"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
                                 checked={others}
                                 onChange={handleChange}
-                                name="others"
+                                name='Others'
                                 color="default"
                             />
                         }

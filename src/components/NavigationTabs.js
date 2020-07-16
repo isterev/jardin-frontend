@@ -8,7 +8,7 @@ const styles = (theme) => ({
     root: {
         position: 'absolute',
         flexGrow: 1,
-        height:40,
+        height:48,
         width:'100%',
         backgroundColor:"#367c55",
         paddingLeft:200,

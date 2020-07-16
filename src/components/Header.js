@@ -13,9 +13,13 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import UserService from "../services/UserService";
 import NavigationTabs from "./NavigationTabs";
 import jardinLogo from '../images/jardin_logo.png';
+import Popper from "@material-ui/core/Popper";
 
 const styles = (theme) => ({
-    logo: {
+    root: {
+        width:'100%'
+    },
+        logo: {
         height: '100%',
         width: 120
     },
@@ -60,9 +64,15 @@ const styles = (theme) => ({
     appBar: {
         backgroundColor: '#2b6343'
     },
+    icon:{
+        '&:hover': {
+            border:'1.5px solid black'
+        }
+    },
     menu:{
-        position:'relative'
+        top:'50px'
     }
+
 });
 
 class Header extends React.Component {
@@ -165,7 +175,7 @@ class Header extends React.Component {
         const {classes} = this.props;
 
         return (
-            <div className={classes.grow}>
+            <div className={classes.root}>
                 <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
                         <img src={jardinLogo} alt="jardinLogo" className={classes.logo}/>
@@ -190,6 +200,7 @@ class Header extends React.Component {
                                 aria-haspopup="true"
                                 onClick={this.handleProfileMenuOpen}
                                 color="inherit"
+                                className={classes.icon}
                             >
                                 <AccountCircle fontSize="large"/>
                             </IconButton>
@@ -219,13 +230,13 @@ class Header extends React.Component {
                                     </div>
 
                                     : <MenuItem onClick={this.handleLogin}>Login</MenuItem>
+
                                 }
                             </Menu>
                         </div>
                     </Toolbar>
                 </AppBar>
                 <NavigationTabs selectedTab={this.props.selectedTab}  handleTabChange={(value) => this.props.handleTabChange(value)} />
-
             </div>
         );
     }

@@ -44,7 +44,7 @@ class Page extends React.Component {
     render() {
         let pane;
         if (this.state.selectedTab === "/offers"|| this.state.selectedTab === "/myOffers") {
-            pane = <FilterPane/>
+            pane = <FilterPane handleFilterChange={this.props.handleFilterChange} />
         } else {
             pane = <SideLinks/>
         }
