@@ -3,12 +3,6 @@
 import React, {Fragment} from 'react'
 import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 
-import {BlogsListView} from "./views/blogs/BlogsListView"
-import {MyBlogsListView} from "./views/blogs/MyBlogsListView"
-import {BlogFormView} from "./views/blogs/BlogFormView"
-
-import {MyConsultationsListView} from "./views/consultations/MyConsultationsListView"
-
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView"
 import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView"
 import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView"
@@ -20,7 +14,6 @@ import UserService from "./services/UserService"
 
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
 import CssBaseline from "@material-ui/core/CssBaseline"
-
 
 
 const theme = createMuiTheme({
@@ -67,27 +60,6 @@ export default class App extends React.Component {
                         }
                     }, path: '/addOffer',
                 },
-                {component: BlogsListView, path: '/blogs'},
-                {component: MyBlogsListView, path: '/myBlogs'},
-                {
-                    render: (props) => {
-                        if (UserService.isAuthenticated()) {
-                            return (<BlogFormView {...props} />)
-                        } else {
-                            return (<Redirect to={'/login'}/>)
-                        }
-                    }, path: '/editBlog/:id'
-                },
-                {
-                    render: (props) => {
-                        if (UserService.isAuthenticated()) {
-                            return (<BlogFormView {...props} />)
-                        } else {
-                            return (<Redirect to={'/login'}/>)
-                        }
-                    }, path: '/postBlog',
-                },
-                {component: MyConsultationsListView, path: '/consult'},
                 {component: UserLoginView, path: '/login'},
                 {component: UserSignUpView, path: '/register'}
             ]
