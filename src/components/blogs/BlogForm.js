@@ -14,10 +14,10 @@ const styles = (theme) => ({
         textAlign: 'center'
     },
     card: {
-        maxWidth: 850,
-        height: 300,
+        maxWidth: "850px",
+        height: "500px",
         position: 'absolute',
-        top: '30%',
+        top: '20%',
         left: '20%',
         right: '20%',
         backgroundColor: '#cede6e'
@@ -128,37 +128,33 @@ class BlogForm extends React.Component {
                     <br/>
                     <br/>
                     <br/>
-                    <React.Fragment >
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            className={classes.button}
-                            onClick={(() => this.form.submit())}
-                            style={{ marginLeft: "700px"}}
-                        >
-                            Submit
-                        </Button>
-                    </React.Fragment>
-                    <React.Fragment >
-                        <Button
-                            // type="reset"
-                            variant="contained"
-                            color="secondary"
-                            className={classes.button}
-                            onClick={(() => history.go(-1))}
-                            style={{ marginLeft: "790px", marginTop: "-62px"}}
-
-                        >
-                            Cancel
-                        </Button>
-                    </React.Fragment>
-                    <br/>
-                    <br/>
-                    <br/>
-
                     <Card className={classes.card}>
                         <form className="form">
+                            <React.Fragment >
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.button}
+                                    onClick={(() => this.form.submit())}
+                                    style={{ marginLeft: "660px", marginTop: "10px"}}
+                                >
+                                    Submit
+                                </Button>
+                            </React.Fragment>
+                            <React.Fragment >
+                                <Button
+                                    // type="reset"
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.button}
+                                    onClick={(() => history.go(-1))}
+                                    style={{ marginLeft: "750px", marginTop: "-62px"}}
+
+                                >
+                                    Cancel
+                                </Button>
+                            </React.Fragment>
                             <div className="container">
                                 <section>
                                     <Box margin={1}>
