@@ -3,16 +3,16 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 
-import {Field, Form, Formik} from 'formik';
+import {Field} from 'formik';
 import * as yup from 'yup';
 import {Card} from '@material-ui/core';
-import 'react-confirm-alert/src/react-confirm-alert.css'
 import Page from '../Page';
 import Box from "@material-ui/core/Box";
 import AlertDialog from "../util/AlertDialog";
 import {withStyles} from "@material-ui/styles";
-import MUIRichTextEditorInput from "../util/MUIRichTextEditorInput";
 import TextField from "@material-ui/core/TextField";
+import MUIRichTextEditor from "mui-rte";
+import {convertToRaw} from "draft-js";
 
 const styles = (theme) => ({
     root: {
@@ -20,6 +20,7 @@ const styles = (theme) => ({
     },
     card: {
         maxWidth: 850,
+        height: 300,
         position: 'absolute',
         top: '20%',
         left: '20%',
@@ -38,37 +39,40 @@ class BlogForm extends React.Component {
         this.state = {}
 
         if (this.props.blog != undefined) {
-            this.state.values = {
-
+            this.state = {
                 articleTitle: props.blog.articleTitle,
                 articleBody: props.blog.articleBody
-
-                //productImage: props.blog.productImage //TODO
             };
             this.isUpdate = true;
 
         } else {
-            this.state.values = {
+            this.state = {
                 articleTitle: '',
                 articleBody: '',
-                //productImage: null //TODO
             };
         }
 
         this.state.showDialog = false;
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSave = this.handleSave.bind(this);
         this.cancelAction = this.cancelAction.bind(this);
         this.confirmAction = this.confirmAction.bind(this);
     }
 
-    handleSubmit(values, actions) {
+    handleSave(rteData) {
 
-        actions.setSubmitting(false);
+        if (!this.state.articleTitle || this.state.articleTitle == "") {
+            // TODO
+        }
+
+        if (!rteData || rteData == "") {
+            //TODO
+        }
 
         this.setState(state => ({
             showDialog: true,
-            values: values
+            // articleTitle is already set
+            articleBody: JSON.stringify(rteData)
         }));
     }
 
@@ -86,8 +90,8 @@ class BlogForm extends React.Component {
             blog = {};
         }
 
-        blog.articleTitle = this.state.values.articleTitle;
-        blog.articleBody = this.state.values.articleBody;
+        blog.articleTitle = this.state.articleTitle;
+        blog.articleBody = this.state.articleBody;
 
         this.props.onSubmit(blog);
 
@@ -112,68 +116,82 @@ class BlogForm extends React.Component {
 
         return (
 
-            <div class="scroll">
+            <div className="scroll">
                 <Page>
                     <br/>
                     <br/>
                     <br/>
                     <Card className={classes.card}>
-                        <Formik
-                            initialValues={{
-                                articleTitle: this.state.values.articleTitle,
-                                articleBody: this.state.values.articleBody,
-                            }}
-                            validationSchema={this.getSchema}
-                            onSubmit={this.handleSubmit}
-                            render={() => (
-                                <Form mode='structured'>
-                                    <p><b>
-                                        <center> POST A BLOG</center>
-                                    </b></p>
-                                    <Box margin={1}>
 
-                                        <Field
-                                            component={TextField} //TextareaAutosize
+                        <p><b>
+                            <center> POST A BLOG</center>
+                        </b></p>
+
+                        <form className="form">
+                            <div className="container">
+                                <section>
+                                    <Box margin={1}>
+                                        <TextField
                                             name="articleTitle"
                                             placeholder="Article Title..."
                                             helperText="Specify a article title"
                                             style={{width: "900px"}}
-                                            multiline={true}
-                                            rows='1'
-                                            rowsMax={1}
                                             aria-label="minimum height"
-                                            inlineToolbar={true}
+                                            defaultValue={this.state.articleTitle}
+                                            onChange=
+                                                {
+                                                    e => {
+                                                        let value = e.target.value
+                                                        if (!value || value == "")
+                                                            //TODO
+                                                            return;
+
+                                                        this.setState({
+                                                            articleTitle: e.target.value
+
+                                                        })
+                                                    }
+                                                }
                                         />
                                         <br/>
                                     </Box>
 
                                     <Box margin={1} style={{backgroundColor: "#cede6e"}}>
+                                        <MUIRichTextEditor
+                                            toolbarButtonSize="small"
+                                            inlineToolbar
+                                            label="Article Content"
 
-                                        <Field
-                                            component={MUIRichTextEditorInput} //MUIRichTextEditor
                                             name='articleBody'
                                             placeholder="Article Content"
                                             helperText='Write a detailed article body'
                                             //multiline={true}
                                             rows='15'
                                             style={{width: "900px"}}
-
-                                            // style={{width: "90%", height: "150px"}}
+                                            onChange={value => {
+                                                if (!value || value == "")
+                                                    //TODO
+                                                    //return;
+                                                    alert(value)
+                                                /*const content = JSON.stringify(
+                                                    convertToRaw(value.getCurrentContent())
+                                                );
+                                                setValue("RTE1", content);*/
+                                            }}
+                                            defaultValue={this.state.articleBody}
+                                            onSave={(rteData) => this.handleSave(rteData)}
                                         />
-
-                                        <br/>
-
                                     </Box>
+                                </section>
+                            </div>
 
-                                </Form>
 
-                            )}
-                        />
+                        </form>
                     </Card>
                 </Page>
 
                 <AlertDialog open={this.state.showDialog} dialog={{
-                    articleTitle: 'Confirm',
+                    title: 'Confirm',
                     message: "Do you really want to " + (this.isUpdate ? "update" : "create")
                         + " this blog article?",
                     buttons: [
