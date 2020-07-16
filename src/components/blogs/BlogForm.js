@@ -15,7 +15,7 @@ const styles = (theme) => ({
     },
     card: {
         maxWidth: "850px",
-        height: "500px",
+        height: "1000px",
         position: 'absolute',
         top: '20%',
         left: '20%',
@@ -26,96 +26,6 @@ const styles = (theme) => ({
 });
 
 class BlogForm extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.isUpdate = false;
-        this.state = {}
-
-        if (this.props.blog != undefined) {
-            this.state = {
-                authorId: props.blog.authorId,
-                authorFirstName: props.blog.authorFirstName,
-                authorLastName: props.blog.authorLastName,
-                articleTitle: props.blog.articleTitle,
-                articleBody: props.blog.articleBody
-            };
-            this.isUpdate = true;
-
-        } else {
-            this.state = {
-                articleTitle: '',
-                articleBody: '',
-            };
-        }
-
-        this.state.showDialog = false;
-
-        this.handleSave = this.handleSave.bind(this);
-        this.cancelAction = this.cancelAction.bind(this);
-        this.confirmAction = this.confirmAction.bind(this);
-    }
-
-    handleSave(rteData) {
-
-        /*if (!this.state.articleTitle || this.state.articleTitle == "") {
-            // TODO
-        }*/
-
-        if (!rteData || rteData == "") {
-            //TODO
-        }
-
-        /*this.setState(state => ({
-            showDialog: true,
-            // articleTitle is already set
-            articleTitle : "trst",
-            articleBody: JSON.stringify(rteData)
-        }));
-*/
-        let blog = this.props.blog;
-        if (blog == undefined) {
-            blog = {};
-        }
-
-        if (this.isUpdate) {
-            blog.authorId = this.state.values.authorId,
-            blog.authorFirstName = this.state.values.authorFirstName,
-            blog.authorLastName = this.state.values.authorLastName
-        }
-
-        blog.articleTitle = this.state.articleTitle;
-        blog.articleBody = JSON.stringify(rteData)
-
-        this.props.onSubmit(blog);
-
-        //this.confirmAction()
-    }
-
-    cancelAction() {
-
-        this.setState(state => ({
-            showDialog: false
-        }));
-    }
-
-    confirmAction() {
-
-        let blog = this.props.blog;
-        if (blog == undefined) {
-            blog = {};
-        }
-
-        blog.articleTitle = this.state.articleTitle;
-        blog.articleBody = this.state.articleBody;
-
-        this.props.onSubmit(blog);
-
-        this.setState(state => ({
-            showDialog: false
-        }));
-    }
 
     render() {
 
@@ -227,10 +137,104 @@ class BlogForm extends React.Component {
                     ]
                 }}/>*/}
 
+
             </div>
+
+
+
 
         )
     }
+    constructor(props) {
+        super(props);
+
+        this.isUpdate = false;
+        this.state = {}
+
+        if (this.props.blog != undefined) {
+            this.state = {
+                authorId: props.blog.authorId,
+                authorFirstName: props.blog.authorFirstName,
+                authorLastName: props.blog.authorLastName,
+                articleTitle: props.blog.articleTitle,
+                articleBody: props.blog.articleBody
+            };
+            this.isUpdate = true;
+
+        } else {
+            this.state = {
+                articleTitle: '',
+                articleBody: '',
+            };
+        }
+
+        this.state.showDialog = false;
+
+        this.handleSave = this.handleSave.bind(this);
+        this.cancelAction = this.cancelAction.bind(this);
+        this.confirmAction = this.confirmAction.bind(this);
+    }
+
+    handleSave(rteData) {
+
+        /*if (!this.state.articleTitle || this.state.articleTitle == "") {
+            // TODO
+        }*/
+
+        if (!rteData || rteData == "") {
+            //TODO
+        }
+
+        /*this.setState(state => ({
+            showDialog: true,
+            // articleTitle is already set
+            articleTitle : "trst",
+            articleBody: JSON.stringify(rteData)
+        }));
+*/
+        let blog = this.props.blog;
+        if (blog == undefined) {
+            blog = {};
+        }
+
+        if (this.isUpdate) {
+            blog.authorId = this.state.values.authorId,
+                blog.authorFirstName = this.state.values.authorFirstName,
+                blog.authorLastName = this.state.values.authorLastName
+        }
+
+        blog.articleTitle = this.state.articleTitle;
+        blog.articleBody = JSON.stringify(rteData)
+
+        this.props.onSubmit(blog);
+
+        //this.confirmAction()
+    }
+
+    cancelAction() {
+
+        this.setState(state => ({
+            showDialog: false
+        }));
+    }
+
+    confirmAction() {
+
+        let blog = this.props.blog;
+        if (blog == undefined) {
+            blog = {};
+        }
+
+        blog.articleTitle = this.state.articleTitle;
+        blog.articleBody = this.state.articleBody;
+
+        this.props.onSubmit(blog);
+
+        this.setState(state => ({
+            showDialog: false
+        }));
+    }
+
 }
 
 export default withStyles(styles)(withRouter(BlogForm));
