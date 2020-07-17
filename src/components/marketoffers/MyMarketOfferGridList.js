@@ -59,6 +59,7 @@ class MyMarketOfferGridList extends React.Component {
         this.handleDelete = this.handleDelete.bind(this)
         this.cancelAction = this.cancelAction.bind(this)
         this.confirmAction = this.confirmAction.bind(this)
+        this.handleFilterChange = this.handleFilterChange.bind(this)
     }
 
     handleEdit(id) {
@@ -91,12 +92,15 @@ class MyMarketOfferGridList extends React.Component {
     }
 
     handleFilterChange(values) {
+        console.log(this.state.data)
+        console.log(values)
         if (this.state !== undefined) {
-            const offers = this.state.data
-            let result = offers.filter(offer => values[offer.type] || values[offer.category])
-            if (!this.state.sortAsc) {
-                result = result.sort(this.compare(a, b))
-            }
+            const offers = this.props.data
+            let result = offers.filter(offer => values[offer.type] && values[offer.category])
+            console.log(result)
+            // if (!this.state.sortAsc) {
+            //     result = result.sort(this.compare(a, b))
+            // }
             this.setState({
                 data: result
             })
@@ -131,7 +135,7 @@ class MyMarketOfferGridList extends React.Component {
                 <div className={classes.root}>
                     <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
 
-                        {this.props.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
+                        {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
                                  alt={marketOffer.title}/>
                             <GridListTileBar
