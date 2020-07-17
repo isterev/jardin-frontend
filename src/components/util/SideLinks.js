@@ -6,10 +6,11 @@ import List from "@material-ui/core/List"
 import Link from "@material-ui/core/Link"
 import Typography from "@material-ui/core/Typography"
 import {makeStyles} from "@material-ui/core/styles"
+import IconButton from "@material-ui/core/IconButton"
+import RssFeedIcon from '@material-ui/icons/RssFeed'
 
 const useStyles = makeStyles((theme) => ({
     Box:{
-        position: "fixed",
         display: 'content',
         alignItems: 'center',
         justifyContent: 'center',
@@ -19,34 +20,38 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-
 export default function SideLink() {
         const classes = useStyles()
         return (
             <Box className={classes.Box} >
                 <List >
-                    <Typography variant="h5" align ="center" >
+                    <div>
+                    <Typography variant="h6">
                         What's trending?
+                        <IconButton color="inherit" >
+                            <RssFeedIcon fontSize="medium"/>
+                        </IconButton>
                     </Typography>
+                    </div>
                     <ListItem>
                         <ListItemText>
-                            <Typography variant="h6" align ="center">
+                            <Typography>
                                 Blogs and Forums
                             </Typography>
                         </ListItemText>
                     </ListItem>
                     <ListItem>
                         <ListItemText>
-                            <Typography align ="center" justify="center" >
+                            <Typography>
                                 <Link>
-                                    Better way to grow tomatoes
+                                    Better way to grow plants
                                 </Link>
                             </Typography>
                         </ListItemText>
                     </ListItem>
                     <ListItem>
                         <ListItemText>
-                            <Typography align ="center" justify="center">
+                            <Typography>
                                 <Link>
                                     Herbs Gardening Tips
                                 </Link>
@@ -55,7 +60,7 @@ export default function SideLink() {
                     </ListItem>
                     <ListItem>
                         <ListItemText>
-                            <Typography align ="center" justify="center">
+                            <Typography >
                                 <Link>
                                    Indoor Plants
                                 </Link>

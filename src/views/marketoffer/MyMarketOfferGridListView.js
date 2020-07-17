@@ -1,14 +1,10 @@
 "use strict"
 
 import React from 'react'
-
 import MyMarketOfferGridList from '../../components/marketoffers/MyMarketOfferGridList'
-
 import MarketOfferService from '../../services/MarketOfferService'
 
-
 export class MyMarketOfferGridListView extends React.Component {
-
     constructor(props) {
         super(props)
 

@@ -10,10 +10,9 @@ import AdsLink from "./util/AdsLink"
 import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
 import {withRouter} from "react-router-dom"
-
+import FilterPane from "./util/FilterPane"
 
 class Page extends React.Component {
-
     constructor(props) {
         super(props)
 
@@ -41,14 +40,21 @@ class Page extends React.Component {
     }
 
     render() {
+        let pane
+        if (this.state.selectedTab === "/offers" || this.state.selectedTab === "/myOffers") {
+            pane = <FilterPane handleFilterChange={this.props.handleFilterChange}/>
+        } else {
+            pane = <SideLinks/>
+        }
         return (
             <section>
-                <Header title={this.state.title} selectedTab={this.state.selectedTab} handleTabChange={(value) => this.handleTabChange(value)} />
+                <Header title={this.state.title} selectedTab={this.state.selectedTab}
+                        handleTabChange={(value) => this.handleTabChange(value)}/>
                 <div padding-top='90px' height={'100%'}>
                     <Grid container direction="column">
                         <Grid item container>
                             <Grid item xs={4} sm={2}>
-                                <SideLinks/>
+                                {pane}
                             </Grid>
                             <Grid item xs={8} sm={8}>
                                 <div>
@@ -63,7 +69,7 @@ class Page extends React.Component {
                         </Grid>
                     </Grid>
                 </div>
-               <Footer/>
+                <Footer/>
             </section>
         )
     }

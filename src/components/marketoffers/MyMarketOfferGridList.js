@@ -6,7 +6,7 @@ import GridList from '@material-ui/core/GridList'
 import GridListTile from "@material-ui/core/GridListTile"
 import GridListTileBar from "@material-ui/core/GridListTileBar"
 import {withStyles} from "@material-ui/styles"
-import {withRouter, Link} from "react-router-dom"
+import {Link, withRouter} from "react-router-dom"
 import IconButton from "@material-ui/core/IconButton"
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -33,7 +33,7 @@ const styles = (theme) => ({
         bottom: '10%',
         left: '25%',
     },
-    gridListTile:{
+    gridListTile: {
         maxWidth: '25%',
     },
     icon: {
@@ -47,7 +47,6 @@ const styles = (theme) => ({
 })
 
 class MyMarketOfferGridList extends React.Component {
-
     constructor(props) {
         super(props)
 
@@ -64,7 +63,7 @@ class MyMarketOfferGridList extends React.Component {
 
     handleEdit(id) {
 
-        this.props.history.push('/editOffer/' + id) 
+        this.props.history.push('/editOffer/' + id)
     }
 
     handleDelete(id, e) {
@@ -92,13 +91,12 @@ class MyMarketOfferGridList extends React.Component {
     }
 
     render() {
-
         const {classes} = this.props
         return (
             <Page>
                 <div>
                     <Link to="/addOffer">
-                        <Tooltip title="Add" aria-label="add" className={classes.add} >
+                        <Tooltip title="Add" aria-label="add" className={classes.add}>
                             <Fab color="secondary">
                                 <AddIcon/>
                             </Fab>
@@ -108,11 +106,11 @@ class MyMarketOfferGridList extends React.Component {
                 </div>
 
                 <div className={classes.root}>
-                    <GridList cols={4} spacing={8} cellHeight={180}  className={classes.gridList}>
+                    <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
 
                         {this.props.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
-                                 alt={marketOffer.title} />
+                                 alt={marketOffer.title}/>
                             <GridListTileBar
                                 title={marketOffer.title}
                                 subtitle={
@@ -136,13 +134,11 @@ class MyMarketOfferGridList extends React.Component {
                                         color="inherit"
                                         className={classes.icon}
                                     >
-                                        <DeleteIcon/> 
+                                        <DeleteIcon/>
                                     </IconButton>
-
                                 }
                             />
                         </GridListTile>)}
-
                     </GridList>
 
                     <AlertDialog open={this.state.showDialog} dialog={{
@@ -159,7 +155,6 @@ class MyMarketOfferGridList extends React.Component {
                             }
                         ]
                     }}/>
-
                 </div>
             </Page>
         )
