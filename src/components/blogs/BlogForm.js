@@ -2,7 +2,6 @@
 
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import * as yup from 'yup'
 import {Card} from '@material-ui/core'
 import Page from '../Page'
 import Box from "@material-ui/core/Box"
@@ -10,9 +9,8 @@ import AlertDialog from "../util/AlertDialog"
 import {withStyles} from "@material-ui/styles"
 import TextField from "@material-ui/core/TextField"
 import MUIRichTextEditor from "mui-rte"
-import Button from "@material-ui/core/Button";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import {convertToRaw} from "draft-js";
+import Button from "@material-ui/core/Button"
+import FormHelperText from "@material-ui/core/FormHelperText"
 
 const styles = (theme) => ({
     root: {
@@ -38,34 +36,58 @@ class BlogForm extends React.Component {
         this.isUpdate = false
         this.state = {}
 
-        if (this.props.blog != undefined) {
+        if (this.props.blog !== undefined) {
             this.state = {
                 authorId: props.blog.authorId,
                 authorFirstName: props.blog.authorFirstName,
                 authorLastName: props.blog.authorLastName,
                 articleTitle: props.blog.articleTitle,
-                articleBody: props.blog.articleBody
+                articleBody: props.blog.articleBody,
             }
             this.isUpdate = true
 
         } else {
             this.state = {
                 articleTitle: '',
-                articleBody: '{"blocks":[],"entityMap":{}}'
-
+                articleBody: '{"blocks":[],"entityMap":{}}',
             }
         }
 
-        this.state.showDialog = false
+        this.state.articleBodyText = null
         this.state.articleTitleError = false
         this.state.articleBodyError = false
+
+        this.state.showDialog = false
 
         this.handleSubmit = this.handleSubmit.bind(this)
         this.cancelAction = this.cancelAction.bind(this)
         this.confirmAction = this.confirmAction.bind(this)
     }
 
-    handleSubmit() {
+    handleSubmit(event) {
+
+        event.preventDefault()
+
+        let error = false
+        let value = this.state.articleTitle
+        if (!value || value === "") {
+
+            this.setState({
+                articleTitleError: true
+            })
+            error = true
+        }
+
+        value = this.state.articleBodyText
+        if (!value || value === "") {
+            this.setState({
+                articleBodyError: true
+            })
+            error = true
+        }
+
+        if (error)
+            return
 
         this.setState({
             showDialog: true
@@ -109,15 +131,14 @@ class BlogForm extends React.Component {
             <div className="scroll">
                 <Page>
                     <Card className={classes.card}>
-                        <form className="form">
+                        <form onSubmit={this.handleSubmit}>
                             <React.Fragment>
                                 <Button
                                     type="submit"
                                     variant="contained"
                                     color="primary"
                                     className={classes.button}
-                                    onClick={this.handleSubmit}
-                                    style={{marginLeft: "60px", marginTop: "10px"}}
+                                    style={{marginLeft: "660px", marginTop: "10px"}}
                                 >
                                     Submit
                                 </Button>
@@ -146,11 +167,7 @@ class BlogForm extends React.Component {
                                                 {
                                                     e => {
                                                         let value = e.target.value
-                                                        if (!value || value === "")
-                                                            this.setState({
-                                                                articleTitleError: true
-                                                            })
-                                                        else
+                                                        if (value && value !== "")
                                                             this.setState({
                                                                 articleTitleError: false
                                                             })
@@ -160,20 +177,20 @@ class BlogForm extends React.Component {
                                                         })
                                                     }
                                                 }
-                                            onBlur={
-                                                () => {
-                                                    let value = this.state.articleTitle
-                                                    if (!value || value === "")
-                                                        this.setState({
-                                                            articleTitleError: true
-                                                        })
-                                                    else
-                                                        this.setState({
-                                                            articleTitleError: false
-                                                        })
+                                            onBlur=
+                                                {
+                                                    () => {
+                                                        let value = this.state.articleTitle
+                                                        if (!value || value === "")
+                                                            this.setState({
+                                                                articleTitleError: true
+                                                            })
+                                                        else
+                                                            this.setState({
+                                                                articleTitleError: false
+                                                            })
+                                                    }
                                                 }
-
-                                            }
                                         />
                                         {
                                             this.state.articleTitleError &&
@@ -192,27 +209,36 @@ class BlogForm extends React.Component {
                                             placeholder="Article Content"
                                             rows='15'
                                             style={{width: "900px"}}
-                                            onChange={value => {
+                                            onChange=
+                                                {
+                                                    value => {
+                                                        let content = value.getCurrentContent()
+                                                        if (content.hasText()) {
+                                                            this.setState({
+                                                                articleBodyError: false,
+                                                            })
+                                                        }
 
-                                                let content = value.getCurrentContent()
+                                                        this.setState({
+                                                            articleBodyText: content.getPlainText(),
+                                                        })
 
-                                                if (!content.hasText()) {
-                                                    this.setState({
-                                                        articleBodyError: true,
-                                                        //articleBody : content
-                                                    })
-                                                } else {
-                                                    this.setState({
-                                                        articleBodyError: false,
-                                                        //articleBody : content
-                                                    })
-                                                }
+                                                    }}
+                                            onBlur=
+                                                {
+                                                    () => {
+                                                        let value = this.state.articleBodyText
+                                                        if (!value || value === "") {
+                                                            this.setState({
+                                                                articleBodyError: true,
+                                                            })
+                                                        } else {
+                                                            this.setState({
+                                                                articleBodyError: false,
+                                                            })
+                                                        }
 
-                                                console.log(value)
-
-                                                //this.setState({articleBody : convertToRaw(content)})
-
-                                            }}
+                                                    }}
                                             defaultValue={this.state.articleBody}
                                         />
                                         {
