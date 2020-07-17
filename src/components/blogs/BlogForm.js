@@ -51,7 +51,8 @@ class BlogForm extends React.Component {
         } else {
             this.state = {
                 articleTitle: '',
-                articleBody: '',
+                articleBody: '{"blocks":[],"entityMap":{}}'
+
             }
         }
 
@@ -66,50 +67,16 @@ class BlogForm extends React.Component {
 
     handleSubmit() {
 
-        /*if (!this.state.articleTitle || this.state.articleTitle == "") {
-            // TODO
-        }*/
-
-        if (!rteData || rteData === "") {
-            //TODO
-        }
-
-        /*this.setState(state => ({
-            showDialog: true,
-            // articleTitle is already set
-            articleTitle : "trst",
-            articleBody: JSON.stringify(rteData)
-        }))
-*/
-        /*let blog = this.props.blog
-        if (blog == undefined) {
-            blog = {}
-        }
-
-        if (this.isUpdate) {
-            blog.authorId = this.state.authorId,
-            blog.authorFirstName = this.state.authorFirstName,
-            blog.authorLastName = this.state.authorLastName
-        }
-
-        blog.articleTitle = this.state.articleTitle
-        blog.articleBody = rteData
-
-        this.props.onSubmit(blog)
-*/
-
-        this.setState(state => ({
+        this.setState({
             showDialog: true
-        }))
-
-        //this.confirmAction()
+        })
     }
 
     cancelAction() {
 
-        this.setState(state => ({
+        this.setState({
             showDialog: false
-        }))
+        })
     }
 
     confirmAction() {
@@ -124,22 +91,12 @@ class BlogForm extends React.Component {
         }
 
         blog.articleTitle = this.state.articleTitle
-        blog.articleBody = JSON.stringify(convertToRaw(this.state.articleBody))
+        blog.articleBody = this.state.articleBody
 
         this.props.onSubmit(blog)
 
-        this.setState(state => ({
+        this.setState({
             showDialog: false
-        }))
-    }
-
-    // validation with yup
-    getSchema() {
-        return yup.object().shape({
-            articleTitle: yup.string()
-                .required('Title is required'),
-            articleBody: yup.mixed()
-                .required('Content is required')
         })
     }
 
@@ -151,9 +108,6 @@ class BlogForm extends React.Component {
 
             <div className="scroll">
                 <Page>
-                    <br/>
-                    <br/>
-                    <br/>
                     <Card className={classes.card}>
                         <form className="form">
                             <React.Fragment>
@@ -162,8 +116,8 @@ class BlogForm extends React.Component {
                                     variant="contained"
                                     color="primary"
                                     className={classes.button}
-                                    onClick={(() => this.form.submit())}
-                                    style={{marginLeft: "660px", marginTop: "10px"}}
+                                    onClick={this.handleSubmit}
+                                    style={{marginLeft: "60px", marginTop: "10px"}}
                                 >
                                     Submit
                                 </Button>
@@ -188,7 +142,7 @@ class BlogForm extends React.Component {
                                             placeholder="Article Title..."
                                             style={{width: "900px"}}
                                             defaultValue={this.state.articleTitle}
-                                            onChange =
+                                            onChange=
                                                 {
                                                     e => {
                                                         let value = e.target.value
@@ -240,19 +194,26 @@ class BlogForm extends React.Component {
                                             style={{width: "900px"}}
                                             onChange={value => {
 
-                                                /*if (!value || !value.getCurrentContent().hasText()) {
+                                                let content = value.getCurrentContent()
+
+                                                if (!content.hasText()) {
                                                     this.setState({
-                                                        articleTitleError: true
+                                                        articleBodyError: true,
+                                                        //articleBody : content
+                                                    })
+                                                } else {
+                                                    this.setState({
+                                                        articleBodyError: false,
+                                                        //articleBody : content
                                                     })
                                                 }
 
-                                                this.setState(state => ({
-                                                    articleBody: value.getCurrentContent()
-                                                }))*/
+                                                console.log(value)
+
+                                                //this.setState({articleBody : convertToRaw(content)})
 
                                             }}
                                             defaultValue={this.state.articleBody}
-                                            //onSave={(rteData) => this.handleSave(rteData)}
                                         />
                                         {
                                             this.state.articleBodyError &&
