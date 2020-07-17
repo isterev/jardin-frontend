@@ -15,12 +15,11 @@ export class MarketOfferDetailView extends React.Component {
             loading: true
         })
 
-        console.log("id:" +this.props.match.params.id)
-        let id = this.props.match.params.id
-
-/*        (async () => {
+        console.log("id:" +this.props.match.params.id);
+        let id = this.props.match.params.id;
+        MarketOfferService.getMarketOffer(id).then((marketOffer) => {
             try {
-                let marketOffer = await MarketOfferService.getMarketOffer(id)
+                console.log(marketOffer)
                 this.setState({
                     marketOffer: marketOffer,
                     loading: false
@@ -28,7 +27,7 @@ export class MarketOfferDetailView extends React.Component {
             } catch (err) {
                 console.error(err)
             }
-        })()*/
+        })
     }
 
     render() {
