@@ -35,10 +35,10 @@ export default class BlogService {
         });
     }
 
-    static getBlogsFor(userId) {
-        console.log(userId)
+
+    static getMyBlogs(authorId) {
         return new Promise((resolve, reject) => {
-            HttpService.get(BlogService.baseURL() + '/my-blogs/?authorId=' + userId, function(data) {
+            HttpService.get(`${BlogService.baseURL()}/my-blogs?authorId=` + authorId , function(data) {
                 if(data !== undefined) {
                     resolve(data);
                 }
@@ -54,7 +54,8 @@ export default class BlogService {
     static deleteBlog(id) {
         return new Promise((resolve, reject) => {
             HttpService.remove(`${BlogService.baseURL()}/${id}`, function(data) {
-                if(data.message != undefined) {
+
+                if(data.message !== undefined) {
                     resolve(data.message);
                 }
                 else {
@@ -77,7 +78,6 @@ export default class BlogService {
     }
 
     static postBlog(blog) {
-
         if(!UserService.isAuthenticated())
             return;
         blog.authorId = UserService.getCurrentUser().id;

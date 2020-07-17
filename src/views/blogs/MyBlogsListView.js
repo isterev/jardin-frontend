@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
 import Page from "../../components/Page";
 import Paper from "@material-ui/core/Paper";
-import BreadCrumbsComponent from "../../components/consultations/BreadCrumbsComponent";
 import SimpleSelect from "../../components/consultations/SimpleSelect";
 import SearchComponent from "../../components/consultations/SearchComponent";
-import RequestConsultationComponent from "../../components/consultations/RequestConsultationComponent";
-import RegretComponent from "../../components/consultations/RegretComponent";
 import {makeStyles} from "@material-ui/core/styles";
 import UserService from "../../services/UserService";
 import MyBlogsComponent from "../../components/blogs/MyBlogsComponent";
 import BlogService from "../../services/BlogService";
-import {filterByYear, filterForLastNDays, formatDateTimeString} from "../../components/util/ExpertUtils";
+import {filterByYear, filterForLastNDays} from "../../components/util/ExpertUtils";
+import Button from "@material-ui/core/Button";
+import PostAddTwoToneIcon from "@material-ui/icons/PostAddTwoTone";
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -101,8 +101,13 @@ export default function() {
         })
         setBlogData(searchFilteredData)
     }
+
+    let history = useHistory()
     return (
         <Page>
+             <span className={classes.add}> <Button variant='contained' color='primary'
+                                                    onClick={() => history.push("/postBlog")}
+             > Post a blog  <PostAddTwoToneIcon/>  </Button>  </span>
             <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <div className={classes.durationFilter}>
@@ -144,3 +149,4 @@ export default function() {
         return preferred_date;
     }
 }
+
