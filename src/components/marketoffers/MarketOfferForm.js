@@ -9,7 +9,6 @@ import * as yup from 'yup'
 import {Button, Card, InputLabel, MenuItem} from '@material-ui/core'
 
 import {Select, TextField} from 'formik-material-ui'
-import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import Page from '../Page'
 import AlertDialog from "../util/AlertDialog"

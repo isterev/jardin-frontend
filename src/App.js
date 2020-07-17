@@ -2,11 +2,10 @@
 
 import React, {Fragment} from 'react'
 import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
-
 import {MarketOfferGridListView} from "./views/marketoffer/MarketOfferGridListView"
 import {MyMarketOfferGridListView} from "./views/marketoffer/MyMarketOfferGridListView"
 import {MarketOfferFormView} from "./views/marketoffer/MarketOfferFormView"
-
+import {MarketOfferDetailView} from "./views/marketoffer/MarketOfferDetailView"
 import {UserLoginView} from "./views/UserLoginView"
 import {UserSignUpView} from "./views/UserSignUpView"
 
@@ -42,6 +41,7 @@ export default class App extends React.Component {
                 {component: MarketOfferGridListView, path: '/', exact: true},
                 {component: MarketOfferGridListView, path: '/offers'},
                 {component: MyMarketOfferGridListView, path: '/myOffers'},
+                {component: MarketOfferDetailView, path: '/showOffer/:id'},
                 {
                     render: (props) => {
                         if (UserService.isAuthenticated()) {
@@ -72,7 +72,6 @@ export default class App extends React.Component {
 
     render() {
         return (
-
             <MuiThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Router>
@@ -90,7 +89,6 @@ export default class App extends React.Component {
                     </div>
                 </Router>
             </MuiThemeProvider>
-
         )
     }
 }
