@@ -20,6 +20,8 @@ import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import AlertDialog from "../util/AlertDialog";
 import CardContent from "@material-ui/core/CardContent";
+import Avatar from "@material-ui/core/Avatar";
+
 
 
 const styles = (theme) => ({
@@ -28,6 +30,7 @@ const styles = (theme) => ({
         justifyContent: 'space-around',
         backgroundColor: "#cede6e",
         height: "300px",
+        marginTop: "30px"
     },
     list: {
         width: '850px',
@@ -43,7 +46,9 @@ const styles = (theme) => ({
         display: 'flex',
         justifyContent: 'space-around',
         height: "auto",
-    }
+    },
+
+
 });
 
 class BlogsList extends React.Component {
@@ -88,21 +93,20 @@ class BlogsList extends React.Component {
         const {classes} = this.props;
         return (
             <Page>
-                <div className={classes.root}>
                     <div className={classes.list}>
-                        <Typography variant={"h6"} style={{marginTop: "50px"}}>
-                            <p><b>
-                                <center> TOP PICKS FOR TODAY </center>
-                            </b></p>
-                        </Typography>
                         <Card className={classes.root}>
                             <CardContent>
-                                <Typography  color="textSecondary" gutterBottom>
-                                    How to manage gardening Tools?
-                                </Typography>
-                                <Typography variant="h5" component="h2">
-                                    A shovel is the number one tool in most gardeners' sheds, and it's probably the most versatile. An angled blade makes the shovel ideal for moving piles of soil, sand, and other materials. A good shovel also is typically the gardening tool of choice for digging plants out of the ground. And you can use it to wave dramatically about as you chase deer, rabbits, or other unwanted critters away.
-                                </Typography>
+                                <div className={classes.image}>
+                                    <img src="https://i.ibb.co/SdCDvMy/mainanlage-08-jpg-center-0-584229390681004-0.jpg" width="900px" height="300px"/>
+                                <div className={classes.imageText}>
+                                    <Typography  color="textSecondary" gutterBottom>
+                                        How to manage gardening Tools?
+                                    </Typography>
+                                    <p> Jul 15, 2020</p>
+                                </div>
+                                    <br/>
+                                    <a href="www.google.com"> </a>
+                                </div>
                             </CardContent>
                         </Card>
                         <br/>
@@ -156,7 +160,6 @@ class BlogsList extends React.Component {
                                 </ListItem>
                             )}
                         </List>
-                    </div>
                 </div>
             </Page>
         )
