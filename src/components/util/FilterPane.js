@@ -8,10 +8,8 @@ import Checkbox from "@material-ui/core/Checkbox"
 import Slider from "@material-ui/core/Slider"
 import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
+import Grid from "@material-ui/core/Grid";
 
-function valueprice(value) {
-    return `${value}€`
-}
 
 const useStyles = makeStyles((theme) => ({
     Box: {
@@ -29,13 +27,20 @@ const useStyles = makeStyles((theme) => ({
     },
     group: {
         paddingLeft: 20,
+    },
+    slider: {
+        width: 200,
     }
 }))
 
+
+function valuetext(value) {
+    return `${value}`;
+}
+
 export default function CheckboxesGroup(props) {
     const classes = useStyles()
-    const [value, setValue] = React.useState([5, 250])
-
+    const [value, setValue] = React.useState([0, 100])
     const [sale, setSale] = React.useState(true)
     const [rental, setRental] = React.useState(true)
     const [seeds, setSeeds] = React.useState(true)
@@ -50,10 +55,10 @@ export default function CheckboxesGroup(props) {
             'Mechanical Equipment': mechanical,
             'Electronic Equipment': electronic,
             'Others': others,
-        })
-    }, [sale, rental, seeds, fertiliser, mechanical, electronic, others])
+        }, value)
+    }, [sale, rental, seeds, fertiliser, mechanical, electronic, others, value])
 
-    const handleRangeChange = (event, newValue) => {
+    const handleValueChange = (event, newValue) => {
         setValue(newValue)
     }
 
@@ -114,17 +119,16 @@ export default function CheckboxesGroup(props) {
                             label="Rental"
                         />
                     </FormGroup>
-                    <div>
-                        <Typography id="range-slider" gutterBottom className={classes.label}>
-                            Price Range
+                    <div className={classes.slider}>
+                        <Typography id="range-slider" gutterBottom>
+                            price range
                         </Typography>
                         <Slider
-                            value={value}
-                            color="default"
-                            onChange={handleRangeChange}
+                            value ={value}
+                            onChange={handleValueChange}
                             valueLabelDisplay="auto"
                             aria-labelledby="range-slider"
-                            getAriaValueText={valueprice}
+                            getAriaValueText={valuetext}
                         />
                     </div>
                     <FormLabel component="legend" className={classes.label}>Category</FormLabel>

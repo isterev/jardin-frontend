@@ -58,10 +58,9 @@ class MarketOfferGridList extends React.Component {
         this.props.history.push('/showOffer/' + id)
     }
 
-    handleFilterChange(values) {
-        console.log(values)
+    handleFilterChange(values, priceValue) {
         const offers = this.props.data
-        let result = offers.filter(offer => values[offer.type] && values[offer.category])
+        let result = offers.filter(offer => values[offer.type] && values[offer.category] && offer.pricePerUnit >= priceValue[0] && offer.pricePerUnit <= priceValue[1])
         if (!this.state.sortAsc) {
             result = result.sort(this.compare(a, b))
         }
@@ -112,11 +111,6 @@ class MarketOfferGridList extends React.Component {
                                         <Typography variant="inherit">
                                             {marketOffer.type + ": " + marketOffer.pricePerUnit + " EUR " + marketOffer.denomination}
                                         </Typography>
-                                        {/*<Typography variant="inherit">
-                                            <Box fontStyle="italic">
-                                                by: {marketOffer.creatorFirstName + " " + marketOffer.creatorLastName}
-                                            </Box>
-                                        </Typography>*/}
                                     </div>
                                 }
                                 onClick={this.handleDisplay.bind(this, marketOffer._id)}

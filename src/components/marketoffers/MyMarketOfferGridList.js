@@ -17,6 +17,8 @@ import Fab from "@material-ui/core/Fab"
 import Tooltip from "@material-ui/core/Tooltip"
 import AlertDialog from "../util/AlertDialog"
 import Typography from "@material-ui/core/Typography"
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 
 const styles = (theme) => ({
     root: {
@@ -52,7 +54,8 @@ class MyMarketOfferGridList extends React.Component {
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
             id: undefined,
-            data: this.props.data
+            data: this.props.data,
+            sortAsc: true,
         }
 
         this.handleEdit = this.handleEdit.bind(this)
@@ -91,20 +94,15 @@ class MyMarketOfferGridList extends React.Component {
         }))
     }
 
-    handleFilterChange(values) {
-        console.log(this.state.data)
-        console.log(values)
-        if (this.state !== undefined) {
-            const offers = this.props.data
-            let result = offers.filter(offer => values[offer.type] && values[offer.category])
-            console.log(result)
-            if (!this.state.sortAsc) {
-                result = result.sort(this.compare(a, b))
-            }
-            this.setState({
-                data: result
-            })
+    handleFilterChange(values, priceValue) {
+        const offers = this.props.data
+        let result = offers.filter(offer => values[offer.type] && values[offer.category] && offer.pricePerUnit >= priceValue[0] && offer.pricePerUnit <= priceValue[1])
+        if (!this.state.sortAsc) {
+            result = result.sort(this.compare(a, b))
         }
+        this.setState({
+            data: result
+        })
     }
 
     compare(a, b) {
@@ -120,7 +118,7 @@ class MyMarketOfferGridList extends React.Component {
     render() {
         const {classes} = this.props
         return (
-            <Page handleFilterChange={this.handleFilterChange}>
+            <Page handleFilterChange={this.handleFilterChange} handleRangeChange = {this.handleRangeChange}>
                 <div>
                     <Link to="/addOffer">
                         <Tooltip title="Add" aria-label="add" className={classes.add}>
@@ -134,7 +132,13 @@ class MyMarketOfferGridList extends React.Component {
 
                 <div className={classes.root}>
                     <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
-
+                        <div className={classes.sortButton}>
+                            <button onClick={this.handleSort}>Sort by: Date
+                                {this.state.sortAsc ?
+                                    <ArrowDropDownIcon fontSize="medium"/> :
+                                    <ArrowDropUpIcon fontSize="medium"/>}
+                            </button>
+                        </div>
                         {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
                                  alt={marketOffer.title}/>
@@ -145,11 +149,6 @@ class MyMarketOfferGridList extends React.Component {
                                         <Typography variant="inherit">
                                             {marketOffer.type + ": " + marketOffer.pricePerUnit + " EUR " + marketOffer.denomination}
                                         </Typography>
-                                        {/*<Typography variant="inherit">
-                                            <Box fontStyle="italic">
-                                                by: {marketOffer.creatorFirstName + " " + marketOffer.creatorLastName}
-                                            </Box>
-                                        </Typography>*/}
                                     </div>
                                 }
                                 onClick={this.handleEdit.bind(this, marketOffer._id)}
