@@ -38,7 +38,6 @@ class Page extends React.Component {
             title: document.title
         })
     }
-
     render() {
         let pane
         if (this.state.selectedTab === "/offers" || this.state.selectedTab === "/myOffers") {
