@@ -98,9 +98,9 @@ class MyMarketOfferGridList extends React.Component {
             const offers = this.props.data
             let result = offers.filter(offer => values[offer.type] && values[offer.category])
             console.log(result)
-            // if (!this.state.sortAsc) {
-            //     result = result.sort(this.compare(a, b))
-            // }
+            if (!this.state.sortAsc) {
+                result = result.sort(this.compare(a, b))
+            }
             this.setState({
                 data: result
             })
