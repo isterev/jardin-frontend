@@ -2,7 +2,6 @@ import React from 'react'
 import {withRouter} from "react-router-dom"
 import {fade} from '@material-ui/core/styles'
 import {withStyles} from '@material-ui/styles'
-
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -11,28 +10,17 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-
 import UserService from "../../services/UserService"
 import NavigationTabs from "./NavigationTabs"
-
 import jardinLogo from '../../images/jardin_logo.png'
 
 const styles = (theme) => ({
-    logo: {
+    root: {
+        width:'100%'
+    },
+        logo: {
         height: '100%',
         width: 120
-    },
-    grow: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-            display: 'block',
-        },
     },
     search: {
         position: 'relative',
@@ -64,6 +52,7 @@ const styles = (theme) => ({
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -73,24 +62,28 @@ const styles = (theme) => ({
     },
     appBar: {
         backgroundColor: '#2b6343'
+    },
+    icon:{
+        '&:hover': {
+            border:'1.5px solid black'
+        }
+    },
+    menu:{
+        top:'50px'
     }
+
 })
 
 class Header extends React.Component {
-
     constructor(props) {
         super(props)
-
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
-            anchorEl: null
+            anchorEl: null,
         }
-
         this.menuId = 'primary-search-account-menu'
-
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this)
         this.handleMenuClose = this.handleMenuClose.bind(this)
-
         this.handleMyBlogs = this.handleMyBlogs.bind(this)
         this.handleMyOffers = this.handleMyOffers.bind(this)
         this.handleMyConsultations = this.handleMyConsultations.bind(this)
@@ -103,8 +96,8 @@ class Header extends React.Component {
     handleProfileMenuOpen(event) {
         this.setState(state => ({
             anchorEl: event.currentTarget
-        }))
 
+        }))
     }
 
     handleMenuClose() {
@@ -148,7 +141,6 @@ class Header extends React.Component {
     }
 
     handleLogin() {
-
         this.setState(state => ({
             anchorEl: null
         }))
@@ -170,15 +162,11 @@ class Header extends React.Component {
             window.location.reload()
         }
     }
-
-
-
     render() {
-
         const {classes} = this.props
 
         return (
-            <div className={classes.grow}>
+            <div className={classes.root}>
                 <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
                         <img src={jardinLogo} alt="jardinLogo" className={classes.logo}/>
@@ -195,9 +183,7 @@ class Header extends React.Component {
                                 inputProps={{'aria-label': 'search'}}
                             />
                         </div>
-                        <div className={classes.grow}/>
                         <div>
-
                             <IconButton
                                 edge="end"
                                 aria-label="account of current user"
@@ -205,8 +191,9 @@ class Header extends React.Component {
                                 aria-haspopup="true"
                                 onClick={this.handleProfileMenuOpen}
                                 color="inherit"
+                                className={classes.icon}
                             >
-                                <AccountCircle/>
+                                <AccountCircle fontSize="large"/>
                             </IconButton>
 
                             <Menu
@@ -220,7 +207,7 @@ class Header extends React.Component {
                                 onClose={this.handleMenuClose}
                             >
                                 {UserService.isAuthenticated() ?
-                                    <div>
+                                    <div className={classes.menu}>
                                         <span style={{'position': 'relative', 'left': '7%' }}><p><b> Topics </b></p></span>
                                         <hr/>
                                         <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>
@@ -234,13 +221,13 @@ class Header extends React.Component {
                                     </div>
 
                                     : <MenuItem onClick={this.handleLogin}>Login</MenuItem>
+
                                 }
                             </Menu>
                         </div>
                     </Toolbar>
                 </AppBar>
                 <NavigationTabs selectedTab={this.props.selectedTab}  handleTabChange={(value) => this.props.handleTabChange(value)} />
-
             </div>
         )
     }

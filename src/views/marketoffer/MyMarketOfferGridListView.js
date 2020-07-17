@@ -1,14 +1,10 @@
 "use strict"
 
 import React from 'react'
-
 import MyMarketOfferGridList from '../../components/marketoffers/MyMarketOfferGridList'
-
 import MarketOfferService from '../../services/MarketOfferService'
 
-
 export class MyMarketOfferGridListView extends React.Component {
-
     constructor(props) {
         super(props)
 
@@ -57,6 +53,7 @@ export class MyMarketOfferGridListView extends React.Component {
         if (this.state.loading) {
             return (<h2>Loading...</h2>)
         }
+        console.log(this.state.data)
 
         return (
             <MyMarketOfferGridList data={this.state.data} onDelete={(id) => this.deleteMarketOffer(id)}/>

@@ -36,19 +36,13 @@ const styles = (theme) => ({
 })
 
 export class Footer extends React.Component {
-
     constructor(props) {
         super(props)
     }
-
     render() {
-
         const {classes} = this.props
-
         return (
-
             <div className={classes.root}>
-
                 <footer className={classes.footer}>
                     <Container maxWidth="sm">
                         <Typography variant="body1" color="primary">
@@ -63,7 +57,6 @@ export class Footer extends React.Component {
                         </Typography>
                     </Container>
                 </footer>
-
             </div>
         )
     }
