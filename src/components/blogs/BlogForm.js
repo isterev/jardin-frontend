@@ -49,7 +49,7 @@ class BlogForm extends React.Component {
         } else {
             this.state = {
                 articleTitle: '',
-                articleBody: '{"blocks":[],"entityMap":{}}',
+                articleBody: '{"blocks":[],"entityMap":{}}'
             }
         }
 
@@ -243,7 +243,7 @@ class BlogForm extends React.Component {
                                         />
                                         {
                                             this.state.articleBodyError &&
-                                            <FormHelperText error={true}>
+                                            <FormHelperText error={true} style={{position: 'relative', top: '30px'}}>
                                                 {'Content is required'}
                                             </FormHelperText>
                                         }

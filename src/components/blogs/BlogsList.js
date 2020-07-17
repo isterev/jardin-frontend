@@ -3,7 +3,6 @@
 import React from 'react';
 import {withStyles} from "@material-ui/styles";
 import {withRouter} from "react-router-dom";
-
 import Page from '../Page'
 import UserService from "../../services/UserService";
 import Button from "@material-ui/core/Button";
@@ -20,24 +19,31 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import AlertDialog from "../util/AlertDialog";
+import CardContent from "@material-ui/core/CardContent";
 
 
 const styles = (theme) => ({
     root: {
         display: 'flex',
-        flexWrap: 'wrap',
         justifyContent: 'space-around',
-        overflow: 'hidden',
-        //backgroundColor: theme.palette.background.paper,
+        backgroundColor: "#cede6e",
+        height: "300px",
     },
     list: {
         width: '850px',
-        height: 'auto',
-        top: '5%'
+        height: '1500px'
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
+    box1: {
+        width: "49%",
+    },
+    boxes: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        height: "auto",
+    }
 });
 
 class BlogsList extends React.Component {
@@ -79,30 +85,62 @@ class BlogsList extends React.Component {
     }
 
     render() {
-
         const {classes} = this.props;
         return (
             <Page>
                 <div className={classes.root}>
-
                     <div className={classes.list}>
-                        <Typography variant={"h6"}>
+                        <Typography variant={"h6"} style={{marginTop: "50px"}}>
                             <p><b>
-                                <center> -----TOP PICKS FOR TODAY -----</center>
+                                <center> TOP PICKS FOR TODAY </center>
                             </b></p>
                         </Typography>
-                        <List cols={4} spacing={8} cellHeight={180} className={classes.list}>
+                        <Card className={classes.root}>
+                            <CardContent>
+                                <Typography  color="textSecondary" gutterBottom>
+                                    How to manage gardening Tools?
+                                </Typography>
+                                <Typography variant="h5" component="h2">
+                                    A shovel is the number one tool in most gardeners' sheds, and it's probably the most versatile. An angled blade makes the shovel ideal for moving piles of soil, sand, and other materials. A good shovel also is typically the gardening tool of choice for digging plants out of the ground. And you can use it to wave dramatically about as you chase deer, rabbits, or other unwanted critters away.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                        <br/>
+                        <div className={classes.boxes}>
+                            <Card className={classes.box1}>
+                                <CardContent>
+                                    <Typography  color="textSecondary" gutterBottom>
+                                        How to manage gardening Tools?
+                                    </Typography>
+                                    <p> Jul 15, 2020</p>
+                                    <Typography variant="h5" component="h2">
+                                        A shovel is the number one tool in most gardeners' sheds, and it's probably the most versatile. An angled blade makes the shovel ideal for moving piles of soil, sand, and other materials.
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.box1}>
+                                <CardContent>
+                                    <Typography  color="textSecondary" gutterBottom>
+                                        How to manage gardening Tools?
+                                    </Typography>
+                                    <p> Jul 18, 2020</p>
+                                    <Typography variant="h5" component="h2">
+                                        A shovel is the number one tool in most gardeners' sheds, and it's probably the most versatile. An angled blade makes the shovel ideal for moving piles of soil, sand, and other materials.
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </div>
+                        <br/>
+                        <br/>
+                        <p style={{fontSize: "20px"}}> From the archives </p>
+                        <hr size={3}></hr>
+                        <List className={classes.list}>
                             {this.props.data.map((blog, i) => <ListItem alignItems="flex-start">
                                     <ListItemText
                                         primary={blog.title}
                                         secondary={
                                             <React.Fragment>
                                                 <Card style={{backgroundColor: "#cede6e", boxShadow: "20px"}}>
-                                                    <span style={{paddingLeft: '400px'}}>
-                           <span>  <Button color='primary'  onClick={this.handleDisplay.bind(this, blog._id)}> Edit <EditIcon/>  </Button> </span>
-                            <span>  <Button color='primary'  onClick={this.handleDelete.bind(this, blog._id)}> Delete <DeleteIcon/> </Button> </span>
-                        </span>
-
                                                     <br></br>
                                                     <p>
                                                         <b>{blog.authorFirstName + " " + blog.authorLastName + ", " + blog.createdAt}</b>
@@ -118,20 +156,6 @@ class BlogsList extends React.Component {
                                 </ListItem>
                             )}
                         </List>
-                        <AlertDialog open={this.state.showDialog} dialog={{
-                            title: 'Confirm',
-                            message: "Do you really want to delete this blog?",
-                            buttons: [
-                                {
-                                    label: 'No',
-                                    cancelAction: this.cancelAction
-                                },
-                                {
-                                    label: 'Yes',
-                                    confirmAction: this.confirmAction
-                                }
-                            ]
-                        }}/>
                     </div>
                 </div>
             </Page>
