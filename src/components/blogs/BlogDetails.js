@@ -24,7 +24,7 @@ const styles = (theme) => ({
         left: '20%',
         right: '20%',
         backgroundColor: '#cede6e',
-        marginTop: "40px"
+        marginTop: "60px"
     }
 
 })
@@ -57,8 +57,7 @@ class BlogDetails extends React.Component {
                             color="secondary"
                             className={classes.button}
                             onClick={(() => history.go(-1))}
-                            style={{marginLeft: "760px", marginTop: "45px"}}
-
+                            style={{marginLeft: "25px", marginTop: "-60px"}}
                         >
                             Go Back <KeyboardBackspaceIcon/>
                         </Button>

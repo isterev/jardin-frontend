@@ -33,7 +33,6 @@ const useStyles = makeStyles(() => ({
         marginBottom: "5px"
     },
     textElement: {
-        // marginBottom: "05px",
         marginTop: "-5px"
     }
 }))
@@ -42,7 +41,6 @@ export default function({title, body, createdAt, lastComponent}) {
     const classes = useStyles()
     return (
         <div>
-
             <Link className={classes.root} to={"my-requests/"}>
                 <div className={classes.textDiv}>
                     <h3 className={classes.heading}>{title}</h3>

@@ -12,8 +12,8 @@ import MUIRichTextEditor from "mui-rte"
 import Button from "@material-ui/core/Button"
 import FormHelperText from "@material-ui/core/FormHelperText"
 import {convertToRaw} from "draft-js"
-import PublishIcon from '@material-ui/icons/Publish';
-import CancelIcon from '@material-ui/icons/Cancel';
+import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = (theme) => ({
     root: {
@@ -143,7 +143,7 @@ class BlogForm extends React.Component {
                                     style={{marginLeft: "620px", marginTop: "10px"}}
 
                                 >
-                                    Submit <PublishIcon/>
+                                    Submit <SubdirectoryArrowRightIcon/>
                                 </Button>
                             </React.Fragment>
                             <React.Fragment>
@@ -155,7 +155,7 @@ class BlogForm extends React.Component {
                                     style={{marginLeft: "735px", marginTop: "-62px"}}
 
                                 >
-                                    Cancel <CancelIcon/>
+                                    Cancel <CloseIcon/>
                                 </Button>
                             </React.Fragment>
                             <div className="container">

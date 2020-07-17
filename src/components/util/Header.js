@@ -13,6 +13,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import UserService from "../../services/UserService"
 import NavigationTabs from "./NavigationTabs"
 import jardinLogo from '../../images/jardin_logo.png'
+import Button from "@material-ui/core/Button";
 
 const styles = (theme) => ({
     root: {
@@ -221,7 +222,8 @@ class Header extends React.Component {
                                 className={classes.menu}
                             >
                                 {UserService.isAuthenticated() ?
-                                    <div>
+                                    <div className={classes.menu}>
+                                        <MenuItem> <b> Hello, {UserService.getCurrentUser().firstName} </b> </MenuItem>
                                         <span style={{'position': 'relative', 'left': '7%' }}><p><b> Topics </b></p></span>
                                         <hr/>
                                         <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>
