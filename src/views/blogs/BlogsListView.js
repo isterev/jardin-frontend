@@ -1,20 +1,16 @@
 "use strict";
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import BlogsList from '../../components/blogs/BlogsList';
 import BlogService from '../../services/BlogService';
+import UserService from "../../services/UserService";
 
 
 export class BlogsListView extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            loading: false,
-            data: []
-        };
     }
 
     componentWillMount(){
@@ -23,13 +19,29 @@ export class BlogsListView extends React.Component {
         });
 
         BlogService.getBlogs().then((data) => {
-            this.setState({
-                data: [...data],
-                loading: false
-            });
+            data.map((blog) => {
+                let dataWithUserInfo = []
+                UserService.getUserById(blog['authorId']).then((val) => {
+                    blog['authorFirstName'] = val['firstName']
+                    blog['authorLastName'] = val['lastName']
+                    dataWithUserInfo = [...dataWithUserInfo, blog]
+                    this.setState({
+                        data: dataWithUserInfo,
+                        loading: false
+                    });
+                    console.log(data)
+                })
+            })
+
         }).catch((e) => {
             console.error(e);
         });
+
+        let findBlogs = async () => {
+            return BlogService.getBlogs()
+        }
+
+
     }
 
     render() {
@@ -37,9 +49,10 @@ export class BlogsListView extends React.Component {
        if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
-
+        console.log(this.state.data)
         return (
             <BlogsList data={this.state.data}/>
         );
     }
 }
+

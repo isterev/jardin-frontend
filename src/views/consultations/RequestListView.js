@@ -51,7 +51,7 @@ export default function() {
         () => {
             async function getAllConsultationRequests() {
                 let currentUser = await UserService.getCurrentUser()
-                return  ExpertConsultationService.getConsultationRequestsFor(currentUser['id'])
+                return ExpertConsultationService.getConsultationRequestsFor(currentUser['id'])
             }
             getAllConsultationRequests().then((allData) => {
                 setOriginalData(allData)

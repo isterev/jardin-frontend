@@ -66,7 +66,7 @@ class BlogsList extends React.Component {
 
         let limit
         if(lengthLimit){
-                limit= lengthLimit
+            limit= lengthLimit
         }
         else{
             limit = 700
@@ -107,10 +107,10 @@ class BlogsList extends React.Component {
                                     {this.state.topPicks[0].articleTitle}
                                 </Typography>
                                 <Typography variant="h6">
-                                {this.state.topPicks[0].authorFirstName + " " + this.state.topPicks[0].authorLastName + " "}
+                                    {this.state.topPicks[0].authorFirstName + " " + this.state.topPicks[0].authorLastName + " "}
                                     {format(new Date(this.state.topPicks[0].createdAt), "MMMM do, yyyy H:mm aa")}
                                 </Typography>
-                                    <Typography variant="body2" >
+                                <Typography variant="body2" >
                                     {this.wordLimitCheck(this.state.topPicks[0], 200)}
                                 </Typography>
                             </CardContent>
@@ -135,38 +135,38 @@ class BlogsList extends React.Component {
                     </div>
                     <br/>
                     <div>
-                    <p style={{fontSize: "20px"}}><b>
-                        <center> From the archives</center>
-                    </b></p>
-                    <hr size={3}></hr>
-                    <List className={classes.list}>
-                        {this.state.archive.map((blog, i) => <ListItem alignItems="flex-start">
-                                <ListItemText
-                                    onClick={this.handleDisplay.bind(this, blog._id)}
-                                    primary={
-                                        <Typography variant="h6">
-                                            {blog.articleTitle}
-                                        </Typography>
-                                    }
-                                    secondary={
-                                        <React.Fragment>
+                        <p style={{fontSize: "20px"}}><b>
+                            <center> From the archives</center>
+                        </b></p>
+                        <hr size={3}></hr>
+                        <List className={classes.list}>
+                            {this.state.archive.map((blog, i) => <ListItem alignItems="flex-start">
+                                    <ListItemText
+                                        onClick={this.handleDisplay.bind(this, blog._id)}
+                                        primary={
+                                            <Typography variant="h6">
+                                                {blog.articleTitle}
+                                            </Typography>
+                                        }
+                                        secondary={
+                                            <React.Fragment>
                                                     <span style={{paddingLeft: '400px'}}>
                                   </span>
-                                            <Card style={{height: '150px', backgroundColor: "#cede6e"}}>
-                                                <b>{blog.authorFirstName + " " + blog.authorLastName + " - " + format(new Date(blog.createdAt), "MMMM do, yyyy H:mm aa")}</b>
-                                                <br></br>
-                                                {
-                                                    this.wordLimitCheck(blog)
-                                                }
-                                            </Card>
-                                            <br/>
-                                        </React.Fragment>
-                                    }
-                                />
+                                                <Card style={{height: '150px', backgroundColor: "#cede6e"}}>
+                                                    <b>{blog.authorFirstName + " " + blog.authorLastName + " - " + format(new Date(blog.createdAt), "MMMM do, yyyy H:mm aa")}</b>
+                                                    <br></br>
+                                                    {
+                                                        this.wordLimitCheck(blog)
+                                                    }
+                                                </Card>
+                                                <br/>
+                                            </React.Fragment>
+                                        }
+                                    />
 
-                            </ListItem>
-                        )}
-                    </List>
+                                </ListItem>
+                            )}
+                        </List>
                     </div>
                 </div>
             </Page>
