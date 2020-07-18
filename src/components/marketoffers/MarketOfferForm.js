@@ -16,6 +16,8 @@ import {withStyles} from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import ImageUploadCard from "../util/ImageUpload"
 import Box from "@material-ui/core/Box"
+import PublishIcon from "@material-ui/icons/Publish";
+import CancelIcon from '@material-ui/icons/Cancel';
 
 
 const styles = (theme) => ({
@@ -309,7 +311,7 @@ class MarketOfferForm extends React.Component {
                                                 className={classes.button}
                                                 onClick={(() => this.form.submit())}
                                             >
-                                                Submit
+                                                Submit <PublishIcon/>
                                             </Button>
 
                                             <Button
@@ -318,7 +320,7 @@ class MarketOfferForm extends React.Component {
                                                 className={classes.button}
                                                 onClick={(() => history.go(-1))}
                                             >
-                                                Cancel
+                                                Cancel <CancelIcon/>
                                             </Button>
 
                                         </Grid>
