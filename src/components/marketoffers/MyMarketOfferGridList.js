@@ -19,6 +19,7 @@ import AlertDialog from "../util/AlertDialog"
 import Typography from "@material-ui/core/Typography"
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import Button from "@material-ui/core/Button";
 
 const styles = (theme) => ({
     root: {
@@ -41,7 +42,12 @@ const styles = (theme) => ({
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
-    add: {
+    addButton: {
+        position: 'absolute',
+        top: '18%',
+        right: '45%',
+    },
+    sortButton:{
         position: 'absolute',
         top: '18%',
         right: '20%',
@@ -55,7 +61,7 @@ class MyMarketOfferGridList extends React.Component {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
             id: undefined,
             data: this.props.data,
-            sortAsc: true,
+            sortAsc: false,
         }
 
         this.handleEdit = this.handleEdit.bind(this)
@@ -63,6 +69,8 @@ class MyMarketOfferGridList extends React.Component {
         this.cancelAction = this.cancelAction.bind(this)
         this.confirmAction = this.confirmAction.bind(this)
         this.handleFilterChange = this.handleFilterChange.bind(this)
+        this.handleSort = this.handleSort.bind(this)
+        this.compare = this.compare.bind(this)
     }
 
     handleEdit(id) {
@@ -97,8 +105,8 @@ class MyMarketOfferGridList extends React.Component {
     handleFilterChange(values, priceValue) {
         const offers = this.props.data
         let result = offers.filter(offer => values[offer.type] && values[offer.category] && offer.pricePerUnit >= priceValue[0] && offer.pricePerUnit <= priceValue[1])
-        if (!this.state.sortAsc) {
-            result = result.sort(this.compare(a, b))
+        if (this.state.sortAsc) {
+            result = result.sort(this.compare)
         }
         this.setState({
             data: result
@@ -115,13 +123,26 @@ class MyMarketOfferGridList extends React.Component {
         return 0
     }
 
+    handleSort() {
+        const offers = this.state.data
+        const result = offers.sort(this.compare)
+        this.setState({
+            sortAsc: !this.state.sortAsc,
+            data: result,
+        })
+    }
+
     render() {
         const {classes} = this.props
         return (
             <Page handleFilterChange={this.handleFilterChange} handleRangeChange = {this.handleRangeChange}>
                 <div>
+                    <div>
+                        {this.state.sortAsc ? <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by: Date (ascending)  < ArrowDropUpIcon fontSize="medium"/> </Button>
+                            : <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by: Date (descending) < ArrowDropDownIcon fontSize="medium"/> </Button>}
+                    </div>
                     <Link to="/addOffer">
-                        <Tooltip title="Add" aria-label="add" className={classes.add}>
+                        <Tooltip title="Add" aria-label="add" className={classes.addButton}>
                             <Fab color="secondary">
                                 <AddIcon/>
                             </Fab>
@@ -132,13 +153,6 @@ class MyMarketOfferGridList extends React.Component {
 
                 <div className={classes.root}>
                     <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
-                        <div className={classes.sortButton}>
-                            <button onClick={this.handleSort}>Sort by: Date
-                                {this.state.sortAsc ?
-                                    <ArrowDropDownIcon fontSize="medium"/> :
-                                    <ArrowDropUpIcon fontSize="medium"/>}
-                            </button>
-                        </div>
                         {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
                                  alt={marketOffer.title}/>
