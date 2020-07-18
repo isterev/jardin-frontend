@@ -108,7 +108,9 @@ class MarketOfferGridList extends React.Component {
                     <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
                         {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
-                                 alt={marketOffer.title} className={classes.image}/>
+                                 alt={marketOffer.title} className={classes.image}
+                                 onClick={this.handleDisplay.bind(this, marketOffer._id)}
+                            />
                             <GridListTileBar
                                 title={marketOffer.title}
                                 subtitle={
