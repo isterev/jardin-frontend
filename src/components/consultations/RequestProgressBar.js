@@ -20,18 +20,18 @@ const useStyles = makeStyles(({
         textAlign: 'center'
     },
     secondStep: {
-        marginTop: '82px',
+        marginTop: '78px',
     },
     secondStepWithoutCancellation: {
-        marginTop: '55px',
+        marginTop: '52px',
     },
     lastStep: {
-        marginTop: '52px',
+        marginTop: '48px',
         marginRight: '20px',
         textAlign: 'center'
     },
     thirdStep: {
-        marginTop: '38px',
+        marginTop: '34px',
         marginRight: '20px',
         textAlign: 'center'
     },
@@ -105,7 +105,8 @@ export default function(props) {
                     <Step>
                         {({ accomplished, index }) => (
                             <div>
-                                <div className={[`indexedStep ${accomplished ? "accomplished" : ""}`, classes.step, isCancellationDisallowed(props.createdOn, props.status)?classes.secondStepWithoutCancellation:classes.secondStep].join(' ')}>
+                                <div className={[`indexedStep ${accomplished ? "accomplished" : ""}`, classes.step,
+                                    isCancellationDisallowed(props.createdOn, props.status) ? classes.secondStepWithoutCancellation : classes.secondStep].join(' ')}>
                                     {props.status === 'CANCELLED' ?
                                         <div>
                                             <CancelIcon className={classes.icon} color='secondary'/>

@@ -1,73 +1,42 @@
 import React from "react"
-import {Box} from "@material-ui/core"
-import ListItemText from "@material-ui/core/ListItemText"
-import ListItem from "@material-ui/core/ListItem"
-import List from "@material-ui/core/List"
-import Link from "@material-ui/core/Link"
-import Typography from "@material-ui/core/Typography"
-import {makeStyles} from "@material-ui/core/styles"
 import IconButton from "@material-ui/core/IconButton"
-import RssFeedIcon from '@material-ui/icons/RssFeed'
+import RssFeedSharpIcon from '@material-ui/icons/RssFeedSharp';
+import {makeStyles} from "@material-ui/styles";
+import SideLink from "./SideLink";
 
-const useStyles = makeStyles((theme) => ({
-    Box:{
-        display: 'content',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRight:'1',
-        overflow:'hidden',
-        paddingTop:'75px',
+let styles = makeStyles(({
+    root: {
+        height: '500px',
+        paddingTop: '75px',
+        paddingLeft:'10px',
+        paddingRight:'10px'
+    },
+    heading: {
+        display: "flex",
+        marginLeft: '10%',
+        marginRight: 'auto',
+        fontSize: '18px'
     }
 }))
-
-export default function SideLink() {
-        const classes = useStyles()
-        return (
-            <Box className={classes.Box} >
-                <List >
-                    <div>
-                    <Typography variant="h6">
-                        What's trending?
-                        <IconButton color="inherit" >
-                            <RssFeedIcon fontSize="medium"/>
-                        </IconButton>
-                    </Typography>
-                    </div>
-                    <ListItem>
-                        <ListItemText>
-                            <Typography>
-                                Blogs and Forums
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText>
-                            <Typography>
-                                <Link>
-                                    Better way to grow plants
-                                </Link>
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText>
-                            <Typography>
-                                <Link>
-                                    Herbs Gardening Tips
-                                </Link>
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText>
-                            <Typography >
-                                <Link>
-                                   Indoor Plants
-                                </Link>
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                </List>
-            </Box>
-        )
+export default function() {
+    const classes = styles()
+    return (
+        <div className={classes.root}>
+            <div className={classes.heading}>
+                <div>
+                    <h1>
+                        What is trending
+                    </h1>
+                </div>
+                <div>
+                    <IconButton color="inherit">
+                        <RssFeedSharpIcon fontSize="medium"/>
+                    </IconButton>
+                </div>
+            </div>
+            <SideLink href="https://www.gardendesign.com/trends/2020.html" heading="Garden Design 2020" summary="We share 9 noteworthy trends shaping the gardening world in 2020."/>
+            <SideLink href="https://kidsgardening.org/" heading="Kids Gardening" summary="We create opportunities for kids to learn and grow through gardening, engaging their natural curiosity and wonder."/>
+            <SideLink href="https://www.planetnatural.com/growing-indoors/" heading="Indoor and Herbs Collection" summary="City dwellers, or those without a good gardening spot in the yard, may find growing indoors especially useful."/>
+        </div>
+    )
 }

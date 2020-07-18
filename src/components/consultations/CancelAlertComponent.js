@@ -23,7 +23,7 @@ const useStyle = makeStyles(() => ({
         textTransform: 'none',
         fontSize: '13px',
         height: '30%',
-        width: '60%'
+        width: '70%'
     },
     dialogButton: {
         opacity: '90%',
