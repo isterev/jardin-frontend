@@ -62,6 +62,12 @@ class ImageUploadCard extends React.Component {
     handleUpload(event) {
 
         const file = event.target.files[0]
+
+        let size = 10485760
+        if (file.size > size) {
+            this.props.form.setFieldError(this.props.field.name, "File size is too large!");
+        }
+
         const reader = new FileReader()
 
         reader.onloadend = function (e) {
