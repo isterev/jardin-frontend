@@ -11,6 +11,13 @@ import {UserSignUpView} from "./views/UserSignUpView"
 
 import UserService from "./services/UserService"
 
+import RequestView from "./views/consultations/RequestView";
+import RequestListView from "./views/consultations/RequestListView";
+import ConsultationView from "./views/consultations/ConsultationDetailsView";
+import ConsultationListView from "./views/consultations/ConsultationListView";
+import RequestDetailsView from "./views/consultations/RequestDetailsView";
+import MyBlogsListView from "./views/blogs/MyBlogsListView";
+
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
 import CssBaseline from "@material-ui/core/CssBaseline"
 
@@ -61,7 +68,14 @@ export default class App extends React.Component {
                     }, path: '/addOffer',
                 },
                 {component: UserLoginView, path: '/login'},
-                {component: UserSignUpView, path: '/register'}
+                {component: UserSignUpView, path: '/register'},
+                { component: RequestView , path: '/expert-consultation', exact: true},
+                { component: RequestView , path: '/expert-consultation/request'},
+                { component: RequestListView , path: '/expert-consultation/my-requests', exact: true},
+                { component: ConsultationListView , path: '/expert-consultation/my-consultations', exact: true},
+                { component: RequestDetailsView, path:'/expert-consultation/my-requests/:id'},
+                { component: ConsultationView , path: '/expert-consultation/my-consultations/:id'},
+                {component: MyBlogsListView, path:'/myBlogs'}
             ]
         }
     }

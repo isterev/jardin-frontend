@@ -49,7 +49,7 @@ class Page extends React.Component {
             <section>
                 <Header title={this.state.title} selectedTab={this.state.selectedTab}
                         handleTabChange={(value) => this.handleTabChange(value)}/>
-                <div padding-top='90px' height={'100%'}>
+                <div style={{paddingTop:'90px', height:'100%'}}>
                     <Grid container direction="column">
                         <Grid item container>
                             <Grid item xs={4} sm={2}>
