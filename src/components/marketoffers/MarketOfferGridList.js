@@ -37,7 +37,9 @@ const styles = (theme) => ({
         color: 'rgba(255, 255, 255, 0.54)',
     },
     sortButton: {
-
+        position: 'absolute',
+        top: '18%',
+        right: '20%',
     }
 })
 
@@ -95,11 +97,15 @@ class MarketOfferGridList extends React.Component {
         return (
             <Page handleFilterChange={this.handleFilterChange}>
                 <div className={classes.root}>
+                    <div>
+                        {this.state.sortAsc ?
+                            <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by:
+                                Date (ascending) < ArrowDropUpIcon fontSize="medium"/> </Button>
+                            :
+                            <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by:
+                                Date (descending) < ArrowDropDownIcon fontSize="medium"/> </Button>}
+                    </div>
                     <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
-                        <div>
-                            {this.state.sortAsc ? <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by: Date (ascending)  < ArrowDropUpIcon fontSize="medium"/> </Button>
-                                    : <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by: Date (descending) < ArrowDropDownIcon fontSize="medium"/> </Button>}
-                        </div>
                         {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
                                  alt={marketOffer.title} className={classes.image}/>

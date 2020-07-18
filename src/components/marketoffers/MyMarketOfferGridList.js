@@ -45,9 +45,9 @@ const styles = (theme) => ({
     addButton: {
         position: 'absolute',
         top: '18%',
-        right: '45%',
+        right: '40%',
     },
-    sortButton:{
+    sortButton: {
         position: 'absolute',
         top: '18%',
         right: '20%',
@@ -135,23 +135,24 @@ class MyMarketOfferGridList extends React.Component {
     render() {
         const {classes} = this.props
         return (
-            <Page handleFilterChange={this.handleFilterChange} handleRangeChange = {this.handleRangeChange}>
-                <div>
-                    <div>
-                        {this.state.sortAsc ? <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by: Date (ascending)  < ArrowDropUpIcon fontSize="medium"/> </Button>
-                            : <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by: Date (descending) < ArrowDropDownIcon fontSize="medium"/> </Button>}
-                    </div>
-                    <Link to="/addOffer">
-                        <Tooltip title="Add" aria-label="add" className={classes.addButton}>
-                            <Fab color="secondary">
-                                <AddIcon/>
-                            </Fab>
-                        </Tooltip>
-                    </Link>
-                    <br/>
-                </div>
-
+            <Page handleFilterChange={this.handleFilterChange} handleRangeChange={this.handleRangeChange}>
                 <div className={classes.root}>
+                    <div>
+                        {this.state.sortAsc ?
+                            <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by:
+                                Date (ascending) < ArrowDropUpIcon fontSize="medium"/> </Button>
+                            :
+                            <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by:
+                                Date (descending) < ArrowDropDownIcon fontSize="medium"/> </Button>}
+                        <Link to="/addOffer">
+                            <Tooltip title="Add" aria-label="add" className={classes.addButton}>
+                                <Fab color="secondary">
+                                    <AddIcon/>
+                                </Fab>
+                            </Tooltip>
+                        </Link>
+                        <br/>
+                    </div>
                     <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
                         {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
