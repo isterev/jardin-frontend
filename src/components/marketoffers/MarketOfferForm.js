@@ -16,6 +16,8 @@ import {withStyles} from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import ImageUploadCard from "../util/ImageUpload"
 import Box from "@material-ui/core/Box"
+import InputAdornment from "@material-ui/core/InputAdornment";
+import {Euro} from "@material-ui/icons";
 
 
 const styles = (theme) => ({
@@ -292,6 +294,13 @@ class MarketOfferForm extends React.Component {
                                                 name="pricePerUnit"
                                                 label="Price per unit"
                                                 className={classes.field}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            EUR
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
                                             />
 
                                             <br/>
