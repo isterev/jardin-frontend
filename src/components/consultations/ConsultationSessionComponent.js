@@ -6,7 +6,7 @@ import staticExpert from '../../images/consultations/expert-square-2.png';
 
 const useStyles = makeStyles(() => ({
     root: {
-        width: "1000px",
+        width: "100%",
         display: "flex",
         marginBottom: "30px",
         cursor: "pointer",
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
         }
     },
     textDiv: {
-        width: "600px",
+        width: "60%",
         height: "300px",
         paddingTop: '10px',
         paddingBottom: '10px',
@@ -34,8 +34,8 @@ const useStyles = makeStyles(() => ({
         width: "950px"
     },
     image: {
-        width: "280px",
-        height: "280px",
+        width: "30%",
+        // height: "280px",
         borderRadius: "60%",
         marginLeft: '10px',
         marginTop: '10px'

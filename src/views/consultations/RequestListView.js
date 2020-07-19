@@ -17,15 +17,14 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         justifyContent: 'center',
         '& > *': {
-            // marginLeft: theme.spacing(5),
             marginTop: theme.spacing(5),
             padding: theme.spacing(5),
             paddingBottom: theme.spacing(2)
         },
-        height: '100%'
+        width: '100%'
     },
     paper: {
-        width: '87%',
+        width: '85%',
         height: '100%',
         borderRadius: '10px',
         // backgroundColor: '#bfbfbf'

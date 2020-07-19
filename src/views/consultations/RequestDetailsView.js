@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(5),
             paddingBottom: theme.spacing(2)
         },
-        width: "1250px",
+        width: "100%",
     },
     paper: {
-        width: "1250px",
+        width: "100%",
         borderRadius: '10px',
         paddingBottom: '100px'
     },
@@ -31,11 +31,10 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-between"
     },
     image: {
-        width: "400px",
-        // height: "280px",
+        width: "100%",
     },
     sessionText: {
-        width: "550px"
+        width: "55%"
     },
 }))
 

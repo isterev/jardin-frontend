@@ -5,7 +5,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles( () => ({
     root: {
-        width: '570px',
+        width: '50%',
         marginBottom: '30px',
         '& label.Mui-focused': {
             color: '#b56244',
@@ -13,7 +13,6 @@ const useStyles = makeStyles( () => ({
         '& .MuiInput-underline:after': {
             borderBottomColor: '#b56244',
         },
-
     }
 }))
 export default function({name, label}) {
@@ -28,6 +27,7 @@ export default function({name, label}) {
             defaultValue=""
             name={name}
             autoComplete="off"
+            fullWidth="true"
         />
     )
 }

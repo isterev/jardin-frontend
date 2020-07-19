@@ -70,7 +70,7 @@ export function filterByYear(allData, year, isBlogs=false) {
 export function getEarliestTime(hours = 72) {
     // let dateTime = new Date(Date.parse("2020-10-19T10:00"))
     let dateTime = new Date(Date.now())
-    dateTime.setHours(dateTime.getHours())
+    dateTime.setHours(dateTime.getHours() + hours)
     let month = (dateTime.getMonth() + 1).toString()
     month = month.length === 2 ? month: "0" + month
     let date = (dateTime.getDate()).toString().length === 2 ? dateTime.getDate(): "0" + (dateTime.getDate());

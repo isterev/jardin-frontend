@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     root: {
-        width: "1000px",
+        width: "100%",
         display: "flex",
         marginBottom: "30px",
         cursor: "pointer",
@@ -20,11 +20,10 @@ const useStyles = makeStyles(() => ({
         color: "black"
     },
     image: {
-        width: "420px",
-        height: "240px",
+        width: "35%",
     },
     textDiv: {
-        width: "500px",
+        width: "50%",
         height: "220px",
         paddingTop:10,
         paddingBottom:10,

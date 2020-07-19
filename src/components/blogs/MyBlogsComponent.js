@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
         color: "black"
     },
     textDiv: {
-        width: "80%",
+        width: "90%",
         height: "220px",
         paddingTop:10,
         paddingBottom:10,
