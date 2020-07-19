@@ -20,6 +20,8 @@ import CssBaseline from "@material-ui/core/CssBaseline"
 import {BlogsListView} from "./views/blogs/BlogsListView";
 import {BlogFormView} from "./views/blogs/BlogFormView";
 import {BlogDetailsView} from "./views/blogs/BlogDetailsView";
+import {ForumView} from "./views/forum/ForumView";
+import {CustomerServiceView} from "./views/customerservice/CustomerServiceView";
 
 
 const theme = createMuiTheme({
@@ -92,13 +94,16 @@ export default class App extends React.Component {
                 },
                 {component: UserLoginView, path: '/login'},
                 {component: UserSignUpView, path: '/register'},
-                { component: RequestView , path: '/expert-consultation', exact: true},
-                { component: RequestView , path: '/expert-consultation/request'},
-                { component: RequestListView , path: '/expert-consultation/my-requests', exact: true},
-                { component: ConsultationListView , path: '/expert-consultation/my-consultations', exact: true},
-                { component: RequestDetailsView, path:'/expert-consultation/my-requests/:id'},
-                { component: ConsultationView , path: '/expert-consultation/my-consultations/:id'},
-                {component: MyBlogsListView, path:'/myBlogs'}
+                {component: RequestView, path: '/expert-consultation', exact: true},
+                {component: RequestView, path: '/expert-consultation/request'},
+                {component: RequestListView, path: '/expert-consultation/my-requests', exact: true},
+                {component: ConsultationListView, path: '/expert-consultation/my-consultations', exact: true},
+                {component: RequestDetailsView, path: '/expert-consultation/my-requests/:id'},
+                {component: ConsultationView, path: '/expert-consultation/my-consultations/:id'},
+                {component: MyBlogsListView, path: '/myBlogs'},
+
+                {component: ForumView, path: '/forum'},
+                {component: CustomerServiceView, path: '/service'}
             ]
         }
     }
