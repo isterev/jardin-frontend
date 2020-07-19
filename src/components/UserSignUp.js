@@ -52,7 +52,7 @@ class UserSignUp extends React.Component {
             password: yup.string()
                 .required('Password is required'),
             email: yup.string()
-                .required('Email is required'),
+                .required('Email is required').email('Input has to be in a valid e-mail format'),
             firstName: yup.string()
                 .required('First name is required'),
             lastName: yup.string()
