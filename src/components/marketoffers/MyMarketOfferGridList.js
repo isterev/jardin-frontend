@@ -210,7 +210,6 @@ class MyMarketOfferGridList extends React.Component {
                                         color="inherit"
                                         className={classes.icon}
                                     >
-                                        <DeleteIcon/>
                                     </IconButton>
                                 }
                             />

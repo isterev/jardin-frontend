@@ -23,7 +23,7 @@ const styles = (theme) => ({
         top: '20%',
         left: '20%',
         right: '20%',
-        backgroundColor: '#cede6e',
+        backgroundColor: 'white',
         marginTop: "60px"
     }
 
@@ -54,12 +54,12 @@ class BlogDetails extends React.Component {
                     <React.Fragment>
                         <Button
                             variant="contained"
-                            color="secondary"
+                            color="primary"
                             className={classes.button}
                             onClick={(() => history.go(-1))}
-                            style={{marginLeft: "25px", marginTop: "-60px"}}
+                            style={{marginLeft: "65px", marginTop: "35px"}}
                         >
-                            Go Back <KeyboardBackspaceIcon/>
+                            <KeyboardBackspaceIcon/> Go Back
                         </Button>
                     </React.Fragment>
                     <Card className={classes.card}>
@@ -70,7 +70,7 @@ class BlogDetails extends React.Component {
                                         {this.state.articleTitle}
                                     </Typography>
                                 </Box>
-                                <Box margin={1} style={{backgroundColor: "#cede6e"}}>
+                                <Box margin={1} style={{backgroundColor: "white"}}>
                                     <MUIRichTextEditor
                                         inlineToolbar={false}
                                         toolbar={false}

@@ -82,7 +82,8 @@ const styles = (theme) => ({
         right: '215px'
     },*/
     button: {
-        margin: '3px'
+        margin: '3px',
+        color: "white"
     }
 })
 
@@ -345,27 +346,24 @@ class MarketOfferForm extends React.Component {
                                             />
                                         </Grid>
                                         <Grid item xs={12} className={classes.buttons}>
-
-                                            <Button
-                                                type="submit"
-                                                variant="contained"
-                                                color="primary"
-                                                className={classes.button}
-                                            >
-                                                Submit <PublishIcon/>
-                                            </Button>
-                                            <Button
-                                                variant="contained"
-                                                color="secondary"
-                                                className={classes.button}
-                                                onClick={(() => history.go(-1))}
-                                            >
-                                                Cancel <CancelIcon/>
-                                            </Button>
+                                                <Button
+                                                    type="submit"
+                                                    variant="contained"
+                                                    color="primary"
+                                                    className={classes.button}
+                                                >
+                                                    Submit
+                                                </Button>
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    className={classes.button}
+                                                    onClick={(() => history.go(-1))}
+                                                >
+                                                    Cancel
+                                                </Button>
                                         </Grid>
                                     </Grid>
-
-
                                 </Form>
 
                             )}

@@ -24,8 +24,10 @@ const useStyles = makeStyles((theme) => ({
         width: '1250px'
     },
     paper: {
-        width: '1250px',
-        borderRadius: '10px'
+        width: '900px',
+        borderRadius: '10px',
+        marginTop: "10px",
+        marginLeft: "25px"
     },
     durationFilter: {
         display: "flex",
@@ -34,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: "Arial",
         fontSize: "16px",
         marginBottom: "20px",
+    },
+    add: {
+        marginLeft: "30px",
     }
 }));
 
@@ -105,24 +110,24 @@ export default function() {
     return (
         <Page>
              <span className={classes.add}>
-                 <Button variant='contained' color='primary' onClick={() => history.push("/postBlog")}>
-                     Post a blog  <PostAddTwoToneIcon/>
+                 <Button variant='contained' color='primary' onClick={() => history.push("/postBlog")} style={{marginLeft: "770px"}}>
+                     Post a blog
                  </Button>
              </span>
             <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <div className={classes.durationFilter}>
                         <div>
-                            <b>{blogData.length} requests </b> made in <SimpleSelect menuItems={menuItems} onChange={handleDurationChange}/>
+                            <b>{blogData.length} blogs </b> made in <SimpleSelect menuItems={menuItems} onChange={handleDurationChange}/>
                         </div>
                         <SearchComponent onChange={handleSearchChange}/>
                     </div>
                     <div>
                         {
                             !loading &&
-                                blogData.map(({articleTitle, createdAt, articleBody, _id}, index) => {
-                                    return <MyBlogsComponent title={articleTitle} body={JSON.parse(articleBody).blocks[0].text} createdAt={formatDateTimeString(createdAt)} lastComponent={index===blogData.length - 1}/>
-                                })
+                            blogData.map(({articleTitle, createdAt, articleBody, _id}, index) => {
+                                return <MyBlogsComponent id = {_id} title={articleTitle} body={JSON.parse(articleBody).blocks[0].text} createdAt={formatDateTimeString(createdAt)} lastComponent={index===blogData.length - 1}/>
+                            })
                         }
                     </div>
                 </Paper>
@@ -150,4 +155,5 @@ export default function() {
         return preferred_date;
     }
 }
+
 

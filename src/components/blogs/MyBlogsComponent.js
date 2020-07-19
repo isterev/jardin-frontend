@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles";
 import "../util/ExpertUtils"
 import {compress_summary_text} from "../util/ExpertUtils";
+import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
 const useStyles = makeStyles(() => ({
     root: {
         width: "100%",
@@ -37,11 +39,11 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-export default function({title, body, createdAt, lastComponent}) {
+export default function({id, title, body, createdAt, lastComponent}) {
     const classes = useStyles()
     return (
         <div>
-            <Link className={classes.root} to={"my-requests/"}>
+            <Link className={classes.root} to={"/editBlog/" + id }>
                 <div className={classes.textDiv}>
                     <h3 className={classes.heading}>{title}</h3>
                     <p className={classes.textElement}>{createdAt}</p>
