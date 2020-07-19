@@ -44,7 +44,7 @@ export default function AlertDialog({disabled, style, text}) {
 
     return (
         <div>
-            <Button variant="contained" color="primary" onClick={handleClickOpen} disabled={disabled} >
+            <Button variant="contained" color="primary" onClick={handleClickOpen} disabled={disabled} className={classes.button} >
                 {text}
             </Button>
             <Dialog
