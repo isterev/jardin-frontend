@@ -71,7 +71,10 @@ function getEarliestCancellationTime(createdOn) {
 }
 
 function isCancellationDisallowed(createdOn, status) {
-    return status === 'CANCELLED' || new Date(getEarliestCancellationTime(createdOn)) < new Date(Date.now())
+    return status === 'CANCELLED'
+        || status === 'CONDUCTED'
+        || status === 'SCHEDULED'
+        || new Date(getEarliestCancellationTime(createdOn)) < new Date(Date.now())
 }
 
 export default function(props) {
@@ -155,8 +158,13 @@ export default function(props) {
                                             <br/>
                                         </div>
                                     }
-                                    Scheduled for
-                                    {/*<br/><b>{formatDateTimeString(props.createdOn)}</b>*/}
+
+                                    {
+                                        props.scheduledFor !== undefined && (props.status === 'SCHEDULED' || props.status === 'CONDUCTED')
+                                            ?
+                                            "Scheduled for " + props.scheduledFor :
+                                            "Not scheduled yet..."
+                                    }
                                 </div>
                             </div>
                         )}
