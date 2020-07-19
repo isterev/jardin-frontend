@@ -9,6 +9,8 @@ import TableContainer from "@material-ui/core/TableContainer"
 import Table from "@material-ui/core/Table"
 import Paper from "@material-ui/core/Paper"
 import Page from "../Page"
+import Button from "@material-ui/core/Button";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,12 +66,24 @@ export default function MarketOfferDetails(props) {
         createData('Title', props.marketOffer.title),
         createData('Description', props.marketOffer.description),
         createData('Quantity', props.marketOffer.denomination),
-        createData('Unit', props.marketOffer.pricePerUnit),//TODO
+        createData('Unit', props.marketOffer.pricePerUnit),
         createData('Price', props.marketOffer.pricePerUnit),
         createData('Contact', props.marketOffer.contact)
     ]
     return (
         <Page>
+            <React.Fragment>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={(() => history.go(-1))}
+                    style={{position: 'absolute', right: "400px", top: "140px"}}
+
+                >
+                    Go Back <KeyboardBackspaceIcon/>
+                </Button>
+            </React.Fragment>
             <Box className={classes.Box}>
                 <img className={classes.img}
                      src={props.marketOffer.productImage}

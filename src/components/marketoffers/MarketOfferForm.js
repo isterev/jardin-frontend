@@ -16,8 +16,10 @@ import {withStyles} from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 import ImageUploadCard from "../util/ImageUpload"
 import Box from "@material-ui/core/Box"
+import InputAdornment from "@material-ui/core/InputAdornment";
+import {Euro} from "@material-ui/icons";
 import PublishIcon from "@material-ui/icons/Publish";
-import CancelIcon from '@material-ui/icons/Cancel';
+import CancelIcon from "@material-ui/icons/Cancel";
 
 
 const styles = (theme) => ({
@@ -131,6 +133,7 @@ class MarketOfferForm extends React.Component {
     getSchema() {
         return yup.object().shape({
             productImage: yup.mixed().required('Product image is required'),
+            productImageSize: yup.number().max(10485760, 'Image file size is too big!'), // 10485760 = 10 MB
             type: yup.string()
                 .required('Type is required')
                 .oneOf(
@@ -192,20 +195,21 @@ class MarketOfferForm extends React.Component {
 
                                             <Box className={classes.imageUpload}>
 
-                                            <InputLabel htmlFor="productImage">Upload Image</InputLabel>
-                                            <Field
-                                                component={ImageUploadCard}
-                                                name="productImage"
-                                                inputProps={{
-                                                    id: 'productImage',
-                                                }}
-                                            />
-
+                                                <InputLabel htmlFor="productImage">Upload Image</InputLabel>
+                                                <Field
+                                                    component={ImageUploadCard}
+                                                    name="productImage"
+                                                    inputProps={{
+                                                        id: 'productImage',
+                                                    }}
+                                                />
+                                                <Field
+                                                    component={TextField}
+                                                    name="productImageSize"
+                                                    style={{display: "none"}}
+                                                />
                                             </Box>
-
                                             <br/>
-
-
                                         </Grid>
                                         <Grid item xs={6}>
 
@@ -292,6 +296,13 @@ class MarketOfferForm extends React.Component {
                                                 name="pricePerUnit"
                                                 label="Price per unit"
                                                 className={classes.field}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            EUR
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
                                             />
 
                                             <br/>
@@ -304,25 +315,23 @@ class MarketOfferForm extends React.Component {
 
                                         <Grid item xs={12} className={classes.buttons}>
 
-                                            <Button
-                                                type="submit"
-                                                variant="contained"
-                                                color="primary"
-                                                className={classes.button}
-                                                onClick={(() => this.form.submit())}
-                                            >
-                                                Submit <PublishIcon/>
-                                            </Button>
 
-                                            <Button
-                                                variant="contained"
-                                                color="secondary"
-                                                className={classes.button}
-                                                onClick={(() => history.go(-1))}
-                                            >
-                                                Cancel <CancelIcon/>
-                                            </Button>
-
+                                                <Button
+                                                    type="submit"
+                                                    variant="contained"
+                                                    color="primary"
+                                                    className={classes.button}
+                                                >
+                                                    Submit <PublishIcon/>
+                                                </Button>
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    className={classes.button}
+                                                    onClick={(() => history.go(-1))}
+                                                >
+                                                    Cancel <CancelIcon/>
+                                                </Button>
                                         </Grid>
                                     </Grid>
 
