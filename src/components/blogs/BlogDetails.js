@@ -57,7 +57,7 @@ class BlogDetails extends React.Component {
                             color="primary"
                             className={classes.button}
                             onClick={(() => history.go(-1))}
-                            style={{marginLeft: "50px", marginTop: "-10px"}}
+                            style={{marginLeft: "65px", marginTop: "35px"}}
                         >
                             <KeyboardBackspaceIcon/> Go Back
                         </Button>
