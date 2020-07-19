@@ -28,6 +28,7 @@ const styles = (theme) => ({
         textAlign: 'center'
     },
     card: {
+        paddingTop: '30px',
         position: 'absolute',
         top: '20%',
         left: '20%',
@@ -35,7 +36,7 @@ const styles = (theme) => ({
     },
     imageUpload: {
         position: 'absolute',
-        left: '33px'
+        left: '60px'
     },
     field: {
         width: "80%",
@@ -67,11 +68,19 @@ const styles = (theme) => ({
     },
     buttons: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         //padding: '20px',
         position: 'relative',
-        top: '-70px'
+        top: '-70px',
+        right: '100px'
     },
+    /*buttons: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        padding: '20px',
+        position: 'relative',
+        right: '215px'
+    },*/
     button: {
         margin: '3px'
     }
