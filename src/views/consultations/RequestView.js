@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     },
     paper: {
-        width: '100%%',
+        width: '100%',
         borderRadius: '10px',
     },
     formDiv: {
@@ -93,7 +93,6 @@ export default function() {
         values['createdOn'] = new Date(Date.now()).toISOString()
         values['creator'] = UserService.getCurrentUser()['id']
         values['status'] = 'CREATED'
-        console.log(UserService.getCurrentUser())
         await ExpertConsultationService.createConsultationRequest(values)
         history.push({
             pathname: "/expert-consultation/my-requests"
