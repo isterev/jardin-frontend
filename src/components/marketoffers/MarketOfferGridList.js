@@ -38,9 +38,9 @@ const styles = (theme) => ({
     },
     sortButton: {
         position: 'absolute',
-        top: '20%',
+        top: '15%',
         right: '20%',
-        width: '300px',
+        width: '200px',
         backgroundColor: '#2D6042',
         borderColor: '#2D6042',
         '&:hover': {
@@ -53,6 +53,7 @@ const styles = (theme) => ({
             backgroundColor: '#2D6042', // '#0062cc'
             borderColor: '#2D6042', // '#005cbf'
         },
+        color: 'white'
         /*'&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(51,255,155,.5)',
         },*/
@@ -116,10 +117,10 @@ class MarketOfferGridList extends React.Component {
                     <div>
                         {this.state.sortAsc ?
                             <CustomButton className={classes.sortButton} onClick={this.handleSort}> Sorted by:
-                                Date (ascending) < ArrowDropUpIcon fontSize="medium"/> </CustomButton>
+                                Date < ArrowDropUpIcon fontSize="medium"/> </CustomButton>
                             :
                             <CustomButton className={classes.sortButton} onClick={this.handleSort}> Sorted by:
-                                Date (descending) < ArrowDropDownIcon fontSize="medium"/> </CustomButton>}
+                                Date < ArrowDropDownIcon fontSize="medium"/> </CustomButton>}
                     </div>
                     <GridList cols={4} spacing={35} cellHeight={180} className={classes.gridList}>
                         {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
