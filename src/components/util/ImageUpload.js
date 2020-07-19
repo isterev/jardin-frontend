@@ -17,7 +17,8 @@ import Badge from "@material-ui/core/Badge";
 const styles = (theme) => ({
     root: {
         backgroundColor: theme.palette.background.paper,
-        //width: "100%",
+        position: 'relative',
+        top: "20px",
         maxWidth: 300,
         width: 'fit-content',
         display: "flex",
@@ -33,7 +34,7 @@ const styles = (theme) => ({
         display: "none"
     },
     button: {
-        color: blue[900],
+        color: "#2D6042",
         margin: 10
     },
     badge: {
@@ -159,25 +160,15 @@ class ImageUploadCard extends React.Component {
                 <div className={classes.root}>
 
                     <Badge
-                        badgeContent="x"
-                        color="primary"
+                        badgeContent="X"
+                        color="error"
                         invisible={!this.state.loaded}
                         className={classes.badge}
                         onClick={this.imageReset}
-                        //style={{position: 'absolute', right: '300px'}}
-                        /*anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'right',
-                        }}*/
                     />
-
-
                         <Card>
-
                             {this.state.loaded ? this.renderUploadedState() : this.renderInitialState()}
-
                         </Card>
-
                 </div>
             </React.Fragment>
         )
