@@ -129,6 +129,7 @@ class MarketOfferForm extends React.Component {
     getSchema() {
         return yup.object().shape({
             productImage: yup.mixed().required('Product image is required'),
+            productImageSize: yup.number().max(10485760, 'Image file size is too big!'), // 10485760 = 10 MB
             type: yup.string()
                 .required('Type is required')
                 .oneOf(
@@ -190,20 +191,21 @@ class MarketOfferForm extends React.Component {
 
                                             <Box className={classes.imageUpload}>
 
-                                            <InputLabel htmlFor="productImage">Upload Image</InputLabel>
-                                            <Field
-                                                component={ImageUploadCard}
-                                                name="productImage"
-                                                inputProps={{
-                                                    id: 'productImage',
-                                                }}
-                                            />
-
+                                                <InputLabel htmlFor="productImage">Upload Image</InputLabel>
+                                                <Field
+                                                    component={ImageUploadCard}
+                                                    name="productImage"
+                                                    inputProps={{
+                                                        id: 'productImage',
+                                                    }}
+                                                />
+                                                <Field
+                                                    component={TextField}
+                                                    name="productImageSize"
+                                                    style={{display: "none"}}
+                                                />
                                             </Box>
-
                                             <br/>
-
-
                                         </Grid>
                                         <Grid item xs={6}>
 

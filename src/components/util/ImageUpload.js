@@ -73,11 +73,7 @@ class ImageUploadCard extends React.Component {
 
         const file = event.target.files[0]
 
-        /*let maxSize = 1//10485760 // 10 MB
-        if (file.size > maxSize) {
-            this.props.form.setFieldError(this.props.field.name, "File size is too large!");
-            return
-        }*/
+        this.props.form.setFieldValue("productImageSize", file.size)
 
         const reader = new FileReader()
 
@@ -87,11 +83,13 @@ class ImageUploadCard extends React.Component {
                 loaded: true
             })
 
-            this.props.form.setFieldValue(this.props.field.name, reader.result)
+            this.props.form.setFieldValue("productImage", reader.result)
 
         }.bind(this)
 
-        const url = reader.readAsDataURL(file)
+        let maxSize = 10485760; // 10485760 = 10 MB
+        if (file.size <= maxSize)
+            reader.readAsDataURL(file)
     }
 
     imageReset() {
@@ -100,7 +98,7 @@ class ImageUploadCard extends React.Component {
             loaded: false
         })
 
-        this.props.form.setFieldValue(this.props.field.name, null)
+        this.props.form.setFieldValue("productImage", null)
     }
 
     renderInitialState() {
@@ -123,11 +121,18 @@ class ImageUploadCard extends React.Component {
                             </Fab>
                         </label>
                         {
-                            this.props.form.touched[this.props.field.name] &&
-                            this.props.form.errors[this.props.field.name] &&
+                            this.props.form.touched["productImage"] &&
+                            this.props.form.errors["productImage"] &&
 
                             <FormHelperText error={true}>
-                                {this.props.form.errors[this.props.field.name]}
+                                {this.props.form.errors["productImage"]}
+                            </FormHelperText>
+                        }
+                        {
+                            this.props.form.errors["productImageSize"] &&
+
+                            <FormHelperText error={true}>
+                                {this.props.form.errors["productImageSize"]}
                             </FormHelperText>
                         }
 
@@ -166,9 +171,9 @@ class ImageUploadCard extends React.Component {
                         className={classes.badge}
                         onClick={this.imageReset}
                     />
-                        <Card>
-                            {this.state.loaded ? this.renderUploadedState() : this.renderInitialState()}
-                        </Card>
+                    <Card>
+                        {this.state.loaded ? this.renderUploadedState() : this.renderInitialState()}
+                    </Card>
                 </div>
             </React.Fragment>
         )
