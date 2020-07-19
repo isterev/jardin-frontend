@@ -29,7 +29,6 @@ export class BlogsListView extends React.Component {
                         data: dataWithUserInfo,
                         loading: false
                     });
-                    console.log(data)
                 })
             })
 
@@ -49,7 +48,6 @@ export class BlogsListView extends React.Component {
        if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
-        console.log(this.state.data)
         return (
             <BlogsList data={this.state.data}/>
         );

@@ -15,11 +15,9 @@ export class MarketOfferDetailView extends React.Component {
             loading: true
         })
 
-        console.log("id:" +this.props.match.params.id);
         let id = this.props.match.params.id;
         MarketOfferService.getMarketOffer(id).then((marketOffer) => {
             try {
-                console.log(marketOffer)
                 this.setState({
                     marketOffer: marketOffer,
                     loading: false

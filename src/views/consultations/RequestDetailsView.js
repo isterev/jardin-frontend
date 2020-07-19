@@ -56,7 +56,6 @@ export default function (props) {
     let history = useHistory()
     async function onCancel() {
         requestData['status'] = 'CANCELLED'
-        console.log(requestData)
         await ExpertConsultationService.updateConsultationRequest(requestData)
         history.push({
             pathname: "/expert-consultation/my-requests/" + requestId

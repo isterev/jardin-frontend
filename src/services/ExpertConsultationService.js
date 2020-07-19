@@ -42,7 +42,6 @@ export default class ExpertConsultationService {
     }
 
     static getConsultationSessionsFor(userId) {
-        console.log(userId)
         return new Promise((resolve, reject) => {
             HttpService.get(this.baseURL() + "/consultation-sessions?creator=" + userId, function(data) {
                 resolve(data);
@@ -53,7 +52,6 @@ export default class ExpertConsultationService {
     }
 
     static getConsultationSessionsById(id) {
-        console.log(id)
         return new Promise((resolve, reject) => {
             HttpService.get(this.baseURL() + "/consultation-sessions/" + id, function(data) {
                 resolve(data);

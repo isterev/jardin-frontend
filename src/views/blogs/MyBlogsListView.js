@@ -75,7 +75,6 @@ export default function() {
         searchString = searchString.toLowerCase()
         let durationType = menuItems.indexOf(durationValue)
         let durationFilteredData = allBlogData
-        console.log(durationType + searchString)
         switch (durationType) {
             case -1:
                 durationFilteredData = filterForLastNDays(allBlogData, 30, true)

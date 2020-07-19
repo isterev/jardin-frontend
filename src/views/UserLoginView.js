@@ -19,7 +19,6 @@ export class UserLoginView extends React.Component {
             let ret = await UserService.login(user.username, user.password)
             this.props.history.push('/')
         } catch(err) {
-            console.log('ehi')
             console.error(err)
             this.setState({
                 error: err
