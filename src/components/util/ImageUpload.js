@@ -11,12 +11,13 @@ import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate"
 
 import withStyles from "@material-ui/core/styles/withStyles"
 import FormHelperText from "@material-ui/core/FormHelperText"
+import Badge from "@material-ui/core/Badge";
 
 
 const styles = (theme) => ({
     root: {
         backgroundColor: theme.palette.background.paper,
-        width: 250,
+        maxWidth: 300,
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "flex-start"
@@ -63,10 +64,11 @@ class ImageUploadCard extends React.Component {
 
         const file = event.target.files[0]
 
-        let size = 10485760
-        if (file.size > size) {
+        /*let maxSize = 1//10485760 // 10 MB
+        if (file.size > maxSize) {
             this.props.form.setFieldError(this.props.field.name, "File size is too large!");
-        }
+            return
+        }*/
 
         const reader = new FileReader()
 
@@ -147,11 +149,25 @@ class ImageUploadCard extends React.Component {
         return (
             <React.Fragment>
                 <div className={classes.root}>
-                    <Card className={classes.card}>
+                    <div>
+                    <Badge
+                        badgeContent="x"
+                        color="primary"
+                        invisible={!this.state.loaded}
+                        style={{position: 'absolute', left: '300px'}}
+                        /*anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'right',
+                        }}*/
+                    />
+                    </div>
+                    <div>
+                        <Card className={classes.card}>
 
-                        {this.state.loaded ? this.renderUploadedState() : this.renderInitialState()}
+                            {this.state.loaded ? this.renderUploadedState() : this.renderInitialState()}
 
-                    </Card>
+                        </Card>
+                </div>
                 </div>
             </React.Fragment>
         )
