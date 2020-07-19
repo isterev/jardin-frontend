@@ -40,8 +40,8 @@ const styles = (theme) => ({
     },
     addButton: {
         position: 'absolute',
-        top: '15%',
-        right: '32%',
+        top: '17%',
+        right: '31%',
         backgroundColor: '#2D6042',
         borderColor: '#2D6042',
         '&:hover': {
@@ -62,7 +62,7 @@ const styles = (theme) => ({
     },
     sortButton: {
         position: 'absolute',
-        top: '15%',
+        top: '17%',
         right: '20%',
         width: '200px',
         backgroundColor: '#2D6042',
@@ -81,6 +81,11 @@ const styles = (theme) => ({
         /*'&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(51,255,155,.5)',
         },*/
+    },
+    breadCrumbs: {
+        position: "absolute",
+        top: "175px",
+        left: "450px"
     }
 })
 
@@ -167,8 +172,10 @@ class MyMarketOfferGridList extends React.Component {
         return (
             <Page handleFilterChange={this.handleFilterChange} handleRangeChange={this.handleRangeChange}>
                 <div className={classes.root}>
+                    <div className={classes.breadCrumbs}>
                     <BreadCrumbsComponent links={[{name: 'Marketplace', link: '/myOffers'},
-                        {name: 'MyOffers'}]}/>
+                        {name: 'My Offers'}]}/>
+                    </div>
                     <div>
                         {this.state.sortAsc ?
                             <CustomButton disableRipple className={classes.sortButton} onClick={this.handleSort}> Sorted by:

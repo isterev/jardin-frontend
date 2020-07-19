@@ -36,7 +36,7 @@ const styles = (theme) => ({
     },
     sortButton: {
         position: 'absolute',
-        top: '15%',
+        top: '17%',
         right: '20%',
         width: '200px',
         backgroundColor: '#2D6042',
@@ -55,6 +55,11 @@ const styles = (theme) => ({
         /*'&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(51,255,155,.5)',
         },*/
+    },
+    breadCrumbs: {
+        position: "absolute",
+        top: "175px",
+        left: "450px"
     }
 })
 
@@ -111,8 +116,10 @@ class MarketOfferGridList extends React.Component {
         const {classes} = this.props
         return (
             <Page handleFilterChange={this.handleFilterChange}>
+                <div className={classes.breadCrumbs}>
                 <BreadCrumbsComponent links={[{name: 'Marketplace', link: '/offers'},
                     {name: 'Offers'}]}/>
+                </div>
                 <div className={classes.root}>
                     <div>
                         {this.state.sortAsc ?

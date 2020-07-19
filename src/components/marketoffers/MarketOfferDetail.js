@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
         top: '25%',
         left: '20%',
         right: '20%',
+        padding: '30px',
+        borderRadius: '20px'
     },
     img: {
         height: 400,
@@ -23,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
         float: "left",
         display: "inline-block",
         alignContent: "left",
-
     },
     detailDiv: {
         paddingTop:'50px',
@@ -72,18 +73,16 @@ export default function MarketOfferDetails(props) {
             <React.Fragment>
                 <Button
                     variant="contained"
-                    color="secondary"
+                    color="primary"
                     className={classes.button}
                     onClick={(() => history.go(-1))}
-                    style={{position: 'absolute', top: "140px"}}
+                    style={{position: 'absolute', top: "190px", left: "370px"}}
 
                 >
-                    Go Back <KeyboardBackspaceIcon/>
+                    <KeyboardBackspaceIcon/> Go Back
                 </Button>
             </React.Fragment>
             <Card className={classes.card}>
-                <BreadCrumbsComponent links={[{name: 'Marketplace', link: '/offers'},
-                    {name: productId}]}/>
                 <div className={classes.imageDiv}>
                     <img className={classes.img}
                          src={props.marketOffer.productImage}
@@ -94,8 +93,8 @@ export default function MarketOfferDetails(props) {
                     <p>{props.marketOffer.description}</p><br/>
                     <p style={{marginTop: "-15px"}}><b>Type:</b> {props.marketOffer.type}</p><br/>
                     <p style={{marginTop: "-15px"}}><b>Category:</b> {props.marketOffer.category}</p><br/>
-                    <p style={{marginTop: "-15px"}}><b>Quantity:</b> {props.marketOffer.denomination}</p><br/>
-                    <p style={{marginTop: "-15px"}}><b>Price:</b> {props.marketOffer.pricePerUnit}</p><br/>
+                    <p style={{marginTop: "-15px"}}><b>Denomination:</b> {props.marketOffer.denomination}</p><br/>
+                    <p style={{marginTop: "-15px"}}><b>Price:</b> {props.marketOffer.pricePerUnit} EUR</p><br/>
                     <p style={{marginTop: "-15px"}}><b>Contact:</b> {props.marketOffer.contact}</p><br/>
                 </div>
             </Card>
