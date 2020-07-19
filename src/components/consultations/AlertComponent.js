@@ -23,7 +23,7 @@ const useStyle = makeStyles(() => ({
         fontSize: '15px',
     },
     dialogButton: {
-        width: '175px'
+        width: '175px',
     },
     text : {
         color: '#413327',
@@ -44,7 +44,7 @@ export default function AlertDialog({disabled, style, text}) {
 
     return (
         <div>
-            <Button variant="contained" color="primary" onClick={handleClickOpen} className={classes.button} disabled={disabled}>
+            <Button variant="contained" color="primary" onClick={handleClickOpen} disabled={disabled} >
                 {text}
             </Button>
             <Dialog
@@ -62,7 +62,7 @@ export default function AlertDialog({disabled, style, text}) {
                     <Button onClick={handleClose} autoFocus  type="submit" form="requestForm" color="primary" variant="contained" className={[classes.button, classes.dialogButton].join(",")}>
                         Yep, go ahead!
                     </Button>
-                    <Button onClick={handleClose} color="primary" variant="contained" className={[classes.button, classes.dialogButton].join(",")}>
+                    <Button onClick={handleClose} color="secondary" variant="contained" className={[classes.button, classes.dialogButton].join(",")}>
                         No
                     </Button>
                 </DialogActions>

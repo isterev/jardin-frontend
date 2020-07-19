@@ -18,9 +18,10 @@ const styles = (theme) => ({
     root: {
         display: 'flex',
         justifyContent: 'space-around',
-        backgroundColor: "#cede6e",
+        backgroundColor: "#f5f5f5",
         height: "300px",
-        marginTop: "-30px"
+        marginTop: "20px",
+        marginLeft: "60px"
     },
     list: {
         width: '850px',
@@ -33,7 +34,7 @@ const styles = (theme) => ({
         color: 'rgba(255, 255, 255, 0.54)',
     },
     box1:{
-        width: "49%",
+        width: "49.9%",
         '&:hover': {
             border: '2px solid rgba(0, 0, 0, 0.4)',
             cursor: "pointer"
@@ -42,22 +43,23 @@ const styles = (theme) => ({
     boxes: {
         display: 'flex',
         justifyContent: 'space-around',
-        height: "auto",
+        marginLeft: "60px"
     },
     header: {
         height: '50px',
         display: "flex",
         justifyContent: "flex-start",
-        marginBottom: "-25px"
+        marginLeft: "75px",
+        marginBottom: "-25px",
+        fontSize: "20px"
     },
 
     archiveTitle: {
         height: '50px',
         fontSize: "30px",
         marginBottom: "-25px",
-        marginTop: "-5px"
+        marginTop: "-5px",
     },
-
     archive: {
         height: '200px',
     },
@@ -163,11 +165,10 @@ class BlogsList extends React.Component {
                     <p className={classes.header}><b>
                         <center> From the Firehose</center>
                     </b></p>
-                    <hr style={{opacity: "40%"}}/>
+                    <hr style={{opacity: "40%",marginLeft: "75px"}}/>
                         <List>
-                            {this.state.archive.map((blog, i) => <ListItem alignItems="flex-start">
+                            {this.state.archive.map((blog, i) => <ListItem style={{marginLeft: "60px"}}>
                                     <ListItemText
-                                        onClick={this.handleDisplay.bind(this, blog._id)}
                                         primary={
                                    <p className={classes.archiveTitle}>
                                                 {blog.articleTitle}
@@ -179,7 +180,8 @@ class BlogsList extends React.Component {
                                                 {
                                                     this.wordLimitCheck(blog)
                                                 }
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Link className={classes.continue}>  Continue reading... </Link>
+                                                <br/>
+                                                <Link className={classes.continue}  onClick={this.handleDisplay.bind(this, blog._id)}>  Continue reading... </Link>
                                                 <hr style={{marginTop: "40px", border: "1px solid ", opacity: "40%"}} />
                                             </div>
                                         }

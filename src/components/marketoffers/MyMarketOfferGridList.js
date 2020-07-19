@@ -178,10 +178,10 @@ class MyMarketOfferGridList extends React.Component {
                             <CustomButton disableRipple className={classes.sortButton} onClick={this.handleSort}> Sorted by:
                                 Date  < ArrowDropDownIcon fontSize="medium"/> </CustomButton>}
                         <Link to="/addOffer">
-                            <Tooltip title="Add" aria-label="add" >
-                                <CustomButton className={classes.addButton}>
-                                    Add Offer
-                                </CustomButton>
+                            <Tooltip title="Add" aria-label="add" className={classes.addButton}>
+                                <Fab color="primary">
+                                    <AddIcon/>
+                                </Fab>
                             </Tooltip>
                         </Link>
                         <br/>
@@ -210,7 +210,6 @@ class MyMarketOfferGridList extends React.Component {
                                         color="inherit"
                                         className={classes.icon}
                                     >
-                                        <DeleteIcon/>
                                     </IconButton>
                                 }
                             />

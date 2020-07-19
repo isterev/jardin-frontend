@@ -26,9 +26,8 @@ const styles = (theme) => ({
         top: '20%',
         left: '20%',
         right: '20%',
-        backgroundColor: '#cede6e'
+        backgroundColor: 'white'
     }
-
 })
 
 class BlogForm extends React.Component {
@@ -139,23 +138,19 @@ class BlogForm extends React.Component {
                                     type="submit"
                                     variant="contained"
                                     color="primary"
-                                    className={classes.button}
-                                    style={{marginLeft: "620px", marginTop: "10px"}}
-
+                                    style={{marginLeft: "660px", marginTop: "10px"}}
                                 >
-                                    Submit <SubdirectoryArrowRightIcon/>
+                                    Submit
                                 </Button>
                             </React.Fragment>
                             <React.Fragment>
                                 <Button
                                     variant="contained"
                                     color="secondary"
-                                    className={classes.button}
                                     onClick={(() => history.go(-1))}
-                                    style={{marginLeft: "735px", marginTop: "-62px"}}
-
+                                    style={{marginLeft: "750px", marginTop: "-59px", color: "white"}}
                                 >
-                                    Cancel <CloseIcon/>
+                                    Cancel
                                 </Button>
                             </React.Fragment>
                             <div className="container">
@@ -165,6 +160,7 @@ class BlogForm extends React.Component {
                                             name="articleTitle"
                                             placeholder="Article Title..."
                                             style={{width: "900px"}}
+                                            autoComplete="off"
                                             defaultValue={this.state.articleTitle}
                                             onChange=
                                                 {
@@ -204,13 +200,14 @@ class BlogForm extends React.Component {
                                         <br/>
                                     </Box>
 
-                                    <Box margin={1} style={{backgroundColor: "#cede6e"}}>
+                                    <Box margin={1} style={{backgroundColor: "white"}}>
                                         <MUIRichTextEditor
                                             inlineToolbar
                                             label="Article Content..."
                                             name='articleBody'
                                             placeholder="Article Content"
                                             rows='15'
+                                            autoComplete="off"
                                             style={{width: "900px"}}
                                             controls={["title", "bold", "italic", "underline", "strikethrough", "highlight", "undo", "redo", "link", "media", "numberList", "bulletList", "quote", "code", "clear"]}
                                             onChange=

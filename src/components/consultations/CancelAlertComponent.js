@@ -10,31 +10,37 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyle = makeStyles(() => ({
     button: {
-        opacity: '90%',
-        background: "#b56244",
-        color: 'white',
-        fontWeight: "bold",
-        "&:hover": {
-            opacity: "100%",
-            color: 'white',
-            background: '#b56244'
-        },
         marginTop: '10px',
         textTransform: 'none',
         fontSize: '13px',
         height: '30%',
         width: '70%'
     },
-    dialogButton: {
+    Yes: {
         opacity: '90%',
-        background: "#b56244",
+        backgroundColor: "#2d6043",
         color: 'white',
         marginTop: "40px",
         fontWeight: "bold",
         "&:hover": {
             opacity: "100%",
             color: 'white',
-            background: '#b56244'
+            backgroundColor: '#2d6043'
+        },
+        textTransform: 'none',
+        fontSize: '15px',
+        width: '100px'
+    },
+    No: {
+        opacity: '90%',
+        backgroundColor: "#a6b829",
+        color: 'white',
+        marginTop: "40px",
+        fontWeight: "bold",
+        "&:hover": {
+            opacity: "100%",
+            color: 'white',
+            backgroundColor: '#a6b829'
         },
         textTransform: 'none',
         fontSize: '15px',
@@ -67,7 +73,7 @@ export default function AlertDialog({disabled, style, text, onSubmit}) {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen} disabled={disabled} className={classes.button}>
+            <Button variant="contained" onClick={handleClickOpen} disabled={disabled} color="primary" className={classes.button}>
                 {text}
             </Button>
             <Dialog
@@ -80,11 +86,11 @@ export default function AlertDialog({disabled, style, text, onSubmit}) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} type="submit" className={classes.dialogButton}>
-                        No!
-                    </Button>
-                    <Button onClick={handleSubmit} autoFocus  type="submit" form="requestForm" className={classes.dialogButton}>
+                    <Button onClick={handleSubmit} autoFocus  type="submit" form="requestForm" color="primary" className={classes.Yes}>
                         Yes!
+                    </Button>
+                    <Button onClick={handleClose}  type="submit" color="secondary" className={classes.No}>
+                        No!
                     </Button>
                 </DialogActions>
             </Dialog>
