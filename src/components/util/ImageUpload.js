@@ -11,15 +11,20 @@ import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate"
 
 import withStyles from "@material-ui/core/styles/withStyles"
 import FormHelperText from "@material-ui/core/FormHelperText"
+import Badge from "@material-ui/core/Badge";
 
 
 const styles = (theme) => ({
     root: {
         backgroundColor: theme.palette.background.paper,
-        width: 250,
+        position: 'relative',
+        top: "20px",
+        maxWidth: 300,
+        width: 'fit-content',
         display: "flex",
         justifyContent: "flex-start",
-        alignItems: "flex-start"
+        alignItems: "flex-start",
+        flexDirection: "column"
     },
     card: {
         position: 'absolute',
@@ -29,8 +34,13 @@ const styles = (theme) => ({
         display: "none"
     },
     button: {
-        color: blue[900],
+        color: "#2D6042",
         margin: 10
+    },
+    badge: {
+        //position: 'absolute',
+        //right: '500px',
+        alignSelf: "flex-end",
     },
     media: {
         maxWidth: '300px',
@@ -62,6 +72,9 @@ class ImageUploadCard extends React.Component {
     handleUpload(event) {
 
         const file = event.target.files[0]
+
+        this.props.form.setFieldValue("productImageSize", file.size)
+
         const reader = new FileReader()
 
         reader.onloadend = function (e) {
@@ -70,11 +83,13 @@ class ImageUploadCard extends React.Component {
                 loaded: true
             })
 
-            this.props.form.setFieldValue(this.props.field.name, reader.result)
+            this.props.form.setFieldValue("productImage", reader.result)
 
         }.bind(this)
 
-        const url = reader.readAsDataURL(file)
+        let maxSize = 10485760; // 10485760 = 10 MB
+        if (file.size <= maxSize)
+            reader.readAsDataURL(file)
     }
 
     imageReset() {
@@ -83,7 +98,7 @@ class ImageUploadCard extends React.Component {
             loaded: false
         })
 
-        this.props.form.setFieldValue(this.props.field.name, null)
+        this.props.form.setFieldValue("productImage", null)
     }
 
     renderInitialState() {
@@ -106,11 +121,18 @@ class ImageUploadCard extends React.Component {
                             </Fab>
                         </label>
                         {
-                            this.props.form.touched[this.props.field.name] &&
-                            this.props.form.errors[this.props.field.name] &&
+                            this.props.form.touched["productImage"] &&
+                            this.props.form.errors["productImage"] &&
 
                             <FormHelperText error={true}>
-                                {this.props.form.errors[this.props.field.name]}
+                                {this.props.form.errors["productImage"]}
+                            </FormHelperText>
+                        }
+                        {
+                            this.props.form.errors["productImageSize"] &&
+
+                            <FormHelperText error={true}>
+                                {this.props.form.errors["productImageSize"]}
                             </FormHelperText>
                         }
 
@@ -124,7 +146,7 @@ class ImageUploadCard extends React.Component {
         const {classes} = this.props
         return (
             <React.Fragment>
-                <CardActionArea onClick={this.imageReset}>
+                <CardActionArea>
                     <img
                         alt="Image not specified"
                         className={classes.media}
@@ -141,10 +163,16 @@ class ImageUploadCard extends React.Component {
         return (
             <React.Fragment>
                 <div className={classes.root}>
-                    <Card className={classes.card}>
 
+                    <Badge
+                        badgeContent="X"
+                        color="error"
+                        invisible={!this.state.loaded}
+                        className={classes.badge}
+                        onClick={this.imageReset}
+                    />
+                    <Card>
                         {this.state.loaded ? this.renderUploadedState() : this.renderInitialState()}
-
                     </Card>
                 </div>
             </React.Fragment>

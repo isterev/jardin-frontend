@@ -12,6 +12,9 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 import Page from '../Page'
 import UserService from "../../services/UserService"
 import Typography from "@material-ui/core/Typography"
+import Button from "@material-ui/core/Button";
+import {FormHelperText} from "@material-ui/core";
+import {Form} from "formik";
 
 const styles = (theme) => ({
     root: {
@@ -22,10 +25,9 @@ const styles = (theme) => ({
     gridList: {
         overflow: 'auto',
         maxHeight: '70%',
-        width: '800px',
+        width: '950px',
         position: 'absolute',
-        top: '35%',
-        bottom: '10%',
+        top: '220px',
     },
     gridListTile: {
         maxWidth: '25%',
@@ -34,18 +36,19 @@ const styles = (theme) => ({
         color: 'rgba(255, 255, 255, 0.54)',
     },
     sortButton: {
-        paddingLeft: '650px',
+        position: 'absolute',
+        top: '18%',
+        right: '20%',
     }
 })
 
 class MarketOfferGridList extends React.Component {
-
     constructor(props) {
         super(props)
         this.state = {
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined,
             data: this.props.data,
-            sortAsc: true,
+            sortAsc: false,
         }
 
         this.handleDisplay = this.handleDisplay.bind(this)
@@ -61,8 +64,8 @@ class MarketOfferGridList extends React.Component {
     handleFilterChange(values, priceValue) {
         const offers = this.props.data
         let result = offers.filter(offer => values[offer.type] && values[offer.category] && offer.pricePerUnit >= priceValue[0] && offer.pricePerUnit <= priceValue[1])
-        if (!this.state.sortAsc) {
-            result = result.sort(this.compare(a, b))
+        if (this.state.sortAsc) {
+            result = result.sort(this.compare)
         }
         this.setState({
             data: result
@@ -83,8 +86,8 @@ class MarketOfferGridList extends React.Component {
         const offers = this.state.data
         const result = offers.sort(this.compare)
         this.setState({
+            sortAsc: !this.state.sortAsc,
             data: result,
-            sortAsc: !this.state.sortAsc
         })
     }
 
@@ -93,17 +96,20 @@ class MarketOfferGridList extends React.Component {
         return (
             <Page handleFilterChange={this.handleFilterChange}>
                 <div className={classes.root}>
-                    <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
-                        <div className={classes.sortButton}>
-                            <button onClick={this.handleSort}>Sort by: Date
-                                {this.state.sortAsc ?
-                                    <ArrowDropDownIcon fontSize="medium"/> :
-                                    <ArrowDropUpIcon fontSize="medium"/>}
-                            </button>
-                        </div>
+                    <div>
+                        {this.state.sortAsc ?
+                            <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by:
+                                Date (ascending) < ArrowDropUpIcon fontSize="medium"/> </Button>
+                            :
+                            <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by:
+                                Date (descending) < ArrowDropDownIcon fontSize="medium"/> </Button>}
+                    </div>
+                    <GridList cols={4} spacing={35} cellHeight={180} className={classes.gridList}>
                         {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
-                                 alt={marketOffer.title} className={classes.image}/>
+                                 alt={marketOffer.title} className={classes.image}
+                                 onClick={this.handleDisplay.bind(this, marketOffer._id)}
+                            />
                             <GridListTileBar
                                 title={marketOffer.title}
                                 subtitle={
