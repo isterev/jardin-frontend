@@ -140,7 +140,7 @@ class ImageUploadCard extends React.Component {
         const {classes} = this.props
         return (
             <React.Fragment>
-                <CardActionArea onClick={this.imageReset}>
+                <CardActionArea>
                     <img
                         alt="Image not specified"
                         className={classes.media}
@@ -163,6 +163,7 @@ class ImageUploadCard extends React.Component {
                         color="primary"
                         invisible={!this.state.loaded}
                         className={classes.badge}
+                        onClick={this.imageReset}
                         //style={{position: 'absolute', right: '300px'}}
                         /*anchorOrigin={{
                             vertical: 'bottom',
