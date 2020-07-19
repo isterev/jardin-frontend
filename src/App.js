@@ -45,7 +45,7 @@ export default class App extends React.Component {
         this.state = {
             title: 'Jardin',
             routes: [
-                {component: MarketOfferGridListView, path: '/', exact: true},
+                {component: BlogsListView, path: '/', exact: true},
                 {component: MarketOfferGridListView, path: '/offers'},
                 {component: MyMarketOfferGridListView, path: '/myOffers'},
                 {component: MarketOfferDetailView, path: '/showOffer/:id'},
