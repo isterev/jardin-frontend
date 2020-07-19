@@ -20,6 +20,7 @@ import Typography from "@material-ui/core/Typography"
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import Button from "@material-ui/core/Button";
+import {CustomButton, ColorButton} from "../util/CustomButton";
 
 const styles = (theme) => ({
     root: {
@@ -42,13 +43,44 @@ const styles = (theme) => ({
     },
     addButton: {
         position: 'absolute',
-        top: '18%',
+        top: '20%',
         right: '40%',
+        backgroundColor: '#2D6042',
+        borderColor: '#2D6042',
+        '&:hover': {
+            backgroundColor: '#2D6042', // '#0069d9'
+            borderColor: '#2D6042', //'#0062cc'
+            boxShadow: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#2D6042', // '#0062cc'
+            borderColor: '#2D6042', // '#005cbf'
+        },
+        /*'&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(51,255,115,.5)',
+        },*/
     },
     sortButton: {
         position: 'absolute',
-        top: '18%',
+        top: '20%',
         right: '20%',
+        width: '300px',
+        backgroundColor: '#2D6042',
+        borderColor: '#2D6042',
+        '&:hover': {
+            backgroundColor: '#2D6042', // '#0069d9'
+            borderColor: '#2D6042', //'#0062cc'
+            boxShadow: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#2D6042', // '#0062cc'
+            borderColor: '#2D6042', // '#005cbf'
+        },
+        /*'&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(51,255,155,.5)',
+        },*/
     }
 })
 
@@ -137,16 +169,16 @@ class MyMarketOfferGridList extends React.Component {
                 <div className={classes.root}>
                     <div>
                         {this.state.sortAsc ?
-                            <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by:
-                                Date (ascending) < ArrowDropUpIcon fontSize="medium"/> </Button>
+                            <CustomButton disableRipple className={classes.sortButton} onClick={this.handleSort}> Sorted by:
+                                Date (ascending) < ArrowDropUpIcon fontSize="medium"/> </CustomButton>
                             :
-                            <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by:
-                                Date (descending) < ArrowDropDownIcon fontSize="medium"/> </Button>}
+                            <CustomButton disableRipple className={classes.sortButton} onClick={this.handleSort}> Sorted by:
+                                Date (descending) < ArrowDropDownIcon fontSize="medium"/> </CustomButton>}
                         <Link to="/addOffer">
-                            <Tooltip title="Add" aria-label="add" className={classes.addButton}>
-                                <Fab color="secondary">
-                                    <AddIcon/>
-                                </Fab>
+                            <Tooltip title="Add" aria-label="add" >
+                                <CustomButton className={classes.addButton}>
+                                    Add Offer
+                                </CustomButton>
                             </Tooltip>
                         </Link>
                         <br/>

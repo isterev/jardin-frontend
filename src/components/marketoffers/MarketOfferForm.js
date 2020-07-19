@@ -67,11 +67,19 @@ const styles = (theme) => ({
     },
     buttons: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         //padding: '20px',
         position: 'relative',
-        top: '-70px'
+        top: '-70px',
+        right: '215px'
     },
+    /*buttons: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        padding: '20px',
+        position: 'relative',
+        right: '215px'
+    },*/
     button: {
         margin: '3px'
     }
