@@ -22,6 +22,7 @@ import PublishIcon from "@material-ui/icons/Publish";
 import CancelIcon from "@material-ui/icons/Cancel";
 
 
+
 const styles = (theme) => ({
     root: {
         maxWidth: 500,
@@ -314,7 +315,6 @@ class MarketOfferForm extends React.Component {
 
 
                                         <Grid item xs={12} className={classes.buttons}>
-
 
                                                 <Button
                                                     type="submit"

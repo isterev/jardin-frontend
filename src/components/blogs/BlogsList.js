@@ -12,6 +12,7 @@ import ListItem from "@material-ui/core/ListItem"
 import List from "@material-ui/core/List"
 import CardContent from "@material-ui/core/CardContent"
 import {format} from 'date-fns'
+import Link from "@material-ui/core/Link";
 
 const styles = (theme) => ({
     root: {
@@ -19,24 +20,52 @@ const styles = (theme) => ({
         justifyContent: 'space-around',
         backgroundColor: "#cede6e",
         height: "300px",
-        marginTop: "30px"
+        marginTop: "-30px"
     },
     list: {
         width: '850px',
-        height: '1500px'
+        height: '1500px',
+    },
+    image: {
+        marginBottom: "-10px"
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
-    box1: {
+    box1:{
         width: "49%",
+        '&:hover': {
+            border: '2px solid rgba(0, 0, 0, 0.4)',
+            cursor: "pointer"
+        }
     },
     boxes: {
         display: 'flex',
         justifyContent: 'space-around',
         height: "auto",
     },
+    header: {
+        height: '50px',
+        display: "flex",
+        justifyContent: "flex-start",
+        marginBottom: "-25px"
+    },
 
+    archiveTitle: {
+        height: '50px',
+        fontSize: "30px",
+        marginBottom: "-25px",
+        marginTop: "-5px"
+    },
+
+    archive: {
+        height: '200px',
+    },
+    continue: {
+        '&:hover': {
+            cursor: "pointer"
+        }
+    },
 
 })
 
@@ -65,10 +94,9 @@ class BlogsList extends React.Component {
     wordLimitCheck(blog, lengthLimit) {
 
         let limit
-        if(lengthLimit){
-            limit= lengthLimit
-        }
-        else{
+        if (lengthLimit) {
+            limit = lengthLimit
+        } else {
             limit = 700
         }
 
@@ -76,12 +104,11 @@ class BlogsList extends React.Component {
         if (!blog) {
             return (" ")
         } else if (word.length >= limit) {
-            let result = word.substring(0, limit) + " ..."
+            let result = word.substring(0, limit)
             return result
         } else {
             return word
         }
-
     }
 
     render() {
@@ -92,8 +119,7 @@ class BlogsList extends React.Component {
                     <Card className={classes.root}>
                         <CardContent>
                             <div className={classes.image}>
-                                <img src="https://i.ibb.co/SdCDvMy/mainanlage-08-jpg-center-0-584229390681004-0.jpg"
-                                     width="900px" height="300px"/>
+                                    <img src="https://i.pinimg.com/originals/a5/7e/c4/a57ec4e46c0c0baa4a8b7bd717354c8a.jpg"  width="900px" height="300px" />
                                 <br/>
                             </div>
                         </CardContent>
@@ -110,7 +136,7 @@ class BlogsList extends React.Component {
                                     {this.state.topPicks[0].authorFirstName + " " + this.state.topPicks[0].authorLastName + " "}
                                     {format(new Date(this.state.topPicks[0].createdAt), "MMMM do, yyyy H:mm aa")}
                                 </Typography>
-                                <Typography variant="body2" >
+                                <Typography variant="body2">
                                     {this.wordLimitCheck(this.state.topPicks[0], 200)}
                                 </Typography>
                             </CardContent>
@@ -118,7 +144,7 @@ class BlogsList extends React.Component {
                         }
                         {this.state.topPicks.length >= 2 &&
                         <Card className={classes.box1}>
-                            <CardContent onClick={this.handleDisplay.bind(this, this.state.topPicks[0]._id)}>
+                            <CardContent onClick={this.handleDisplay.bind(this, this.state.topPicks[1]._id)}>
                                 <Typography color="textPrimary" variant="h4" gutterBottom>
                                     {this.state.topPicks[1].articleTitle}
                                 </Typography>
@@ -126,7 +152,7 @@ class BlogsList extends React.Component {
                                     {this.state.topPicks[1].authorFirstName + " " + this.state.topPicks[1].authorLastName + " "}
                                     {format(new Date(this.state.topPicks[1].createdAt), "MMMM do, yyyy H:mm aa")}
                                 </Typography>
-                                <Typography variant="body2" >
+                                <Typography variant="body2">
                                     {this.wordLimitCheck(this.state.topPicks[1], 200)}
                                 </Typography>
                             </CardContent>
@@ -134,40 +160,33 @@ class BlogsList extends React.Component {
                         }
                     </div>
                     <br/>
-                    <div>
-                        <p style={{fontSize: "20px"}}><b>
-                            <center> From the archives</center>
-                        </b></p>
-                        <hr size={3}></hr>
-                        <List className={classes.list}>
+                    <p className={classes.header}><b>
+                        <center> From the Firehose</center>
+                    </b></p>
+                    <hr style={{opacity: "40%"}}/>
+                        <List>
                             {this.state.archive.map((blog, i) => <ListItem alignItems="flex-start">
                                     <ListItemText
                                         onClick={this.handleDisplay.bind(this, blog._id)}
                                         primary={
-                                            <Typography variant="h6">
+                                   <p className={classes.archiveTitle}>
                                                 {blog.articleTitle}
-                                            </Typography>
+                                            </p>
                                         }
                                         secondary={
-                                            <React.Fragment>
-                                                    <span style={{paddingLeft: '400px'}}>
-                                  </span>
-                                                <Card style={{height: '150px', backgroundColor: "#cede6e"}}>
-                                                    <b>{blog.authorFirstName + " " + blog.authorLastName + " - " + format(new Date(blog.createdAt), "MMMM do, yyyy H:mm aa")}</b>
-                                                    <br></br>
-                                                    {
-                                                        this.wordLimitCheck(blog)
-                                                    }
-                                                </Card>
-                                                <br/>
-                                            </React.Fragment>
+                                            <div className={classes.archive}>
+                                                <p>{blog.authorFirstName + " " + blog.authorLastName + " - " + format(new Date(blog.createdAt), "MMMM do, yyyy H:mm aa")}</p>
+                                                {
+                                                    this.wordLimitCheck(blog)
+                                                }
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Link className={classes.continue}>  Continue reading... </Link>
+                                                <hr style={{marginTop: "40px", border: "1px solid ", opacity: "40%"}} />
+                                            </div>
                                         }
                                     />
-
                                 </ListItem>
                             )}
                         </List>
-                    </div>
                 </div>
             </Page>
         )

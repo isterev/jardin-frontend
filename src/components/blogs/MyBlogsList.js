@@ -105,7 +105,6 @@ class MyBlogsList extends React.Component {
                             <span>  <Button color='primary'  onClick={this.handleEdit.bind(this, blog._id)}> Edit <EditIcon/>  </Button> </span>
                             <span>  <Button color='primary'  onClick={this.handleDelete.bind(this, blog._id)}> Delete <DeleteIcon/> </Button> </span>
                         </span>
-
                                                 <br></br>
                                                 <p>
                                                     <b>{blog.authorFirstName + " " + blog.authorLastName + ", " + blog.createdAt}</b>
