@@ -21,13 +21,11 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(5),
             paddingBottom: theme.spacing(2)
         },
-        width: '1250px'
+        width: '100%'
     },
     paper: {
-        width: '900px',
-        borderRadius: '10px',
-        marginTop: "10px",
-        marginLeft: "25px"
+        width: '100%',
+        borderRadius: '10px'
     },
     durationFilter: {
         display: "flex",

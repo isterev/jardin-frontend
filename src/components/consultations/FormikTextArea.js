@@ -5,7 +5,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles( theme => ({
     root: {
-        width: '575px',
+        width: '60%',
         '& .MuiOutlinedInput-root': {
             '&.Mui-focused fieldset': {
                 borderColor: '#b56244',

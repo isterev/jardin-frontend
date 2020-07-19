@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(5),
             paddingBottom: theme.spacing(2)
         },
-        width: "1250px",
+        width: "100%",
     },
     paper: {
-        width: "1250px",
+        width: "100%",
         borderRadius: '10px'
     },
     durationFilter: {
@@ -43,7 +43,7 @@ export default function() {
     let [consultationData, setConsultationData] = useState([]);
     let [originalConsultationData, setOriginalConsultationData] = useState([]);
     let [expertData, setExpertData] = useState([])
-    let [durationFilter, setDurationFilter] = useState(["last 30 days"])
+    let [durationFilter, setDurationFilter] = useState("last 30 days")
     let [searchFilter, setSearchFilter] = useState("")
 
     useEffect(() => {
@@ -82,6 +82,9 @@ export default function() {
         let durationType = menuItems.indexOf(durationValue)
         let durationFilteredData = originalConsultationData
         switch (durationType) {
+            case -1:
+                durationFilteredData = filterForLastNDays(originalConsultationData, 30)
+                break
             case 0:
                 durationFilteredData = filterForLastNDays(originalConsultationData, 30)
                 break

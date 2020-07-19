@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     },
     paper: {
-        width: '100%',
+        width: '80%',
         borderRadius: '10px',
     },
     formDiv: {
@@ -41,13 +41,13 @@ const useStyles = makeStyles(theme => ({
     datePickerDiv: {
         display: 'flex',
         justifyContent: 'space-between',
-        width: '900px'
+        width: '95%'
     },
     queryDetailsDiv: {
         display: 'flex',
         marginTop: '50px',
         justifyContent: 'space-between',
-        width: '900px'
+        width: '100%'
     },
 
 }))
@@ -68,11 +68,14 @@ const expertRequestFormYupSchema = Yup.object({
     description: Yup.string().required("Tell us something about your queries so we can be better prepared to assist you!"),
     firstPreference: Yup.date()
         .min(getEarliestTime(), "Oops, can't schedule before 10 am, " + formattedEarliestTime() + "!")
-        .test('checkForWorkingHours', 'Oops, appointments available from 10 am - 7 pm', checkForWorkingHours),
+        .test('checkForWorkingHours', 'Oops, appointments available from 10 am - 7 pm', checkForWorkingHours)
+        .required("Required Field!"),
     secondPreference: Yup.date().min(getEarliestTime(), "Oops, can't schedule before 10 am, " + formattedEarliestTime() + "!")
-        .test('checkForWorkingHours', 'Oops, appointments available from 10 am - 7 pm', checkForWorkingHours),
+        .test('checkForWorkingHours', 'Oops, appointments available from 10 am - 7 pm', checkForWorkingHours)
+        .required("Required Field!"),
     thirdPreference: Yup.date().min(getEarliestTime(), "Oops, can't schedule before 10 am, " + formattedEarliestTime() + "!")
         .test('checkForWorkingHours', 'Oops, appointments available from 10 am - 7 pm', checkForWorkingHours)
+        .required("Required Field!")
 })
 
 export default function() {

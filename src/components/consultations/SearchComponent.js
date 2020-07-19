@@ -7,11 +7,9 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        paddingTop: '4px',
-        display: 'flex',
-        width: 350,
+        width: '100%',
         marginBottom: 30,
-        height: 35
+        height: '100%'
     },
     input: {
         marginLeft: theme.spacing(1),

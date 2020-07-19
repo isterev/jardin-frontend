@@ -162,7 +162,8 @@ export default function(props) {
                                     {
                                         props.scheduledFor !== undefined && (props.status === 'SCHEDULED' || props.status === 'CONDUCTED')
                                             ?
-                                            "Scheduled for " + props.scheduledFor :
+                                            <div>Scheduled for <b>{props.scheduledFor}</b></div>
+                                             :
                                             "Not scheduled yet..."
                                     }
                                 </div>
