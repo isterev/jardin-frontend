@@ -17,10 +17,9 @@ import Grid from "@material-ui/core/Grid"
 import ImageUploadCard from "../util/ImageUpload"
 import Box from "@material-ui/core/Box"
 import InputAdornment from "@material-ui/core/InputAdornment";
-import {Euro} from "@material-ui/icons";
 import PublishIcon from "@material-ui/icons/Publish";
 import CancelIcon from "@material-ui/icons/Cancel";
-
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 
 const styles = (theme) => ({
@@ -39,12 +38,39 @@ const styles = (theme) => ({
         left: '33px'
     },
     field: {
-        width: "80%"
+        width: "80%",
+        marginBottom: '30px',
+        '& label.Mui-focused': {
+            color: 'primary',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: 'primary',
+        },
+
+    },
+    select: {
+        width: "80%",//width: '250px',
+        '& .MuiInputLabel-shrink': {
+            color: 'primary',
+            '& .Mui-focused': {
+                borderBottomColor: 'primary',
+            }
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: 'primary',
+        },
+    },
+    label: {
+        '& MuiFormHelperText-filled': {
+            color: 'primary'
+        },
     },
     buttons: {
         display: 'flex',
         justifyContent: 'center',
-        padding: '20px',
+        //padding: '20px',
+        position: 'relative',
+        top: '-70px'
     },
     button: {
         margin: '3px'
@@ -186,16 +212,13 @@ class MarketOfferForm extends React.Component {
                             }}
                             validationSchema={this.getSchema}
                             onSubmit={this.handleSubmit}
-                            render={() => (
+                            render={({values, touched, errors}) => (
                                 <Form mode='structured'>
 
                                     <Grid container spacing={3}>
                                         <Grid item xs={6}>
-
                                             <br/>
-
                                             <Box className={classes.imageUpload}>
-
                                                 <InputLabel htmlFor="productImage">Upload Image</InputLabel>
                                                 <Field
                                                     component={ImageUploadCard}
@@ -210,37 +233,39 @@ class MarketOfferForm extends React.Component {
                                                     style={{display: "none"}}
                                                 />
                                             </Box>
-                                            <br/>
                                         </Grid>
                                         <Grid item xs={6}>
-
                                             <br/>
-
-                                            <InputLabel htmlFor="category">Type</InputLabel>
+                                            <FormHelperText
+                                                error={touched["type"] && errors["type"]}>Type</FormHelperText>
                                             <Field
                                                 component={Select}
                                                 name="type"
                                                 inputProps={{
                                                     id: 'type',
                                                 }}
-                                                className={classes.field}
+                                                className={classes.select}
                                             >
                                                 <MenuItem value={'Rental'}>Rental</MenuItem>
                                                 <MenuItem value={'Sale'}>Sale</MenuItem>
                                             </Field>
-
+                                            {
+                                                touched["type"] &&
+                                                errors["type"] &&
+                                                <FormHelperText error={true}>
+                                                    {errors["type"]}
+                                                </FormHelperText>
+                                            }
                                             <br/>
-
-                                            <br/>
-
-                                            <InputLabel htmlFor="category">Category</InputLabel>
+                                            <FormHelperText
+                                                error={touched["category"] && errors["category"]}>Category</FormHelperText>
                                             <Field
                                                 component={Select}
                                                 name="category"
                                                 inputProps={{
                                                     id: 'category',
                                                 }}
-                                                className={classes.field}
+                                                className={classes.select}
                                             >
                                                 <MenuItem value={'Seeds and Small Plants'}>Seeds and Small
                                                     Plants</MenuItem>
@@ -249,54 +274,58 @@ class MarketOfferForm extends React.Component {
                                                 <MenuItem value={'Electronic Equipment'}>Electronic Equipment</MenuItem>
                                                 <MenuItem value={'Others'}>Others</MenuItem>
                                             </Field>
-
-                                            <br/>
-
+                                            {
+                                                touched["category"] &&
+                                                errors["category"] &&
+                                                <FormHelperText error={true}>
+                                                    {errors["category"]}
+                                                </FormHelperText>
+                                            }
                                             <Field
                                                 component={TextField}
                                                 name="title"
                                                 label="Title"
                                                 className={classes.field}
                                             />
-
-                                            <br/>
-
                                             <Field
                                                 component={TextField}
                                                 name='description'
                                                 label='Description'
                                                 multiline={true}
-                                                rows='5'
-                                                rowsMax='20'
+                                                rows='7'
+                                                rowsMax='25'
                                                 className={classes.field}
+                                                style={{position: 'relative', top: '-30px'}}
                                             />
-
-                                            <br/>
-                                            <br/>
-
-                                            <InputLabel htmlFor="category">Denomination</InputLabel>
+                                            <FormHelperText style={{position: 'relative', top: '-63px'}}
+                                                error={touched["denomination"] && errors["denomination"]}>Denomination</FormHelperText>
                                             <Field
                                                 component={Select}
                                                 name="denomination"
                                                 inputProps={{
                                                     id: 'denomination',
                                                 }}
-                                                className={classes.field}
+                                                className={classes.select}
+                                                style={{position: 'relative', top: '-63px'}}
                                             >
                                                 <MenuItem value={'unit'}>unit</MenuItem>
                                                 <MenuItem value={'per kg'}>per kg</MenuItem>
                                                 <MenuItem value={'per gram'}>per gram</MenuItem>
                                                 <MenuItem value={'per day'}>per day</MenuItem>
                                             </Field>
-
-                                            <br/>
-
-
+                                            {
+                                                touched["denomination"] &&
+                                                errors["denomination"] &&
+                                                <FormHelperText error={true}>
+                                                    {errors["denomination"]}
+                                                </FormHelperText>
+                                            }
                                             <Field
                                                 component={TextField}
                                                 name="pricePerUnit"
                                                 label="Price per unit"
                                                 className={classes.field}
+                                                style={{position: 'relative', top: '-61px'}}
                                                 InputProps={{
                                                     startAdornment: (
                                                         <InputAdornment position="start">
@@ -305,33 +334,25 @@ class MarketOfferForm extends React.Component {
                                                     ),
                                                 }}
                                             />
-
-                                            <br/>
-
-
                                         </Grid>
-
-                                        <br/>
-
-
                                         <Grid item xs={12} className={classes.buttons}>
 
-                                                <Button
-                                                    type="submit"
-                                                    variant="contained"
-                                                    color="primary"
-                                                    className={classes.button}
-                                                >
-                                                    Submit <PublishIcon/>
-                                                </Button>
-                                                <Button
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    className={classes.button}
-                                                    onClick={(() => history.go(-1))}
-                                                >
-                                                    Cancel <CancelIcon/>
-                                                </Button>
+                                            <Button
+                                                type="submit"
+                                                variant="contained"
+                                                color="primary"
+                                                className={classes.button}
+                                            >
+                                                Submit <PublishIcon/>
+                                            </Button>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                className={classes.button}
+                                                onClick={(() => history.go(-1))}
+                                            >
+                                                Cancel <CancelIcon/>
+                                            </Button>
                                         </Grid>
                                     </Grid>
 
