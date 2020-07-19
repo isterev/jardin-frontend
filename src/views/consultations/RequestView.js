@@ -19,14 +19,16 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
+        justifyContent: 'center',
         '& > *': {
+            marginTop: theme.spacing(3),
             padding: theme.spacing(5),
+            // paddingTop: theme.spacing(15)
         },
-        marginTop: '50px',
-        width: '1250px'
+        width: '100%'
     },
     paper: {
-        width: '1000px',
+        width: '100%%',
         borderRadius: '10px',
     },
     formDiv: {
@@ -104,7 +106,8 @@ export default function() {
              <Paper className={classes.paper}>
                  <BreadCrumbsComponent links={[{name: 'Expert Consultation', link: '/expert-consultation/request'}, {name: 'Request Consultation'}]}/>
                  <p>Tell us when you'd like to connect and some details about the topics you would like to discuss.</p>
-                 <p>We look forward to speaking with you!</p>
+                 <p style={{marginTop:'-10px'}}>Appointments are available from <b>{formatDateTimeString(getEarliestTime())}</b> onwards</p>
+                 <p style={{marginTop:'-10px'}}>We look forward to speaking with you!</p>
                  <Formik
                     initialValues={{initialValues}}
                     onSubmit={handleSubmit}

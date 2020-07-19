@@ -28,10 +28,10 @@ const theme = createMuiTheme({
             main: '#2D6042'
         },
         secondary: {
-            main: '#A6BC29'
+            main: '#A6B829'
         },
         background: {
-            default: "#CFE070"
+            default: "#f5f5f5"
         }
     },
 })

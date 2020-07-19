@@ -10,32 +10,19 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyle = makeStyles(() => ({
     button: {
-        opacity: '90%',
-        background: "#b56244",
+        opacity: '70%',
+        // background: "#b56244",
         color: 'white',
         marginTop: "40px",
         fontWeight: "bold",
         "&:hover": {
-            opacity: "100%",
+            opacity: "80%",
             color: 'white',
-                background: '#b56244'
         },
         textTransform: 'none',
         fontSize: '15px',
     },
     dialogButton: {
-        opacity: '90%',
-        background: "#b56244",
-        color: 'white',
-        marginTop: "40px",
-        fontWeight: "bold",
-        "&:hover": {
-            opacity: "100%",
-            color: 'white',
-            background: '#b56244'
-        },
-        textTransform: 'none',
-        fontSize: '15px',
         width: '175px'
     },
     text : {
@@ -57,7 +44,7 @@ export default function AlertDialog({disabled, style, text}) {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen} disabled={disabled} className={classes.button}>
+            <Button variant="contained" color="primary" onClick={handleClickOpen} className={classes.button} disabled={disabled}>
                 {text}
             </Button>
             <Dialog
@@ -72,11 +59,11 @@ export default function AlertDialog({disabled, style, text}) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} type="submit" className={classes.dialogButton}>
-                        No
-                    </Button>
-                    <Button onClick={handleClose} autoFocus  type="submit" form="requestForm" className={classes.dialogButton}>
+                    <Button onClick={handleClose} autoFocus  type="submit" form="requestForm" color="primary" variant="contained" className={[classes.button, classes.dialogButton].join(",")}>
                         Yep, go ahead!
+                    </Button>
+                    <Button onClick={handleClose} color="primary" variant="contained" className={[classes.button, classes.dialogButton].join(",")}>
+                        No
                     </Button>
                 </DialogActions>
             </Dialog>

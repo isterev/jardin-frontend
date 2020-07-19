@@ -5,29 +5,28 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles( () => ({
     root: {
-        width: '570px',
-        marginBottom: '30px',
-        '& label.Mui-focused': {
-            color: '#b56244',
-        },
-        '& .MuiInput-underline:after': {
-            borderBottomColor: '#b56244',
-        },
-
+        width: '100%',
+        display: 'inline-block',
+        border: '1px solid #ccc',
+        borderRadius: '4px',
+        boxSizing: 'border-box',
+        height: '120%'
     }
 }))
-export default function({name, label}) {
+export default function({name, label, isPassword=false}) {
     let classes = useStyles()
     return (
         <Field
+            required
             helperText={<ErrorMessage name={name}/>}
-            as={TextField}
             className={classes.root}
             label={label}
             rows={1}
-            defaultValue=""
             name={name}
+            variant="outlined"
             autoComplete="off"
+            type={isPassword?"password":""}
         />
+
     )
 }

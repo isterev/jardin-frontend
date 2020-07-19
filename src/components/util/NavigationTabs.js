@@ -8,18 +8,22 @@ const styles = (theme) => ({
     root: {
         position: 'absolute',
         flexGrow: 1,
-        height: 48,
+        height: '52px',
         width: '100%',
-        backgroundColor: "#367c55",
-        paddingLeft: 200,
+        backgroundColor: "#367c56",
+        display: 'flex',
+        justifyContent: 'space-around'
     },
     tabs: {
+        width: '200px',
+        height: '20px',
         textTransform: 'none',
         color: '#ededed',
         fontWeight: '700',
         fontSize: 'initial',
         '&:hover': {
-            border: '1.5px solid black'
+            border: '1.5px solid #eaf0c1',
+            borderRadius: '10px'
         },
     },
 })
@@ -42,10 +46,10 @@ export class NavigationTabs extends React.Component {
             <div className={classes.root}>
                 <Tabs value={this.props.selectedTab} onChange={this.handleTabChange}>
                     <Tab className={classes.tabs} label="Blogs" value="/blogs"/>
-                    <Tab className={classes.tabs} label="Forum" value="/forum"/>
+                    <Tab className={classes.tabs} label="Forum" value="/forum" disabled/>
                     <Tab className={classes.tabs} label="Marketplace" value="/offers"/>
                     <Tab className={classes.tabs} label="Expert Consultation" value="/expert-consultation/request"/>
-                    <Tab className={classes.tabs} label="Customer Service" value="/service"/>
+                    <Tab className={classes.tabs} label="Customer Service" value="/service" disabled/>
                 </Tabs>
             </div>
         )

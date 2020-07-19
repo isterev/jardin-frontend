@@ -50,7 +50,7 @@ export default function() {
             return UserService.getCurrentUser();
         }
         async function getBlogData(id) {
-            return BlogService.getBlogsFor(id)
+            return BlogService.getMyBlogs(id)
         }
         getCurrentUser().then((value) =>
             getBlogData(value['id']).then((allBlogData) => {
@@ -105,9 +105,11 @@ export default function() {
     let history = useHistory()
     return (
         <Page>
-             <span className={classes.add}> <Button variant='contained' color='primary'
-                                                    onClick={() => history.push("/postBlog")}
-             > Post a blog  <PostAddTwoToneIcon/>  </Button>  </span>
+             <span className={classes.add}>
+                 <Button variant='contained' color='primary' onClick={() => history.push("/postBlog")}>
+                     Post a blog  <PostAddTwoToneIcon/>
+                 </Button>
+             </span>
             <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <div className={classes.durationFilter}>
@@ -120,7 +122,7 @@ export default function() {
                         {
                             !loading &&
                                 blogData.map(({articleTitle, createdAt, articleBody, _id}, index) => {
-                                    return <MyBlogsComponent title={articleTitle} body={articleBody} createdAt={formatDateTimeString(createdAt)} lastComponent={index===blogData.length - 1}/>
+                                    return <MyBlogsComponent title={articleTitle} body={JSON.parse(articleBody).blocks[0].text} createdAt={formatDateTimeString(createdAt)} lastComponent={index===blogData.length - 1}/>
                                 })
                         }
                     </div>

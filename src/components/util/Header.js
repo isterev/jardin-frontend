@@ -1,5 +1,5 @@
 import React from 'react'
-import {withRouter} from "react-router-dom"
+import {Link, withRouter} from "react-router-dom"
 import {fade} from '@material-ui/core/styles'
 import {withStyles} from '@material-ui/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -20,7 +20,7 @@ const styles = (theme) => ({
     },
     logo: {
         height: '100%',
-        width: 120
+        width: '100%'
     },
     search: {
         position: 'relative',
@@ -65,11 +65,12 @@ const styles = (theme) => ({
     },
     icon:{
         '&:hover': {
-            border:'1.5px solid black'
+            border:'1.5px solid #eaf0c1'
         }
     },
-    menu:{
-        top:'50px'
+    menu: {
+        position: 'relative',
+        marginTop: '2.5%'
     }
 
 })
@@ -179,7 +180,9 @@ class Header extends React.Component {
             <div className={classes.root}>
                 <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
+                        <Link to="/" style={{width: '150px'}}>
                         <img src={jardinLogo} alt="jardinLogo" className={classes.logo}/>
+                        </Link>
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon/>
@@ -215,9 +218,10 @@ class Header extends React.Component {
                                 transformOrigin={{vertical: 'top', horizontal: 'right'}}
                                 open={Boolean(this.state.anchorEl)}
                                 onClose={this.handleMenuClose}
+                                className={classes.menu}
                             >
                                 {UserService.isAuthenticated() ?
-                                    <div className={classes.menu}>
+                                    <div>
                                         <span style={{'position': 'relative', 'left': '7%' }}><p><b> Topics </b></p></span>
                                         <hr/>
                                         <MenuItem onClick={this.handleMyBlogs}>My Blogs</MenuItem>

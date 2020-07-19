@@ -57,9 +57,11 @@ class Page extends React.Component {
                             </Grid>
                             <Grid item xs={8} sm={8}>
                                 <div>
-                                    <Box p={3}>
-                                        <Typography>{this.props.children}</Typography>
-                                    </Box>
+                                    {/*<Box p={3}>*/}
+                                    {/*    <Typography>*/}
+                                            {this.props.children}
+                                        {/*</Typography>*/}
+                                    {/*</Box>*/}
                                 </div>
                             </Grid>
                             <Grid item xs={4} sm={2}>

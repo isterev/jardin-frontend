@@ -88,12 +88,30 @@ export default function (props) {
                                     )
                             }
                         </div>
-                    <RequestProgressBar percent={calculateProgress()} createdOn={requestData['createdOn']} onCancel={onCancel} status={requestData['status']}/>
+                    <RequestProgressBar
+                        percent={calculateProgress()}
+                        createdOn={requestData['createdOn']}
+                        onCancel={onCancel}
+                        status={requestData['status']}
+                        scheduledFor={processScheduledFor()}
+                    />
                 </Paper>
             </div>
         </Page>
     )
 
+    function processScheduledFor() {
+        switch (requestData['scheduledFor']) {
+            case 'FIRST_PREF':
+                return formatDateTimeString(requestData['firstPreference'])
+            case 'SECOND_PREF':
+                return formatDateTimeString(requestData['secondPreference'])
+            case 'THIRD_PREF':
+                return formatDateTimeString(requestData['thirdPreference'])
+            default:
+                return undefined
+        }
+    }
 
     function getEarliestCancellationTime(createdOn) {
         createdOn = new Date(createdOn)

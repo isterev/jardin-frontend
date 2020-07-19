@@ -15,16 +15,20 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
+        justifyContent: 'center',
         '& > *': {
-            margin: theme.spacing(10),
+            // marginLeft: theme.spacing(5),
+            marginTop: theme.spacing(5),
             padding: theme.spacing(5),
             paddingBottom: theme.spacing(2)
         },
-        width: '1250px'
+        height: '100%'
     },
     paper: {
-        width: '1250px',
-        borderRadius: '10px'
+        width: '87%',
+        height: '100%',
+        borderRadius: '10px',
+        // backgroundColor: '#bfbfbf'
     },
     durationFilter: {
         display: "flex",
@@ -47,7 +51,7 @@ export default function() {
         () => {
             async function getAllConsultationRequests() {
                 let currentUser = await UserService.getCurrentUser()
-                return  ExpertConsultationService.getConsultationRequestsFor(currentUser['id'])
+                return ExpertConsultationService.getConsultationRequestsFor(currentUser['id'])
             }
             getAllConsultationRequests().then((allData) => {
                 setOriginalData(allData)
