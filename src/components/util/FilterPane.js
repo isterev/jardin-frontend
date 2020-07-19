@@ -32,7 +32,7 @@ function valuetext(value) {
 
 export default function CheckboxesGroup(props) {
     const classes = useStyles()
-    const [value, setValue] = React.useState([0, 100])
+    const [value, setValue] = React.useState([0, 5000])
     const [sale, setSale] = React.useState(true)
     const [rental, setRental] = React.useState(true)
     const [seeds, setSeeds] = React.useState(true)
@@ -126,6 +126,9 @@ export default function CheckboxesGroup(props) {
                         valueLabelDisplay="auto"
                         aria-labelledby="range-slider"
                         getAriaValueText={valuetext}
+                        step={10}
+                        min={0}
+                        max={5000}
                     />
                 </div>
                 <FormLabel component="legend" className={classes.label}>Category</FormLabel>
