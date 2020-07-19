@@ -1,48 +1,40 @@
 import React from 'react'
 import {makeStyles} from "@material-ui/core/styles"
-import Box from "@material-ui/core/Box"
-import Typography from "@material-ui/core/Typography"
-import TableCell from "@material-ui/core/TableCell"
-import TableRow from "@material-ui/core/TableRow"
-import TableBody from "@material-ui/core/TableBody"
-import TableContainer from "@material-ui/core/TableContainer"
-import Table from "@material-ui/core/Table"
-import Paper from "@material-ui/core/Paper"
 import Page from "../Page"
 import Button from "@material-ui/core/Button";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import BreadCrumbsComponent from "../consultations/BreadCrumbsComponent";
+import {Card, InputLabel, MenuItem} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: '#cfdf72',
     },
+    card: {
+        position: 'absolute',
+        top: '25%',
+        left: '20%',
+        right: '20%',
+    },
     img: {
-        height: 280,
+        height: 400,
+        width: '35.8974358974',
         float: "left",
         display: "inline-block",
         alignContent: "left",
 
     },
-    Box: {
-        display: 'content',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRight: '1',
-        overflow: 'hidden',
-        position: 'absolute',
-        top: '25%',
-    },
     detailDiv: {
-        float: "right",
-        paddingRight: 200,
-        paddingLeft: 75,
-
+        paddingTop:'50px',
     },
     imageDiv: {
         float: "left",
         display: "flex",
         alignContent: "left",
+        paddingTop:'50px',
+        paddingRight:'25px',
+        paddingLeft:'25px'
     },
     table: {
         minWidth: 150,
@@ -50,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
         fontWeight: 600,
+    },
+    heading: {
+        fontSize: '25px',
+        lineHeight: '28px',
+        margin: '0 0 2px',
     }
 }))
 
@@ -59,7 +56,7 @@ function createData(name, values) {
 
 export default function MarketOfferDetails(props) {
     const classes = useStyles()
-
+    let productId = props.id
     const rows = [
         createData('Type', props.marketOffer.type),
         createData('Category', props.marketOffer.category),
@@ -78,35 +75,30 @@ export default function MarketOfferDetails(props) {
                     color="secondary"
                     className={classes.button}
                     onClick={(() => history.go(-1))}
-                    style={{position: 'absolute', right: "400px", top: "140px"}}
+                    style={{position: 'absolute', top: "140px"}}
 
                 >
                     Go Back <KeyboardBackspaceIcon/>
                 </Button>
             </React.Fragment>
-            <Box className={classes.Box}>
-                <img className={classes.img}
-                     src={props.marketOffer.productImage}
-                     alt="title"/>
-                <div className={classes.detailDiv}>
-                    <TableContainer component={Paper}>
-                        <Table className={classes.table} border={0}>
-                            <TableBody>
-                                {rows.map((row) => (
-                                    <TableRow key={row.name}>
-                                        <TableCell border="0" component="th" scope="row">
-                                            <Typography className={classes.text}>
-                                                {row.name}
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell align="left">{row.values}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+            <Card className={classes.card}>
+                <BreadCrumbsComponent links={[{name: 'Marketplace', link: '/offers'},
+                    {name: productId}]}/>
+                <div className={classes.imageDiv}>
+                    <img className={classes.img}
+                         src={props.marketOffer.productImage}
+                         alt="title"/>
                 </div>
-            </Box>
+                <div className={classes.detailDiv}>
+                    <h1 className={classes.heading}>{props.marketOffer.title}</h1>
+                    <p>{props.marketOffer.description}</p><br/>
+                    <p style={{marginTop: "-15px"}}><b>Type:</b> {props.marketOffer.type}</p><br/>
+                    <p style={{marginTop: "-15px"}}><b>Category:</b> {props.marketOffer.category}</p><br/>
+                    <p style={{marginTop: "-15px"}}><b>Quantity:</b> {props.marketOffer.denomination}</p><br/>
+                    <p style={{marginTop: "-15px"}}><b>Price:</b> {props.marketOffer.pricePerUnit}</p><br/>
+                    <p style={{marginTop: "-15px"}}><b>Contact:</b> {props.marketOffer.contact}</p><br/>
+                </div>
+            </Card>
         </Page>
     )
 }

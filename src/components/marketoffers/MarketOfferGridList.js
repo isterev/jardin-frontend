@@ -12,10 +12,8 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 import Page from '../Page'
 import UserService from "../../services/UserService"
 import Typography from "@material-ui/core/Typography"
-import Button from "@material-ui/core/Button";
-import {FormHelperText} from "@material-ui/core";
-import {Form} from "formik";
-import {CustomButton} from "../util/CustomButton";
+import {CustomButton} from "../util/CustomButton"
+import BreadCrumbsComponent from "../consultations/BreadCrumbsComponent";
 
 const styles = (theme) => ({
     root: {
@@ -113,6 +111,8 @@ class MarketOfferGridList extends React.Component {
         const {classes} = this.props
         return (
             <Page handleFilterChange={this.handleFilterChange}>
+                <BreadCrumbsComponent links={[{name: 'Marketplace', link: '/offers'},
+                    {name: 'Offers'}]}/>
                 <div className={classes.root}>
                     <div>
                         {this.state.sortAsc ?
