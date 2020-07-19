@@ -25,10 +25,9 @@ const styles = (theme) => ({
     gridList: {
         overflow: 'auto',
         maxHeight: '70%',
-        width: '800px',
+        width: '950px',
         position: 'absolute',
-        top: '35%',
-        bottom: '10%',
+        top: '220px',
     },
     gridListTile: {
         maxWidth: '25%',
@@ -105,7 +104,7 @@ class MarketOfferGridList extends React.Component {
                             <Button color="primary" className={classes.sortButton} onClick={this.handleSort}> Sorted by:
                                 Date (descending) < ArrowDropDownIcon fontSize="medium"/> </Button>}
                     </div>
-                    <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
+                    <GridList cols={4} spacing={35} cellHeight={180} className={classes.gridList}>
                         {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
                                  alt={marketOffer.title} className={classes.image}

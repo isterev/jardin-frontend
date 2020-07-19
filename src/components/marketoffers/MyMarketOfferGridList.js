@@ -30,11 +30,9 @@ const styles = (theme) => ({
     gridList: {
         overflow: 'auto',
         maxHeight: '70%',
-        width: '800px',
+        width: '950px',
         position: 'absolute',
-        top: '29%',
-        bottom: '10%',
-        left: '25%',
+        top: '220px',
     },
     gridListTile: {
         maxWidth: '25%',
@@ -153,7 +151,7 @@ class MyMarketOfferGridList extends React.Component {
                         </Link>
                         <br/>
                     </div>
-                    <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
+                    <GridList cols={4} spacing={35} cellHeight={180} className={classes.gridList}>
                         {this.state.data.map((marketOffer, i) => <GridListTile key={i} className={classes.gridListTile}>
                             <img src={marketOffer.productImage}
                                  alt={marketOffer.title}
