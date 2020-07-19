@@ -34,7 +34,9 @@ const styles = (theme) => ({
         color: 'rgba(255, 255, 255, 0.54)',
     },
     sortButton: {
-        paddingLeft: '650px',
+        //position: 'absolute',
+        top: '18%',
+        right: '50%',
     }
 })
 
@@ -94,8 +96,8 @@ class MarketOfferGridList extends React.Component {
             <Page handleFilterChange={this.handleFilterChange}>
                 <div className={classes.root}>
                     <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
-                        <div className={classes.sortButton}>
-                            <button onClick={this.handleSort}>Sort by: Date
+                        <div >
+                            <button className={classes.sortButton} onClick={this.handleSort}>Sort by: Date
                                 {this.state.sortAsc ?
                                     <ArrowDropDownIcon fontSize="medium"/> :
                                     <ArrowDropUpIcon fontSize="medium"/>}

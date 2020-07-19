@@ -41,7 +41,12 @@ const styles = (theme) => ({
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
-    add: {
+    addButton: {
+        position: 'absolute',
+        top: '18%',
+        right: '40%',
+    },
+    sortButton: {
         position: 'absolute',
         top: '18%',
         right: '20%',
@@ -121,7 +126,7 @@ class MyMarketOfferGridList extends React.Component {
             <Page handleFilterChange={this.handleFilterChange} handleRangeChange = {this.handleRangeChange}>
                 <div>
                     <Link to="/addOffer">
-                        <Tooltip title="Add" aria-label="add" className={classes.add}>
+                        <Tooltip title="Add" aria-label="add" className={classes.addButton}>
                             <Fab color="secondary">
                                 <AddIcon/>
                             </Fab>
@@ -133,7 +138,7 @@ class MyMarketOfferGridList extends React.Component {
                 <div className={classes.root}>
                     <GridList cols={4} spacing={8} cellHeight={180} className={classes.gridList}>
                         <div className={classes.sortButton}>
-                            <button onClick={this.handleSort}>Sort by: Date
+                            <button className={classes.sortButton} onClick={this.handleSort}>Sort by: Date
                                 {this.state.sortAsc ?
                                     <ArrowDropDownIcon fontSize="medium"/> :
                                     <ArrowDropUpIcon fontSize="medium"/>}

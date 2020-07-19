@@ -11,7 +11,7 @@ const styles = (theme) => ({
         height: 48,
         width: '100%',
         backgroundColor: "#367c55",
-        paddingLeft: 200,
+        paddingLeft: 220,
     },
     tabs: {
         textTransform: 'none',
