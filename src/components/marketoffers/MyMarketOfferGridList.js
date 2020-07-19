@@ -8,19 +8,16 @@ import GridListTileBar from "@material-ui/core/GridListTileBar"
 import {withStyles} from "@material-ui/styles"
 import {Link, withRouter} from "react-router-dom"
 import IconButton from "@material-ui/core/IconButton"
-import AddIcon from '@material-ui/icons/Add'
-import DeleteIcon from '@material-ui/icons/Delete'
 
 import Page from '../Page'
 import UserService from "../../services/UserService"
-import Fab from "@material-ui/core/Fab"
 import Tooltip from "@material-ui/core/Tooltip"
 import AlertDialog from "../util/AlertDialog"
 import Typography from "@material-ui/core/Typography"
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import Button from "@material-ui/core/Button";
-import {CustomButton, ColorButton} from "../util/CustomButton";
+import {CustomButton} from "../util/CustomButton";
+import BreadCrumbsComponent from "../consultations/BreadCrumbsComponent";
 
 const styles = (theme) => ({
     root: {
@@ -43,8 +40,8 @@ const styles = (theme) => ({
     },
     addButton: {
         position: 'absolute',
-        top: '15%',
-        right: '32%',
+        top: '17%',
+        right: '31%',
         backgroundColor: '#2D6042',
         borderColor: '#2D6042',
         '&:hover': {
@@ -65,7 +62,7 @@ const styles = (theme) => ({
     },
     sortButton: {
         position: 'absolute',
-        top: '15%',
+        top: '17%',
         right: '20%',
         width: '200px',
         backgroundColor: '#2D6042',
@@ -84,6 +81,11 @@ const styles = (theme) => ({
         /*'&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(51,255,155,.5)',
         },*/
+    },
+    breadCrumbs: {
+        position: "absolute",
+        top: "175px",
+        left: "450px"
     }
 })
 
@@ -170,6 +172,10 @@ class MyMarketOfferGridList extends React.Component {
         return (
             <Page handleFilterChange={this.handleFilterChange} handleRangeChange={this.handleRangeChange}>
                 <div className={classes.root}>
+                    <div className={classes.breadCrumbs}>
+                    <BreadCrumbsComponent links={[{name: 'Marketplace', link: '/myOffers'},
+                        {name: 'My Offers'}]}/>
+                    </div>
                     <div>
                         {this.state.sortAsc ?
                             <CustomButton disableRipple className={classes.sortButton} onClick={this.handleSort}> Sorted by:

@@ -12,10 +12,8 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 import Page from '../Page'
 import UserService from "../../services/UserService"
 import Typography from "@material-ui/core/Typography"
-import Button from "@material-ui/core/Button";
-import {FormHelperText} from "@material-ui/core";
-import {Form} from "formik";
-import {CustomButton} from "../util/CustomButton";
+import {CustomButton} from "../util/CustomButton"
+import BreadCrumbsComponent from "../consultations/BreadCrumbsComponent";
 
 const styles = (theme) => ({
     root: {
@@ -38,7 +36,7 @@ const styles = (theme) => ({
     },
     sortButton: {
         position: 'absolute',
-        top: '15%',
+        top: '17%',
         right: '20%',
         width: '200px',
         backgroundColor: '#2D6042',
@@ -57,6 +55,11 @@ const styles = (theme) => ({
         /*'&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(51,255,155,.5)',
         },*/
+    },
+    breadCrumbs: {
+        position: "absolute",
+        top: "175px",
+        left: "450px"
     }
 })
 
@@ -113,6 +116,10 @@ class MarketOfferGridList extends React.Component {
         const {classes} = this.props
         return (
             <Page handleFilterChange={this.handleFilterChange}>
+                <div className={classes.breadCrumbs}>
+                <BreadCrumbsComponent links={[{name: 'Marketplace', link: '/offers'},
+                    {name: 'Offers'}]}/>
+                </div>
                 <div className={classes.root}>
                     <div>
                         {this.state.sortAsc ?
